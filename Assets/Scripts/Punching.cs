@@ -8,7 +8,7 @@ public class Punching : MonoBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
         EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0))
         {
             Debug.Log("pressed");
             if (collider.gameObject.tag == "Enemy")
