@@ -7,31 +7,50 @@ public class LevelLoader : MonoBehaviour
    
    public Animator transition;
 
+   private static float transitionStop = 0f;
+
    public float transitionTime = 1f;
     // Update is called once per frame
-    void Update()
-    {
+   void Update()
+   {
+      
+      if(Input.GetMouseButtonDown(0)) 
+      {
+         //If player imuts a mouse click it loads the next scene
+         LoadNextLevel();
+         Debug.Log(transitionStop);
+      }
+      else
+      {
+         //Don't transition
+      }
+       
+   }
 
-       if(Input.GetMouseButtonDown(0)) 
-       {
-            //If player imuts a mouse click it loads the next scene
-            LoadNextLevel();
-       }
+   public void LoadNextLevel()
+   {
+      if (transitionStop == 0)
+      {
+         //Method that checks for the next scene that is loaded
+         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+      }
+      else
+      {
+         Debug.Log("transitionStop");
+      }
+   }
 
-    }
+   IEnumerator LoadLevel(int levelIndex)
+   {
+      if (transitionStop == 0)
+      {
+         transitionStop ++;
+         transition.SetTrigger("Start");
 
-    public void LoadNextLevel()
-       {
+         yield return new WaitForSeconds(transitionTime);
+         SceneManager.LoadScene(levelIndex);
+      }
+   }
 
-        //Method that checks for the next scene that is loaded
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-       }
-
-       IEnumerator LoadLevel(int levelIndex)
-       {
-            transition.SetTrigger("Start");
-
-            yield return new WaitForSeconds(transitionTime);
-            SceneManager.LoadScene(levelIndex);
-       }
+   public void Next
 }
