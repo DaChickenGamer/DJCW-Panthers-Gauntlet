@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class Punching : MonoBehaviour
 {
+    private bool W, A, S, D;
     Animator animator;
     string currentState;
 
-    const string Idle = "Idle";
+    const string Idle_Up = "Idle";
     const string Boxing_Up = "Boxing_Up";
     const string Boxing_Right = "Boxing_Right";
     const string Boxing_Left = "Boxing_Left";
@@ -28,21 +29,26 @@ public class Punching : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (Input.GetKey(KeyCode.W)||Input.GetKeyUp(KeyCode.W))) ChangeAnimationState(Boxing_Up);
-        else if (Input.GetKeyDown(KeyCode.W)) ChangeAnimationState(Walking_Up);
-        else if (Input.GetKeyUp(KeyCode.W)) ChangeAnimationState(Idle);
+        if (Input.GetMouseButtonDown(0) && W) ChangeAnimationState(Boxing_Up);
+        else if (Input.GetKeyDown(KeyCode.W)) { ChangeAnimationState(Walking_Up); W = true; A = false; S = false; D = false; }
+        else if (Input.GetMouseButtonUp(0) && W) ChangeAnimationState(Idle_Up);
 
-        if (Input.GetMouseButtonDown(0) && (Input.GetKey(KeyCode.A)||Input.GetKeyUp(KeyCode.W))) ChangeAnimationState(Boxing_Left);
-        else if (Input.GetKeyDown(KeyCode.A)) ChangeAnimationState(Walking_Left);
-        else if (Input.GetKeyUp(KeyCode.A)) ChangeAnimationState(Idle_Left);
+        else if (Input.GetMouseButtonDown(0) && A) ChangeAnimationState(Boxing_Left);
+        else if (Input.GetKeyDown(KeyCode.A)) { ChangeAnimationState(Walking_Left); W = false; A = true; S = false; D = false; }
+        else if (Input.GetMouseButtonUp(0) && A) ChangeAnimationState(Idle_Left);
 
-        if (Input.GetMouseButtonDown(0) && (Input.GetKey(KeyCode.S)||Input.GetKeyUp(KeyCode.S))) ChangeAnimationState(Boxing_Down);
-        else if (Input.GetKeyDown(KeyCode.S)) ChangeAnimationState(Walking_Down);
-        else if (Input.GetKeyUp(KeyCode.S)) ChangeAnimationState(Idle_Down);
+        else if (Input.GetMouseButtonDown(0) && S) ChangeAnimationState(Boxing_Down);
+        else if (Input.GetKeyDown(KeyCode.S)) { ChangeAnimationState(Walking_Down); W = false; A = false; S = true; D = false; }
+        else if (Input.GetMouseButtonUp(0) && S) ChangeAnimationState(Idle_Down);
 
-        if (Input.GetMouseButtonDown(0) && (Input.GetKey(KeyCode.D)||Input.GetKeyUp(KeyCode.D))) ChangeAnimationState(Boxing_Right);
-        else if (Input.GetKeyDown(KeyCode.D)) ChangeAnimationState(Walking_Right);
-        else if (Input.GetKeyUp(KeyCode.D)) ChangeAnimationState(Idle_Right);
+        else if (Input.GetMouseButtonDown(0) && D) ChangeAnimationState(Boxing_Right);
+        else if (Input.GetKeyDown(KeyCode.D)) { ChangeAnimationState(Walking_Right); W = false; A = false; S = false; D = true; }
+        else if (Input.GetMouseButtonUp(0) && D) ChangeAnimationState(Idle_Right);
+
+        else if (Input.GetKeyUp(KeyCode.W)&&(!A||!S||!D)) ChangeAnimationState(Idle_Up);
+        else if (Input.GetKeyUp(KeyCode.A)&&(!W||!S||!D)) ChangeAnimationState(Idle_Left);
+        else if (Input.GetKeyUp(KeyCode.S)&&(!W||!A||!D)) ChangeAnimationState(Idle_Down);
+        else if (Input.GetKeyUp(KeyCode.D)&&(!W||!A||!S)) ChangeAnimationState(Idle_Right);
         
         
         

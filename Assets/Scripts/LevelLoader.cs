@@ -52,5 +52,8 @@ public class LevelLoader : MonoBehaviour
       }
    }
 
-   public void Next
+    public void Next()
+    {
+
+    }
 }

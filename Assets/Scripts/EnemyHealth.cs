@@ -7,8 +7,8 @@ public class EnemyHealth : MonoBehaviour
     Animator animator;
     string currentState;
 
-    const string Idle = "";
-    const string Punched = "";
+    const string Idle = "Idle";
+    const string Punched = "Punched";
     public static float knocked = -1;
     public GameObject knockedOut; //Select the "projectile" object to spawn
     public Transform spawnLocation; //Location to spawn "projectile"
@@ -27,6 +27,10 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(knockedOut, spawnLocation.position, spawnRotation);
             Destroy(gameObject);
         }
+    }
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
     }
     public void Update()
     {
