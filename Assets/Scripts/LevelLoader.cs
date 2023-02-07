@@ -11,21 +11,6 @@ public class LevelLoader : MonoBehaviour
 
    public float transitionTime = 1f;
     // Update is called once per frame
-   void Update()
-   {
-      
-      if(Input.GetMouseButtonDown(0)) 
-      {
-         //If player imuts a mouse click it loads the next scene
-         LoadNextLevel();
-         Debug.Log(transitionStop);
-      }
-      else
-      {
-         //Don't transition
-      }
-       
-   }
 
    public void LoadNextLevel()
    {
@@ -44,7 +29,6 @@ public class LevelLoader : MonoBehaviour
    {
       if (transitionStop == 0)
       {
-         transitionStop ++;
          transition.SetTrigger("Start");
 
          yield return new WaitForSeconds(transitionTime);
@@ -52,8 +36,13 @@ public class LevelLoader : MonoBehaviour
       }
    }
 
-    public void Next()
-    {
+   public void QuitGame()
+   {
+      Application.Quit();
+   }
 
-    }
+   public void NextScene()
+   {
+      
+   }
 }
