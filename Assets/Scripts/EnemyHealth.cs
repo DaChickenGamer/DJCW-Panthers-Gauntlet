@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    Animator animator;
+    /*Animator animator;
     string currentState;
 
     const string Idle = "Idle";
-    const string Punched = "Punched";
+    const string Punched = "Punched";*/
     public static float knocked = -1;
-    public GameObject knockedOut; //Select the "projectile" object to spawn
+    /*public GameObject knockedOut; //Select the "projectile" object to spawn
     public Transform spawnLocation; //Location to spawn "projectile"
-    public Quaternion spawnRotation; // Rotaion of "projectile"
+    public Quaternion spawnRotation; // Rotaion of "projectile"*/
     int health = 100;
     public void TakeDamage(int damage)
     {
-        ChangeAnimationState(Punched);
+        
         health -= damage;
         Debug.Log(health);
         if (health <= 0)
@@ -24,22 +24,23 @@ public class EnemyHealth : MonoBehaviour
             knocked++;
             Debug.Log("Knockout");
             
-            Instantiate(knockedOut, spawnLocation.position, spawnRotation);
+            //Instantiate(knockedOut, spawnLocation.position, spawnRotation);
             Destroy(gameObject);
         }
     }
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        /*ChangeAnimationState(Idle);
+        animator = GetComponent<Animator>();*/
     }
     public void Update()
     {
-        ChangeAnimationState(Idle);
+        //ChangeAnimationState(Punched);
     }
     void ChangeAnimationState(string newState)
     {
         //Stop animation from interrupting itself
-        if (currentState == newState) return;
+        /*if (currentState == newState) return;
 
         // Plays new animation
         animator.Play(newState);
@@ -47,6 +48,6 @@ public class EnemyHealth : MonoBehaviour
 
 
         //Update current state
-        currentState = newState;
+        currentState = newState;*/
     }
 }
