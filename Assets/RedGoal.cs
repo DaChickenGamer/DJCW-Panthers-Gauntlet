@@ -8,13 +8,13 @@ public class RedGoal : MonoBehaviour
     public Transform spawnLocation;
     public Quaternion spawnRotation;
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Ball")
         {
-            //Score.RedTeamScore++;
-            Destroy(ball);
+            Score.blueTeamScore++;
             Instantiate(ball, spawnLocation.position, spawnRotation);
+            Destroy (collider.gameObject);
 
         }
     }
