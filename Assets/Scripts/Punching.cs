@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Punching : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class Punching : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        EnemyHealth enemy = GetComponent<Collider>().GetComponent<EnemyHealth>();
     }
     private void Update()
     {
@@ -61,23 +63,20 @@ public class Punching : MonoBehaviour
         
         
     }
-    void OnTriggerStay2D(Collider2D collider)
+    
+    public void OnPunch(InputValue value)
     {
-        EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("pressed");
-            if (collider.gameObject.tag == "Enemy")
+        Debug.Log("Punched");
+
+        /*if (GetComponent<Collider>().gameObject.tag == "Enemy")
             {
                 Debug.Log("enemy found");
-                enemy.TakeDamage(damage);
-            }
-        }
-        else
-        {
-            
-        }
-                
+                enemy.TakeDamage(damage); <- Doesn't Work
+            }*/
+    }
+    public void OnKick(InputValue value)
+    {
+        Debug.Log("Kicked");
     }
     void ChangeAnimationState(string newState)
     {
