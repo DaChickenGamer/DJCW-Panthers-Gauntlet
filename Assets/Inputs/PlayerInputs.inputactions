@@ -16,21 +16,21 @@
                 },
                 {
                     "name": "Punch",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "6f928d7d-bdcd-4e45-a272-9acaf6c3b8ed",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Kick",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "5b1552b8-2db4-44fa-9218-d3a3e6e9e328",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Grapple",
@@ -177,23 +177,23 @@
                 },
                 {
                     "name": "",
-                    "id": "cb34ddc5-f971-4b5f-826b-0a070f076d95",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Kick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bb85e5e4-aee6-42e7-9e41-c9ddbf3356c4",
+                    "id": "7196c00d-04f6-4d21-96ef-78d0ae98476f",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f2610a1-37cf-4f22-84fe-c6796ec4d450",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Kick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
