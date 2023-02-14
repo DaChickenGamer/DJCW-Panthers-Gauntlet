@@ -188,12 +188,21 @@
                 },
                 {
                     "name": "",
+<<<<<<< Updated upstream
                     "id": "bb85e5e4-aee6-42e7-9e41-c9ddbf3356c4",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Punch",
+=======
+                    "id": "2bcd6ad9-a82c-47d3-8d59-2d69f88d1362",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grapple",
+>>>>>>> Stashed changes
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,48 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Grapple : MonoBehaviour
 {
-    private int grappleWinCounter = 0;
-    private bool inGrappleState = false;
+    [SerializeField] private int grappleWinCounter = 0;
+    [SerializeField] private bool inGrappleState = false;
+
+
+    // Higher for harder characters
+    [SerializeField] private float delay = 1f;
+
+    // Make wincount higher for harder characters
+    [SerializeField] private int winCount = 10;
+
+    // Makes the fight easier by giving the player a bigger saftey net
+    [SerializeField] private int failCount = -10;
 
     private bool inputDelay = false;
-    void Update() 
+    
+    private void OnGrapple(InputValue value)
     {
-        
-        if(Input.GetKeyDown("g"))
+        if (inGrappleState == false)
         {
             grappleWinCounter = 0;
             inGrappleState = true;
-            Debug.Log("GrappleState " + inGrappleState);
+        }
+        else if (inGrappleState == true)
+        {
+                Debug.Log("Grapple " + grappleWinCounter);
+                grappleWinCounter++;
         }
 
-        if(inGrappleState == true)
+            Debug.Log("GrappleState " + inGrappleState);
+    }
+    void Update() 
+    {
+        if (inGrappleState == true)
         {
-            
-
-            if(Input.GetKeyDown("space"))       //player's grapple input
-            {
-                Debug.Log("Grapple " + grappleWinCounter);
-                grappleWinCounter ++;
-            }
-
-            if(grappleWinCounter >= 10)     //detects player's success in grapple
+            if (grappleWinCounter >= winCount)     //detects player's success in grapple
             {
                 Debug.Log("You won the grapple");
                 grappleWinCounter = 0;
                 inGrappleState = false;
             }
 
-            if(grappleWinCounter <= -10)    //detects player's falure in grapple
+            if (grappleWinCounter <= failCount)    //detects player's falure in grapple
             {
                 Debug.Log("You lossed the grapple");
                 grappleWinCounter = 0;
                 inGrappleState = false;
             }
 
-            if(inputDelay == false) //delays bot input
+            if (inputDelay == false) //delays bot input
             {
                 StartCoroutine(BotDelay());
                 inputDelay = true;
@@ -56,7 +68,7 @@ public class Grapple : MonoBehaviour
 
     IEnumerator BotDelay()      //delays value addition
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(delay);
 
         grappleWinCounter --;
         Debug.Log("Grapple " + grappleWinCounter);
