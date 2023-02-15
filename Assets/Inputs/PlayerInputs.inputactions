@@ -18,7 +18,7 @@
                     "name": "Punch",
                     "type": "Value",
                     "id": "6f928d7d-bdcd-4e45-a272-9acaf6c3b8ed",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -27,7 +27,7 @@
                     "name": "Kick",
                     "type": "Value",
                     "id": "5b1552b8-2db4-44fa-9218-d3a3e6e9e328",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
