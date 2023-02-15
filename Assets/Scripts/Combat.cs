@@ -72,7 +72,6 @@ public class Combat : MonoBehaviour
             grappleWinCounter++;
         }
 
-        Debug.Log("GrappleState " + inGrappleState);
     }
     void Update()
     {
