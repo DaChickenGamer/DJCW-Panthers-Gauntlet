@@ -7,18 +7,15 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public int maxHealth = 100;
-    public int currentHealth;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
 
-    // Used to disable texture
-    public Texture koBarTexture;
-
-    public KOBar kOBar;
+    public KOBar koBar;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        kOBar.SetMaxHealth(maxHealth);
+        koBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -33,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= damage;
 
-            kOBar.SetHealth(currentHealth);
+            koBar.SetHealth(currentHealth);
         }
     }
 }
