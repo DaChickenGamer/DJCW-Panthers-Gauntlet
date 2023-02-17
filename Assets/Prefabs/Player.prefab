@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 5335476540479696844}
   - component: {fileID: 3650727976462786133}
   - component: {fileID: 1954840126}
-  - component: {fileID: 1954840136}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -493,23 +492,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1954840136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064005573508144470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grappleWinCounter: 0
-  inGrappleState: 0
-  delay: 1
-  winCount: 10
-  failCount: -10
 --- !u!1 &7512667781329516527
 GameObject:
   m_ObjectHideFlags: 0
