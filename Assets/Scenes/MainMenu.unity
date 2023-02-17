@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &92615213 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1429621781819461079, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
-  m_PrefabInstance: {fileID: 708127564}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cfbbd4c1e59fa84eb17e86264876e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &185201961
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +346,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 366489767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb47f1bc372aad418d0204623cfd259, type: 3}
+  m_Script: {fileID: 11500000, guid: ebbbf1b966b1cab49af4324d20136ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &392761689
@@ -1374,7 +1363,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 92615213}
+      - m_Target: {fileID: 1517809895}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -1959,7 +1948,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 92615213}
+      - m_Target: {fileID: 1517809895}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadNextLevel
         m_Mode: 1
@@ -3392,6 +3381,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495453071}
   m_CullTransparentMesh: 1
+--- !u!114 &1517809895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7937709179395261556, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+  m_PrefabInstance: {fileID: 708127564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c80d118175817940a210ab7a8bf9414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1686484764
 GameObject:
   m_ObjectHideFlags: 0
@@ -4386,7 +4386,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2136351473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d27ddd224f5d8df4e8037666a0e296c9, type: 3}
+  m_Script: {fileID: 11500000, guid: fadaa018edf9c1c47a6e6dc541ace7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: a1d58317dc793b34492b2ab6b2da122c, type: 2}

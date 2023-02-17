@@ -359,7 +359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2115956458}
+      - m_Target: {fileID: 1430953891}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadNextLevel
         m_Mode: 1
@@ -672,6 +672,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100954733}
   m_CullTransparentMesh: 1
+--- !u!114 &1430953891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7937709179395261556, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+  m_PrefabInstance: {fileID: 4145233615525593301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c80d118175817940a210ab7a8bf9414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1510981610
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,17 +783,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2115956458 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1429621781819461079, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
-  m_PrefabInstance: {fileID: 4145233615525593301}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cfbbd4c1e59fa84eb17e86264876e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4145233615525593301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,5 +842,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1429621781819461079, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
