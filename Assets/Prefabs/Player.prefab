@@ -455,7 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  kOBar: {fileID: 5202507964263072754}
+  koBar: {fileID: 5202507964263072754}
 --- !u!114 &3650727976462786133
 MonoBehaviour:
   m_ObjectHideFlags: 0
