@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int speed = 5;
 
+    
+
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;

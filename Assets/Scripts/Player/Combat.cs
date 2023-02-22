@@ -8,16 +8,18 @@ public class Combat : MonoBehaviour
 {
     private Animator animator;
 
-    private float kickValue;
+    public GameObject Kick_Down, Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up;
+    public Transform spawnLocation;
+    public Quaternion spawnRotation;
+
+    private float kickValue, attackDelay=0.5f;
     private float punchValue;
 
-    [Header("Grapple Stats")]
     [SerializeField] private int grappleWinCounter = 0;
     [SerializeField] private bool inGrappleState = false;
 
-    [Header("Grapple Settings")]
     // Higher for harder characters
-    [SerializeField] private float delay = 1f;
+    [SerializeField] private float delay = 1f,attackdelay;
 
     // Make wincount higher for harder characters
     [SerializeField] private int winCount = 10;
@@ -26,7 +28,10 @@ public class Combat : MonoBehaviour
     [SerializeField] private int failCount = -10;
 
     private bool inputDelay = false;
-
+    private void Start()
+    {
+        spawnLocation=GameObject.FindObjectOfType<Transform>();
+    }
     private void Awake()
     {
        animator = GetComponent<Animator>();
@@ -76,6 +81,10 @@ public class Combat : MonoBehaviour
     }
     void Update()
     {
+        if(attackdelay > 0)
+        {
+            attackdelay -= Time.deltaTime;
+        }
         if (inGrappleState == true)
         {
             if (grappleWinCounter >= winCount)     //detects player's success in grapple
@@ -97,6 +106,7 @@ public class Combat : MonoBehaviour
                 StartCoroutine(BotDelay());
                 inputDelay = true;
             }
+            
 
         }
         IEnumerator BotDelay()      //delays value addition
@@ -107,8 +117,48 @@ public class Combat : MonoBehaviour
             Debug.Log("Grapple " + grappleWinCounter);
             inputDelay = false;
         }
-
-
+        if (attackdelay<=0) 
+        {
+            if (animator.GetBool("isPunching"))
+            {
+                if (animator.GetFloat("X") > 0)
+                {
+                    Instantiate(Punch_Right);attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("X") < 0)
+                {
+                    Instantiate(Punch_Left); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") > 0)
+                {
+                    Instantiate(Punch_Up); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") < 0)
+                {
+                    Instantiate(Punch_Down); attackdelay = attackDelay;
+                }
+            }
+            if (animator.GetBool("isKicking"))
+            {
+                if (animator.GetFloat("X") > 0)
+                {
+                    Instantiate(Kick_Right); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("X") < 0)
+                {
+                    Instantiate(Kick_Left); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") > 0)
+                {
+                    Instantiate(Kick_Up); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") < 0)
+                {
+                    Instantiate(Kick_Down); attackdelay = attackDelay;
+                }
+            } 
+        }
+        
     }
 
 }

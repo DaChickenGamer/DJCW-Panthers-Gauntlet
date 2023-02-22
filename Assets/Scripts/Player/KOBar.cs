@@ -24,12 +24,12 @@ public class KOBar : MonoBehaviour
         // Delete later when we have a gameManager Script
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gym"))
         {
-            slider = GameObject.Find("KOBar").GetComponent<Slider>();
+            slider = GameObject.Find("PlayerKoBar").GetComponent<Slider>();
             slider.gameObject.SetActive(false);
         }
         else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Gym"))
         {
-            slider = GameObject.Find("KOBar").GetComponent<Slider>();
+            slider = GameObject.Find("PlayerKoBar").GetComponent<Slider>();
             slider.gameObject.SetActive(true);
         }
     }
