@@ -1,55 +1,85 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using Unity.Burst.CompilerServices;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Dialogue : MonoBehaviour
 {
+    [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    public string[] lines;
-    public float textSpeed;
+    
+    [Header("Dialogue Settings")]
+    [SerializeField] private string[] lines;
+    [SerializeField] private float textSpeed;
 
     private bool doDialogue = false;
+    private bool skip = false;
+    private bool tutorialComplete = false;
+    private bool inCoachArea = false;
     private int index;
 
     private void OnDialogue(InputValue value)
     {
-        if (textComponent.text == lines[index])
+        Debug.Log("Input Working");
+        if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
         {
-            NextLine();
+                Debug.Log("Key Pressed");
+                doDialogue = true;
+                StartDialogue();
         }
-        else
+        if (doDialogue == true && skip == true) // Checks if it can skip the dialogue
         {
-            StopAllCoroutines();
-            textComponent.text = lines[index];
+            if (textComponent.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+                tutorialComplete = true;
+            }
+        }
+        if (textComponent.text == lines[index]) // Makes it so you can't skip the first line when clicking onto the dialogue
+        {
+            skip = true;
         }
     }
     private void Start()
     {
-        textComponent.gameObject.SetActive(false);
-        dialogueBox.gameObject.SetActive(false);
-        textComponent.text = string.Empty;
+        StopDialogue();
     }
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+       if (collision.gameObject.tag == "Coach")
         {
-            Debug.Log("Key Pressed");
-            doDialogue = true;
-            StartDialogue();
-        }    
+            inCoachArea = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Coach")
+        {
+            inCoachArea = false;
+        }
     }
     void StartDialogue()
     {
-        if (doDialogue == true)
-        {
-            textComponent.gameObject.SetActive(true);
-            dialogueBox.gameObject.SetActive(true);
-            index = 0;
-            StartCoroutine(TypeLine());
-        }
+        textComponent.text = string.Empty;
+        textSpeed = 0.1f;
+        textComponent.gameObject.SetActive(true);
+        dialogueBox.gameObject.SetActive(true);
+        index = 0;
+        StartCoroutine(TypeLine());
+    }
+    void StopDialogue()
+    {
+        doDialogue = false;
+        textSpeed = 100000000000000;
+        textComponent.gameObject.SetActive(false);
+        dialogueBox.gameObject.SetActive(false);
     }
     void NextLine()
     {
@@ -61,7 +91,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            StopDialogue();
         }
     }
     IEnumerator TypeLine()

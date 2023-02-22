@@ -11,10 +11,11 @@ public class Combat : MonoBehaviour
     private float kickValue;
     private float punchValue;
 
+    [Header("Grapple Stats")]
     [SerializeField] private int grappleWinCounter = 0;
     [SerializeField] private bool inGrappleState = false;
 
-
+    [Header("Grapple Settings")]
     // Higher for harder characters
     [SerializeField] private float delay = 1f;
 

@@ -34,18 +34,18 @@
                 },
                 {
                     "name": "Grapple",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "26c13dbd-10ab-47e9-9593-eda1e2d25192",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Dialogue",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "dd23ac21-f966-4ab5-afd9-7c89db5141b6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -220,7 +220,7 @@
                 {
                     "name": "",
                     "id": "3db0d583-4984-463e-8121-d7fea97b9567",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
