@@ -72,3 +72,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 5573967489793874836}
+  enemy: {fileID: 7929901879653296409, guid: b57606ab61d1ded4783894695b0d026a, type: 3}

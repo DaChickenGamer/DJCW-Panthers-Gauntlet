@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
-    public GameObject Attack;
-    private int damage = 5;
-    private float delay = 1.0f;
+    
+    private int damage = 1;
+    private float delay = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,9 @@ public class EnemyDetect : MonoBehaviour
     void Update()
     {
         if(delay >= 0)delay -= Time.deltaTime;
-        if(delay <= 0)Destroy(Attack);
+        if(delay <= 0)Destroy(gameObject);
     }
-    void OnTriggerStay2D(Collider2D collider)
+    public void OnTriggerStay2D(Collider2D collider)
     {
         EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
         if (collider.gameObject.tag == "Enemy")

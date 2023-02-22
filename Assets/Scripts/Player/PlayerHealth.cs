@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
-
+    private float damageDelay,damageTick;
+    private int damagetake=1;
     public KOBar koBar;
     // Start is called before the first frame update
     void Start()
@@ -21,16 +22,31 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(damageDelay > 0)
+        {
+            damageDelay-=40*Time.deltaTime;
+            damageTick+=40*Time.deltaTime;
+        }
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(20);
+            damagetake+=damagetake;
+            TakeDamage(damagetake);
         }
-
-        void TakeDamage(int damage)
+        if(damageTick >= 1)
         {
-            currentHealth -= damage;
-
+            damageTick--;
+            currentHealth--;
             koBar.SetHealth(currentHealth);
         }
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene(3);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        damageDelay += damage;
     }
 }

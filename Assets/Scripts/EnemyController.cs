@@ -7,9 +7,10 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private Transform target;
     private bool attack = false, attacktiming=false;
-    [SerializeField] private float speed;
+    [SerializeField] private float speed=4f;
     [SerializeField] private float range=1.15f;
-    private float timing, stopattack;
+    private float timing, stopattack,attackDelay;
+    private int damage=5;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +21,20 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(attackDelay > 0&&attack==false)
+        {
+            attackDelay -= Time.deltaTime;
+        }
         if(Vector3.Distance(target.position, transform.position) > range)
         FollowPlayer();
         else
         StopPlayer();
         if (attack == true)
         {
+            
             animator.SetBool("isAttacking", true);
             timing += Time.deltaTime;
-            if(timing >= 2)
+            if(timing >= 1)
             {
                 attack = false;
                 animator.SetBool("isAttacking", false);
@@ -38,7 +44,7 @@ public class EnemyController : MonoBehaviour
         if (attacktiming == true)
         {
             stopattack+=Time.deltaTime;
-            if(stopattack >= 6)
+            if(stopattack >= 4)
             {
                 stopattack=0;
                 attack = false;
@@ -64,6 +70,19 @@ public class EnemyController : MonoBehaviour
         {
             attack = true;
             attacktiming = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            PlayerHealth player = collider.GetComponent<PlayerHealth>();
+            if (attack == true)
+                if (attackDelay <= 0)
+                {
+                    player.TakeDamage(damage);
+                    attackDelay=2;
+                }
         }
     }
 }

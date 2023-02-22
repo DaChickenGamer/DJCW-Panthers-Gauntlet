@@ -3,7 +3,16 @@ guid: fd3f81dc1bdebca4884bc0297429e3b3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Kick_Down: {instanceID: 0}
+  - Kick_Left: {instanceID: 0}
+  - Kick_Right: {instanceID: 0}
+  - Kick_Up: {instanceID: 0}
+  - Punch_Down: {instanceID: 0}
+  - Punch_Left: {instanceID: 0}
+  - Punch_Right: {instanceID: 0}
+  - Punch_Up: {instanceID: 0}
+  - spawnLocation: {fileID: 7064005573508144466, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7826779346386514298}
   - component: {fileID: 5202507964263072754}
   m_Layer: 0
-  m_Name: KOBar
+  m_Name: PlayerKoBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 5335476540479696844}
   - component: {fileID: 3650727976462786133}
   - component: {fileID: 1954840126}
-  - component: {fileID: 1954840136}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -455,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  kOBar: {fileID: 5202507964263072754}
+  koBar: {fileID: 5202507964263072754}
 --- !u!114 &3650727976462786133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,9 +467,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Kick_Down: {fileID: 7883809063392186827, guid: 8245c9d58d4ed0c4e9095d8c03ceb180, type: 3}
+  Kick_Left: {fileID: 877102421860789350, guid: 9747423b975b95147a280b4417170c98, type: 3}
+  Kick_Right: {fileID: 6810472340254212895, guid: a097a82cbfe55de41b3fa41ec3a7b416, type: 3}
+  Kick_Up: {fileID: 4717268834450884671, guid: b26b61d56872a8647b0edcd5b6f37a75, type: 3}
+  Punch_Down: {fileID: 5573967489793874836, guid: 3373bdf285dfcc3438555c167e7bac83, type: 3}
+  Punch_Left: {fileID: 735501298193722399, guid: 62eec712d63ec2c46bf93da80c291fb6, type: 3}
+  Punch_Right: {fileID: 8335502083974932694, guid: f275847dca4d2a74ba06d088d434e9fb, type: 3}
+  Punch_Up: {fileID: 3027385550121702329, guid: 757e83a7e481bfa43b51db5e6e675430, type: 3}
+  spawnLocation: {fileID: 7064005573508144466}
+  spawnRotation: {x: 0, y: 0, z: 0, w: 0}
   grappleWinCounter: 0
   inGrappleState: 0
   delay: 1
+  attackdelay: 0
   winCount: 10
   failCount: -10
 --- !u!95 &1954840126
@@ -493,23 +503,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1954840136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064005573508144470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grappleWinCounter: 0
-  inGrappleState: 0
-  delay: 1
-  winCount: 10
-  failCount: -10
 --- !u!1 &7512667781329516527
 GameObject:
   m_ObjectHideFlags: 0
