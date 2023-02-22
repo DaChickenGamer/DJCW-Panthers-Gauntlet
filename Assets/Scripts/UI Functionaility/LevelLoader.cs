@@ -14,12 +14,12 @@ public class LevelLoader : MonoBehaviour
    public float transitionTime = 1f;
     // Update is called once per frame
 
-   public void LoadNextLevel()
+   public void LoadNextLevel(int sceneId)    //Only has scene transition
    {
       if (transitionStop == 0)
       {
-         //Method that checks for the next scene that is loaded
-         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+         //Method loads the scene requested the if transition has stopped
+         StartCoroutine(LoadLevel(sceneId));
       }
       else
       {
@@ -27,7 +27,7 @@ public class LevelLoader : MonoBehaviour
       }
    }
 
-   public void loadscene(int sceneId)
+   public void loadscene(int sceneId)     //scene transition and loading screen
    {
         StartCoroutine(LoadSceneAsync(sceneId));
    }
@@ -46,11 +46,20 @@ public class LevelLoader : MonoBehaviour
       }
    }
 
-   IEnumerator LoadSceneAsync(int sceneId)      //Loading screen
+   IEnumerator LoadSceneAsync(int sceneId)      //Loading screen and level transition
    {
       AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
+      if (transitionStop == 0)
+      {
+         transition.SetTrigger("Start");
+
+         yield return new WaitForSeconds(transitionTime);
+         SceneManager.LoadScene(sceneId);
+      }
+
       LoadingScreen.SetActive(true);
+      
       while(!operation.isDone)
       {
          float progressValue = Mathf.Clamp01(operation.progress / 0.9f);        
