@@ -265,6 +265,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1060309225, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 194300541}
+    - target: {fileID: 1060309225, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: textComponent
+      value: 
+      objectReference: {fileID: 23196008}
     - target: {fileID: 7064005573508144466, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -959,30 +967,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1060309215 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7064005573508144470, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-  m_PrefabInstance: {fileID: 125359773}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1060309225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060309215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 829237f5c1dede44b97ec620820ee781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 23196008}
-  dialogueBox: {fileID: 194300541}
-  lines:
-  - Skip this
-  - This is a test statement
-  - It works!
-  textSpeed: 0.1
 --- !u!1 &1076080426
 GameObject:
   m_ObjectHideFlags: 0
