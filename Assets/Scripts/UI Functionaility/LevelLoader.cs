@@ -27,7 +27,7 @@ public class LevelLoader : MonoBehaviour
       }
    }
 
-   public void loadscene(int sceneId)     //scene transition and loading screen
+   public void loadingScreen(int sceneId)     //scene transition and loading screen
    {
         StartCoroutine(LoadSceneAsync(sceneId));
    }
@@ -50,19 +50,15 @@ public class LevelLoader : MonoBehaviour
    {
       AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
-      if (transitionStop == 0)
-      {
-         transition.SetTrigger("Start");
+      transition.SetTrigger("Start");
 
-         yield return new WaitForSeconds(transitionTime);
-         SceneManager.LoadScene(sceneId);
-      }
+      yield return new WaitForSeconds(transitionTime);
 
       LoadingScreen.SetActive(true);
       
       while(!operation.isDone)
       {
-         float progressValue = Mathf.Clamp01(operation.progress / 0.9f);        
+         float progressValue = Mathf.Clamp01(operation.progress / 0.9f);      //Fills the loading progress bar      
 
          LoadingBarFill.fillAmount = progressValue;
 
