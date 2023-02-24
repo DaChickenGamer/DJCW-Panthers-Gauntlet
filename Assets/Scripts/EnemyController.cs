@@ -6,9 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     private Animator animator;
     private Transform target;
-    private bool attack = false, attacktiming=false;
+    private bool attack = false, attacktiming=false, move;
     [SerializeField] private float speed=4f;
-    [SerializeField] private float range=1.15f;
     private float timing, stopattack,attackDelay;
     private int damage=5;
     // Start is called before the first frame update
@@ -16,25 +15,36 @@ public class EnemyController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         target = FindObjectOfType<PlayerMovement>().transform;
+        FollowPlayer();
+        move=true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Combat.animator.GetBool("isGrapple"))
+        {
+            animator.SetBool("isGrapple", true);
+            StopPlayer();
+        }
+        if (!Combat.animator.GetBool("isGrapple"))
+        {
+            animator.SetBool("isGrapple",false);
+        }
         if (EnemyHealth.health <= 0)
         {
             animator.SetBool("isKnocked", true);
         }
-        if (!animator.GetBool("isKnocked"))
+        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
+            if (move == true)
+            {
+                FollowPlayer();
+            }
             if (attackDelay > 0 && attack == false)
             {
                 attackDelay -= Time.deltaTime;
             }
-            if (Vector3.Distance(target.position, transform.position) > range)
-                FollowPlayer();
-            else
-                StopPlayer();
             if (attack == true)
             {
 
@@ -61,7 +71,7 @@ public class EnemyController : MonoBehaviour
     }
     public void FollowPlayer()
     {
-        if (!animator.GetBool("isKnocked"))
+        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
             animator.SetBool("isMoving", true);
             animator.SetFloat("moveX", (target.position.x - transform.position.x));
@@ -102,6 +112,21 @@ public class EnemyController : MonoBehaviour
                         attackDelay = 2;
                     }
             }
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {if (collision.gameObject.tag == "Player")
+        {
+            FollowPlayer();
+            move = true;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            StopPlayer();
+            move = false;
         }
     }
 }

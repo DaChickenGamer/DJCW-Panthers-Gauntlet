@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnMovement(InputValue value)
     {
         movement = value.Get<Vector2>();
-        if (!animator.GetBool("isKnocked"))
+        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
             if (movement.x != 0 || movement.y != 0)
             {
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if(!animator.GetBool("isKnocked"))
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
+            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }

@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEditor;
+using UnityEngine.UI;
 public class Combat : MonoBehaviour
 {
-    private Animator animator;
+    public static Animator animator;
+    public Slider slider;
 
-    public GameObject Kick_Down, Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up;
+    public GameObject Kick_Down, Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up, GrappleMeter;
     public Transform spawnLocation;
     public Quaternion spawnRotation;
 
@@ -16,7 +18,7 @@ public class Combat : MonoBehaviour
     private float punchValue;
 
     [SerializeField] private int grappleWinCounter = 0;
-    [SerializeField] private bool inGrappleState = false;
+    [SerializeField] private bool inGrappleState = false,grappled;
 
     // Higher for harder characters
     [SerializeField] private float delay = 1f,attackdelay;
@@ -26,10 +28,13 @@ public class Combat : MonoBehaviour
 
     // Makes the fight easier by giving the player a bigger saftey net
     [SerializeField] private int failCount = -10;
+    public Collider2D enemycollider;
 
     private bool inputDelay = false;
     private void Start()
     {
+        slider.maxValue = winCount;
+        slider.minValue = failCount;
         spawnLocation=GameObject.FindObjectOfType<Transform>();
     }
     private void Awake()
@@ -39,7 +44,7 @@ public class Combat : MonoBehaviour
     }
     private void OnPunch(InputValue value)
     {
-        if (!animator.GetBool("isKnocked"))
+        if (!animator.GetBool("isKnocked")&&!animator.GetBool("isGrapple"))
         {
             punchValue = value.Get<float>();
 
@@ -56,7 +61,7 @@ public class Combat : MonoBehaviour
     }
     private void OnKick(InputValue value)
     {
-        if (!animator.GetBool("isKnocked"))
+        if (!animator.GetBool("isKnocked")&&!animator.GetBool("isGrapple"))
         {
             kickValue = value.Get<float>();
 
@@ -73,29 +78,35 @@ public class Combat : MonoBehaviour
     }
     private void OnGrapple(InputValue value)
     {
-        if (!animator.GetBool("isKnocked"))
+        if (enemycollider.gameObject.tag == "Enemy")
         {
-            if (inGrappleState == false)
+            if (!animator.GetBool("isKnocked"))
             {
-                grappleWinCounter = 0;
-                inGrappleState = true;
-            }
-            else if (inGrappleState == true)
-            {
-                Debug.Log("Grapple " + grappleWinCounter);
-                grappleWinCounter++;
+                animator.SetBool("isGrapple", true);
+                if (inGrappleState == false)
+                {
+                    grappleWinCounter = 0;
+                    inGrappleState = true;
+                }
+                else if (inGrappleState == true)
+                {
+                    Debug.Log("Grapple " + grappleWinCounter);
+                    grappleWinCounter++;
+
+                }
             }
         }
-
     }
     void Update()
     {
+        slider.value = grappleWinCounter;
         if (PlayerHealth.currentHealth<=0)
         {
             animator.SetBool("isKnocked", true);
         }
-            if (!animator.GetBool("isKnocked"))
+        if (!animator.GetBool("isKnocked"))
         {
+            
             if (attackdelay > 0)
             {
                 attackdelay -= Time.deltaTime;
@@ -107,6 +118,7 @@ public class Combat : MonoBehaviour
                     Debug.Log("You won the grapple");
                     grappleWinCounter = 0;
                     inGrappleState = false;
+                    animator.SetBool("isGrapple", false);
                 }
 
                 if (grappleWinCounter <= failCount)    //detects player's falure in grapple
@@ -114,6 +126,7 @@ public class Combat : MonoBehaviour
                     Debug.Log("You lossed the grapple");
                     grappleWinCounter = 0;
                     inGrappleState = false;
+                    animator.SetBool("isGrapple", false);
                 }
 
                 if (inputDelay == false) //delays bot input
@@ -173,8 +186,20 @@ public class Combat : MonoBehaviour
                     }
                 }
             }
+            if (animator.GetBool("isGrapple"))
+            {
+                if (!grappled)
+                {
+                    slider.gameObject.SetActive(true);
+                    grappled = true;
+                    animator.SetBool("isWalking", false);
+                }
+            }
+            if (!animator.GetBool("isGrapple"))
+            {
+                grappled = false;
+                slider.gameObject.SetActive(false);
+            }
         }
-        
     }
-
 }
