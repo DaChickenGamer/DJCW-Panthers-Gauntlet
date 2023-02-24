@@ -21,68 +21,87 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(attackDelay > 0&&attack==false)
+        if (EnemyHealth.health <= 0)
         {
-            attackDelay -= Time.deltaTime;
+            animator.SetBool("isKnocked", true);
         }
-        if(Vector3.Distance(target.position, transform.position) > range)
-        FollowPlayer();
-        else
-        StopPlayer();
-        if (attack == true)
+        if (!animator.GetBool("isKnocked"))
         {
-            
-            animator.SetBool("isAttacking", true);
-            timing += Time.deltaTime;
-            if(timing >= 1)
+            if (attackDelay > 0 && attack == false)
             {
-                attack = false;
-                animator.SetBool("isAttacking", false);
-                timing = 0;
+                attackDelay -= Time.deltaTime;
             }
-        }
-        if (attacktiming == true)
-        {
-            stopattack+=Time.deltaTime;
-            if(stopattack >= 4)
+            if (Vector3.Distance(target.position, transform.position) > range)
+                FollowPlayer();
+            else
+                StopPlayer();
+            if (attack == true)
             {
-                stopattack=0;
-                attack = false;
-                attacktiming=false;
+
+                animator.SetBool("isAttacking", true);
+                timing += Time.deltaTime;
+                if (timing >= 1)
+                {
+                    attack = false;
+                    animator.SetBool("isAttacking", false);
+                    timing = 0;
+                }
+            }
+            if (attacktiming == true)
+            {
+                stopattack += Time.deltaTime;
+                if (stopattack >= 4)
+                {
+                    stopattack = 0;
+                    attack = false;
+                    attacktiming = false;
+                }
             }
         }
     }
     public void FollowPlayer()
     {
-        animator.SetBool("isMoving", true);
-        animator.SetFloat("moveX", (target.position.x - transform.position.x));
-        animator.SetFloat("moveY", (target.position.y - transform.position.y));
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        if (!animator.GetBool("isKnocked"))
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetFloat("moveX", (target.position.x - transform.position.x));
+            animator.SetFloat("moveY", (target.position.y - transform.position.y));
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
     }
     public void StopPlayer()
     {
-        animator.SetBool("isMoving", false);
-        AttackPlayer();
+        if (!animator.GetBool("isKnocked"))
+        {
+            animator.SetBool("isMoving", false);
+            AttackPlayer();
+        }
     }
     public void AttackPlayer()
     {
-        if (stopattack == 0)
+        if (!animator.GetBool("isKnocked"))
         {
-            attack = true;
-            attacktiming = true;
+            if (stopattack == 0)
+            {
+                attack = true;
+                attacktiming = true;
+            }
         }
     }
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (!animator.GetBool("isKnocked"))
         {
-            PlayerHealth player = collider.GetComponent<PlayerHealth>();
-            if (attack == true)
-                if (attackDelay <= 0)
-                {
-                    player.TakeDamage(damage);
-                    attackDelay=2;
-                }
+            if (collider.gameObject.tag == "Player")
+            {
+                PlayerHealth player = collider.GetComponent<PlayerHealth>();
+                if (attack == true)
+                    if (attackDelay <= 0)
+                    {
+                        player.TakeDamage(damage);
+                        attackDelay = 2;
+                    }
+            }
         }
     }
 }

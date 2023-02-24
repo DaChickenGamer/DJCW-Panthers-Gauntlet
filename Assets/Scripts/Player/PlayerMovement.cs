@@ -22,23 +22,26 @@ public class PlayerMovement : MonoBehaviour
     private void OnMovement(InputValue value)
     {
         movement = value.Get<Vector2>();
-
-        if (movement.x != 0 || movement.y != 0)
+        if (!animator.GetBool("isKnocked"))
         {
-            animator.SetFloat("X", movement.x);
-            animator.SetFloat("Y", movement.y);
+            if (movement.x != 0 || movement.y != 0)
+            {
+                animator.SetFloat("X", movement.x);
+                animator.SetFloat("Y", movement.y);
 
-            animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
     }
 
     
     private void FixedUpdate()
     {
+        if(!animator.GetBool("isKnocked"))
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }

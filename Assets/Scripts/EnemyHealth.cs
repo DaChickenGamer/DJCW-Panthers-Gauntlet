@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     public Slider slider;
-    public static float knocked = -1;
     public static int health,MaxHealth=100;
     private void Start()
     {
@@ -21,10 +20,9 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(health);
         if (health <= 0)
         {
-            knocked++;
             Debug.Log("Knockout");
             
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         SetHealth(health);
     }

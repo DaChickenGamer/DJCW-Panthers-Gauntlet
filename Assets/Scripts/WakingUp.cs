@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WakingUp : MonoBehaviour
 {
-    Animator animator;
+    /*Animator animator;
     string currentState;
 
     const string Down = "";
@@ -30,7 +30,7 @@ public class WakingUp : MonoBehaviour
     {
         if (waiting == 0)
         {
-            waiting = wait + 2 * (EnemyHealth.knocked);
+            //waiting = wait + 2 * (EnemyHealth.knocked);
         }
         else if (waiting > 0)
         {
@@ -86,5 +86,5 @@ public class WakingUp : MonoBehaviour
 
         //Update current state
         currentState = newState;
-    }
+    }*/
 }

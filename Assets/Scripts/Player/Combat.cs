@@ -12,7 +12,7 @@ public class Combat : MonoBehaviour
     public Transform spawnLocation;
     public Quaternion spawnRotation;
 
-    private float kickValue, attackDelay=0.5f;
+    private float kickValue, attackDelay=0.25f;
     private float punchValue;
 
     [SerializeField] private int grappleWinCounter = 0;
@@ -39,124 +39,140 @@ public class Combat : MonoBehaviour
     }
     private void OnPunch(InputValue value)
     {
-        punchValue = value.Get<float>();
+        if (!animator.GetBool("isKnocked"))
+        {
+            punchValue = value.Get<float>();
 
-        if (punchValue != 0)
-        {
-            animator.SetBool("isPunching", true);
+            if (punchValue != 0)
+            {
+                animator.SetBool("isPunching", true);
+            }
+            else
+            {
+                animator.SetBool("isPunching", false);
+            }
+            Debug.Log("Punched");
         }
-        else
-        {
-            animator.SetBool("isPunching", false);
-        }
-        Debug.Log("Punched");
     }
     private void OnKick(InputValue value)
     {
-        kickValue = value.Get<float>();
+        if (!animator.GetBool("isKnocked"))
+        {
+            kickValue = value.Get<float>();
 
-        if (kickValue != 0)
-        {
-            animator.SetBool("isKicking", true);
+            if (kickValue != 0)
+            {
+                animator.SetBool("isKicking", true);
+            }
+            else
+            {
+                animator.SetBool("isKicking", false);
+            }
+            Debug.Log("Kicked");
         }
-        else
-        {
-            animator.SetBool("isKicking", false);
-        }
-        Debug.Log("Kicked");
     }
     private void OnGrapple(InputValue value)
     {
-        if (inGrappleState == false)
+        if (!animator.GetBool("isKnocked"))
         {
-            grappleWinCounter = 0;
-            inGrappleState = true;
-        }
-        else if (inGrappleState == true)
-        {
-            Debug.Log("Grapple " + grappleWinCounter);
-            grappleWinCounter++;
+            if (inGrappleState == false)
+            {
+                grappleWinCounter = 0;
+                inGrappleState = true;
+            }
+            else if (inGrappleState == true)
+            {
+                Debug.Log("Grapple " + grappleWinCounter);
+                grappleWinCounter++;
+            }
         }
 
     }
     void Update()
     {
-        if(attackdelay > 0)
+        if (PlayerHealth.currentHealth<=0)
         {
-            attackdelay -= Time.deltaTime;
+            animator.SetBool("isKnocked", true);
         }
-        if (inGrappleState == true)
+            if (!animator.GetBool("isKnocked"))
         {
-            if (grappleWinCounter >= winCount)     //detects player's success in grapple
+            if (attackdelay > 0)
             {
-                Debug.Log("You won the grapple");
-                grappleWinCounter = 0;
-                inGrappleState = false;
+                attackdelay -= Time.deltaTime;
             }
-
-            if (grappleWinCounter <= failCount)    //detects player's falure in grapple
+            if (inGrappleState == true)
             {
-                Debug.Log("You lossed the grapple");
-                grappleWinCounter = 0;
-                inGrappleState = false;
+                if (grappleWinCounter >= winCount)     //detects player's success in grapple
+                {
+                    Debug.Log("You won the grapple");
+                    grappleWinCounter = 0;
+                    inGrappleState = false;
+                }
+
+                if (grappleWinCounter <= failCount)    //detects player's falure in grapple
+                {
+                    Debug.Log("You lossed the grapple");
+                    grappleWinCounter = 0;
+                    inGrappleState = false;
+                }
+
+                if (inputDelay == false) //delays bot input
+                {
+                    StartCoroutine(BotDelay());
+                    inputDelay = true;
+                }
+
+
             }
-
-            if (inputDelay == false) //delays bot input
+            IEnumerator BotDelay()      //delays value addition
             {
-                StartCoroutine(BotDelay());
-                inputDelay = true;
+                yield return new WaitForSeconds(delay);
+
+                grappleWinCounter--;
+                Debug.Log("Grapple " + grappleWinCounter);
+                inputDelay = false;
             }
-            
-
-        }
-        IEnumerator BotDelay()      //delays value addition
-        {
-            yield return new WaitForSeconds(delay);
-
-            grappleWinCounter--;
-            Debug.Log("Grapple " + grappleWinCounter);
-            inputDelay = false;
-        }
-        if (attackdelay<=0) 
-        {
-            if (animator.GetBool("isPunching"))
+            if (attackdelay <= 0)
             {
-                if (animator.GetFloat("X") > 0)
+                if (animator.GetBool("isPunching"))
                 {
-                    Instantiate(Punch_Right);attackdelay = attackDelay;
+                    if (animator.GetFloat("X") > 0)
+                    {
+                        Instantiate(Punch_Right, this.transform); attackdelay = attackDelay;
+                    }
+                    if (animator.GetFloat("X") < 0)
+                    {
+                        Instantiate(Punch_Left, this.transform); attackdelay = attackDelay;
+                    }
+                    if (animator.GetFloat("Y") > 0)
+                    {
+                        Instantiate(Punch_Up, this.transform); attackdelay = attackDelay;
+                    }
+                    if (animator.GetFloat("Y") < 0)
+                    {
+                        Instantiate(Punch_Down, this.transform); attackdelay = attackDelay;
+                    }
                 }
-                if (animator.GetFloat("X") < 0)
+                if (animator.GetBool("isKicking"))
                 {
-                    Instantiate(Punch_Left); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") > 0)
-                {
-                    Instantiate(Punch_Up); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") < 0)
-                {
-                    Instantiate(Punch_Down); attackdelay = attackDelay;
+                    if (animator.GetFloat("X") > 0)
+                    {
+                        Instantiate(Kick_Right, this.transform); attackdelay = attackDelay;
+                    }
+                    if (animator.GetFloat("X") < 0)
+                    {
+                        Instantiate(Kick_Left, this.transform); attackdelay = attackDelay;
+                    }
+                    if (animator.GetFloat("Y") > 0)
+                    {
+                        Instantiate(Kick_Up, this.transform); attackdelay = attackDelay;
+                    }
+                    if (animator.GetFloat("Y") < 0)
+                    {
+                        Instantiate(Kick_Down, this.transform); attackdelay = attackDelay;
+                    }
                 }
             }
-            if (animator.GetBool("isKicking"))
-            {
-                if (animator.GetFloat("X") > 0)
-                {
-                    Instantiate(Kick_Right); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("X") < 0)
-                {
-                    Instantiate(Kick_Left); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") > 0)
-                {
-                    Instantiate(Kick_Up); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") < 0)
-                {
-                    Instantiate(Kick_Down); attackdelay = attackDelay;
-                }
-            } 
         }
         
     }

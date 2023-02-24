@@ -8,8 +8,8 @@ public class PlayerHealth : MonoBehaviour
 {
 
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
-    private float damageDelay,damageTick;
+    [SerializeField] public static int currentHealth;
+    private float damageDelay,damageTick, deathDelay, damageSpeed=45;
     private int damagetake=1;
     public KOBar koBar;
     // Start is called before the first frame update
@@ -22,10 +22,14 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (deathDelay > 0)
+        {
+            deathDelay -= Time.deltaTime;
+        }
         if(damageDelay > 0)
         {
-            damageDelay-=40*Time.deltaTime;
-            damageTick+=40*Time.deltaTime;
+            damageDelay-=damageSpeed*Time.deltaTime;
+            damageTick+=damageSpeed*Time.deltaTime;
         }
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -40,8 +44,14 @@ public class PlayerHealth : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
-            Destroy(gameObject);
-            SceneManager.LoadScene(3);
+            if (deathDelay == 0)
+            {
+                deathDelay = 4;
+            }
+            if (deathDelay <= 0)
+            {
+                SceneManager.LoadScene(3); Destroy(gameObject);
+            }
         }
     }
 
