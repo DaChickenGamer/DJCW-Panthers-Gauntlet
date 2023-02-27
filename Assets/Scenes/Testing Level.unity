@@ -710,6 +710,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1486923462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101827425888528289, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+  m_PrefabInstance: {fileID: 8440384294905355529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1570045224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1133,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 4}
   m_EdgeRadius: 0
+--- !u!61 &1844525883 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7929901879653296410, guid: b57606ab61d1ded4783894695b0d026a, type: 3}
+  m_PrefabInstance: {fileID: 7929901880315679246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2109293236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5101827424675514859, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+  m_PrefabInstance: {fileID: 8440384294905355529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7929901880315679246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1260,5 +1281,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 2109293236}
+    - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: GrappleMeter
+      value: 
+      objectReference: {fileID: 1486923462}
+    - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: enemycollider
+      value: 
+      objectReference: {fileID: 1844525883}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63e7025b060872499a3a86cb129c98a, type: 3}

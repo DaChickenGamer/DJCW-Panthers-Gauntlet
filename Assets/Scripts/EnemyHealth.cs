@@ -21,8 +21,8 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Knockout");
-            
-            //Destroy(gameObject);
+
+            SceneManager.LoadScene(3); Destroy(gameObject);
         }
         SetHealth(health);
     }

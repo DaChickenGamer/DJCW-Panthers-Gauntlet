@@ -14,7 +14,7 @@ public class Combat : MonoBehaviour
     public Transform spawnLocation;
     public Quaternion spawnRotation;
 
-    private float kickValue, attackDelay=0.25f;
+    private float kickValue, attackDelay=0.25f,grappledelay;
     private float punchValue;
 
     [SerializeField] private int grappleWinCounter = 0;
@@ -80,19 +80,23 @@ public class Combat : MonoBehaviour
     {
         if (enemycollider.gameObject.tag == "Enemy")
         {
-            if (!animator.GetBool("isKnocked"))
+            if (grappledelay <= 0)
             {
-                animator.SetBool("isGrapple", true);
-                if (inGrappleState == false)
+                if (!animator.GetBool("isKnocked"))
                 {
-                    grappleWinCounter = 0;
-                    inGrappleState = true;
-                }
-                else if (inGrappleState == true)
-                {
-                    Debug.Log("Grapple " + grappleWinCounter);
-                    grappleWinCounter++;
 
+                    if (inGrappleState == false)
+                    {
+                        grappleWinCounter = 0;
+                        inGrappleState = true;
+                        animator.SetBool("isGrapple", true);
+                    }
+                    else if (inGrappleState == true)
+                    {
+                        Debug.Log("Grapple " + grappleWinCounter);
+                        grappleWinCounter++;
+
+                    }
                 }
             }
         }
@@ -106,6 +110,10 @@ public class Combat : MonoBehaviour
         }
         if (!animator.GetBool("isKnocked"))
         {
+            if (grappledelay > 0)
+            {
+                grappledelay-=Time.deltaTime;
+            }
             
             if (attackdelay > 0)
             {
@@ -197,8 +205,10 @@ public class Combat : MonoBehaviour
             }
             if (!animator.GetBool("isGrapple"))
             {
+                if(grappled) grappledelay = 2f;
                 grappled = false;
                 slider.gameObject.SetActive(false);
+
             }
         }
     }
