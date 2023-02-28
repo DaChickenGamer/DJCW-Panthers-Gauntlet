@@ -1294,9 +1294,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: delay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: slider
       value: 
       objectReference: {fileID: 2109293236}
+    - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: winCount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: GrappleMeter
       value: 

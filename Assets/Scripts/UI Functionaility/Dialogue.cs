@@ -14,12 +14,13 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
 
+    [HideInInspector] [Header("Bools")]
     private bool doDialogue = false;
     private bool skip = false;
     private bool tutorialComplete = false;
     private bool inCoachArea = false;
     private int index;
-
+ 
     private void OnDialogue(InputValue value)
     {
         Debug.Log("Input Working");

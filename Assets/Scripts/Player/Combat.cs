@@ -5,39 +5,48 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Combat : MonoBehaviour
 {
     public static Animator animator;
     public Slider slider;
 
-    public GameObject Kick_Down, Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up;
+    [Header("Attack Hitboxes")]
+    public GameObject Kick_Down;
+    public GameObject Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up;
+
+    [Header("Grapple Meter")]
     public GameObject GrappleMeter;
-    public Transform spawnLocation;
-    public Quaternion spawnRotation;
 
     private float kickValue, attackDelay=0.25f,grappledelay;
     private float punchValue;
 
+    [Header("Grapple Bools")]
     [SerializeField] private int grappleWinCounter = 0;
     [SerializeField] private bool inGrappleState = false;
     [HideInInspector] public bool grappled;
 
+    [Header("Grapple Settings")]
     // Higher for harder characters
-    [SerializeField] private float delay = 1f,attackdelay;
+    [SerializeField] private float delay = 1f;
+    [SerializeField] private float attackdelay;
 
     // Make wincount higher for harder characters
-    [SerializeField] private int winCount = 10;
+    [SerializeField] private int winCount = 100;
 
     // Makes the fight easier by giving the player a bigger saftey net
     [SerializeField] private int failCount = -10;
+
+    [Header("Enemy")]
     public Collider2D enemycollider;
 
     private bool inputDelay = false;
     private void Start()
     {
-        slider.maxValue = winCount;
-        slider.minValue = failCount;
-        spawnLocation=GameObject.FindObjectOfType<Transform>();
+        slider.value = (winCount + failCount) / 2;
+        slider.maxValue = winCount; // Grappling Highest Amount
+        slider.minValue = failCount; // Grappling Lowest Amount
     }
     private void Awake()
     {
@@ -79,73 +88,73 @@ public class Combat : MonoBehaviour
     }
     private void OnGrapple(InputValue value)
     {
-        if (enemycollider.gameObject.tag == "Enemy")
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Gym") && enemycollider.gameObject.tag == "Enemy" && grappledelay <= 0 && !animator.GetBool("isKnocked"))
         {
-            if (grappledelay <= 0)
-            {
-                if (!animator.GetBool("isKnocked"))
+                if (inGrappleState == false)
                 {
+                    grappleWinCounter = 0;
+                    inGrappleState = true;
+                    animator.SetBool("isGrapple", true);
+                }
+                else if (inGrappleState == true)
+                {
+                    Debug.Log("Grapple " + grappleWinCounter);
+                    grappleWinCounter++;
 
-                    if (inGrappleState == false)
-                    {
-                        grappleWinCounter = 0;
-                        inGrappleState = true;
-                        animator.SetBool("isGrapple", true);
-                    }
-                    else if (inGrappleState == true)
-                    {
-                        Debug.Log("Grapple " + grappleWinCounter);
-                        grappleWinCounter++;
-
-                    }
                 }
             }
-        }
     }
     void Update()
     {
-        slider.value = grappleWinCounter;
-        if (PlayerHealth.currentHealth<=0)
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Gym"))
         {
-            animator.SetBool("isKnocked", true);
+            slider.gameObject.SetActive(true);
+            slider.value = grappleWinCounter;
+            if (PlayerHealth.currentHealth <= 0)
+            {
+                animator.SetBool("isKnocked", true);
+            }
+            if (!animator.GetBool("isKnocked"))
+            {
+                if (grappledelay > 0)
+                {
+                    grappledelay -= Time.deltaTime;
+                }
+
+                if (attackdelay > 0)
+                {
+                    attackdelay -= Time.deltaTime;
+                }
+                if (inGrappleState == true)
+                {
+                    if (grappleWinCounter >= winCount)     //detects player's success in grapple
+                    {
+                        Debug.Log("You won the grapple");
+                        grappleWinCounter = 0;
+                        inGrappleState = false;
+                        animator.SetBool("isGrapple", false);
+                    }
+
+                    if (grappleWinCounter <= failCount)    //detects player's falure in grapple
+                    {
+                        Debug.Log("You lossed the grapple");
+                        grappleWinCounter = 0;
+                        inGrappleState = false;
+                        animator.SetBool("isGrapple", false);
+                    }
+
+                    if (inputDelay == false) //delays bot input
+                    {
+                        StartCoroutine(BotDelay());
+                        inputDelay = true;
+                    }
+                }
+            }
         }
-        if (!animator.GetBool("isKnocked"))
+        else if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gym"))
         {
-            if (grappledelay > 0)
-            {
-                grappledelay-=Time.deltaTime;
-            }
-            
-            if (attackdelay > 0)
-            {
-                attackdelay -= Time.deltaTime;
-            }
-            if (inGrappleState == true)
-            {
-                if (grappleWinCounter >= winCount)     //detects player's success in grapple
-                {
-                    Debug.Log("You won the grapple");
-                    grappleWinCounter = 0;
-                    inGrappleState = false;
-                    animator.SetBool("isGrapple", false);
-                }
-
-                if (grappleWinCounter <= failCount)    //detects player's falure in grapple
-                {
-                    Debug.Log("You lossed the grapple");
-                    grappleWinCounter = 0;
-                    inGrappleState = false;
-                    animator.SetBool("isGrapple", false);
-                }
-
-                if (inputDelay == false) //delays bot input
-                {
-                    StartCoroutine(BotDelay());
-                    inputDelay = true;
-                }
-
-
-            }
+            slider.gameObject.SetActive(false);
+        }
             IEnumerator BotDelay()      //delays value addition
             {
                 yield return new WaitForSeconds(delay);
@@ -209,8 +218,6 @@ public class Combat : MonoBehaviour
                 if(grappled) grappledelay = 2f;
                 grappled = false;
                 slider.gameObject.SetActive(false);
-
             }
-        }
     }
 }
