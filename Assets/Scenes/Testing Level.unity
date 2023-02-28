@@ -1225,6 +1225,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8440384295268941865, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1293,5 +1305,20 @@ PrefabInstance:
       propertyPath: enemycollider
       value: 
       objectReference: {fileID: 1844525883}
+    - target: {fileID: 8440384296746258936, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: grappled
+      value: 
+      objectReference: {fileID: 8440384294905355530}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+--- !u!114 &8440384294905355530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+  m_PrefabInstance: {fileID: 8440384294905355529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
