@@ -10,7 +10,8 @@ public class Combat : MonoBehaviour
     public static Animator animator;
     public Slider slider;
 
-    public GameObject Kick_Down, Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up, GrappleMeter;
+    public GameObject Kick_Down, Kick_Left, Kick_Right, Kick_Up, Punch_Down, Punch_Left, Punch_Right, Punch_Up;
+    public GameObject GrappleMeter;
     public Transform spawnLocation;
     public Quaternion spawnRotation;
 
@@ -18,7 +19,8 @@ public class Combat : MonoBehaviour
     private float punchValue;
 
     [SerializeField] private int grappleWinCounter = 0;
-    [SerializeField] private bool inGrappleState = false,grappled;
+    [SerializeField] private bool inGrappleState = false;
+    [HideInInspector] public bool grappled;
 
     // Higher for harder characters
     [SerializeField] private float delay = 1f,attackdelay;
@@ -40,7 +42,6 @@ public class Combat : MonoBehaviour
     private void Awake()
     {
        animator = GetComponent<Animator>();
-
     }
     private void OnPunch(InputValue value)
     {

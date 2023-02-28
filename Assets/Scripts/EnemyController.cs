@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private Rigidbody2D enemyRB;
+
     private Animator animator;
     private Transform target;
-    private bool attack = false, attacktiming=false, move;
-    [SerializeField] private float speed=4f;
-    private float timing, stopattack,attackDelay;
-    private int damage=5;
-    // Start is called before the first frame update
+    private bool attack = false, attacktiming=false, enemyMove;
+    [SerializeField] private float speed = 4f;
+    private float timing, stopattack, attackDelay;
+    [SerializeField] private int damage = 5;
+
     void Start()
     {
+        enemyRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         target = FindObjectOfType<PlayerMovement>().transform;
         FollowPlayer();
-        move=true;
+        enemyMove = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Combat.animator.GetBool("isGrapple"))
         {
             animator.SetBool("isGrapple", true);
+            enemyRB.velocity = Vector3.zero;
             StopPlayer();
         }
         if (!Combat.animator.GetBool("isGrapple"))
@@ -37,7 +40,7 @@ public class EnemyController : MonoBehaviour
         }
         if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
-            if (move == true)
+            if (enemyMove == true)
             {
                 FollowPlayer();
             }
@@ -118,7 +121,7 @@ public class EnemyController : MonoBehaviour
     {if (collision.gameObject.tag == "Player")
         {
             FollowPlayer();
-            move = true;
+            enemyMove = true;
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -126,7 +129,7 @@ public class EnemyController : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             StopPlayer();
-            move = false;
+            enemyMove = false;
         }
     }
 }

@@ -7,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int speed = 5;
 
-    
-
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;
+
+    [SerializeField] private Combat grappled;
 
     private void Awake()
     {
@@ -43,5 +43,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        if (!grappled)
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 }
