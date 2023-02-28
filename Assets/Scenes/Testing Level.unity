@@ -1225,6 +1225,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8440384295268941865, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1293,5 +1305,21 @@ PrefabInstance:
       propertyPath: enemycollider
       value: 
       objectReference: {fileID: 1844525883}
+    - target: {fileID: 8440384296746258941, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9999086
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440384296746258941, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6943536
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440384296746258941, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0033725798
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440384296746258941, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.1461961
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
