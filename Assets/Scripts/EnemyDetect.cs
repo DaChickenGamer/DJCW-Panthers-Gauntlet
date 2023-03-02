@@ -6,7 +6,7 @@ public class EnemyDetect : MonoBehaviour
 {
     
     private int playerDamage = 1; // The damge the player does to the enemy
-    private float delay = 0.05f; // The delay before the object gets destroyed
+    private float delay = 0.1f; // The delay before the object gets destroyed
 
     void Update()
     {
@@ -15,7 +15,7 @@ public class EnemyDetect : MonoBehaviour
     }
     public void OnTriggerStay2D(Collider2D collider)
     {
-        EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
+        EnemyController enemy = collider.GetComponent<EnemyController>();
         if (collider.gameObject.tag == "Enemy")
         {
             Debug.Log("enemy found");

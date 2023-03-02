@@ -15,12 +15,14 @@ public class Combat : EnemyValues
 
     [Header("Grapple Meter")]
     public GameObject GrappleMeter;
+    private float grappledelay; // The delay after grapple so you can't spam the button
 
+    [HideInInspector][Header("Attack Values")]
     private float kickValue; // Used for the input system
     private float punchValue; // Also used for the input system
 
     private float attackDelay = 0.25f; // Waits to spawn another attack for the player
-    private float grappledelay; // The delay after grapple so you can't spam the button
+    private bool AttackDelay;
 
     [Header("Grapple Bools")]
     [SerializeField] private int grappleWinCounter = 0;
@@ -54,10 +56,12 @@ public class Combat : EnemyValues
             if (punchValue != 0)
             {
                 animator.SetBool("isPunching", true);
+                AttackDelay = false;
             }
             else
             {
                 animator.SetBool("isPunching", false);
+                AttackDelay = true;
             }
             Debug.Log("Punched");
         }
@@ -71,10 +75,12 @@ public class Combat : EnemyValues
             if (kickValue != 0)
             {
                 animator.SetBool("isKicking", true);
+                AttackDelay = false;
             }
             else
             {
                 animator.SetBool("isKicking", false);
+                AttackDelay = true;
             }
             Debug.Log("Kicked");
         }
@@ -114,10 +120,8 @@ public class Combat : EnemyValues
                     grappledelay -= Time.deltaTime;
                 }
 
-                if (attackdelay > 0)
-                {
+                if (attackdelay > 0) 
                     attackdelay -= Time.deltaTime;
-                }
                 if (inGrappleState == true)
                 {
                     if (grappleWinCounter >= winCount)     //detects player's success in grapple
@@ -156,47 +160,6 @@ public class Combat : EnemyValues
                 Debug.Log("Grapple " + grappleWinCounter);
                 inputDelay = false;
             }
-            if (attackdelay <= 0)
-            {
-                if (animator.GetBool("isPunching"))
-                {
-                    if (animator.GetFloat("X") > 0)
-                    {
-                        Instantiate(Punch_Right, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("X") < 0)
-                    {
-                        Instantiate(Punch_Left, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") > 0)
-                    {
-                        Instantiate(Punch_Up, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") < 0)
-                    {
-                        Instantiate(Punch_Down, this.transform); attackdelay = attackDelay;
-                    }
-                }
-                if (animator.GetBool("isKicking"))
-                {
-                    if (animator.GetFloat("X") > 0)
-                    {
-                        Instantiate(Kick_Right, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("X") < 0)
-                    {
-                        Instantiate(Kick_Left, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") > 0)
-                    {
-                        Instantiate(Kick_Up, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") < 0)
-                    {
-                        Instantiate(Kick_Down, this.transform); attackdelay = attackDelay;
-                    }
-                }
-            }
             if (animator.GetBool("isGrapple"))
             {
                 if (!grappled)
@@ -212,5 +175,50 @@ public class Combat : EnemyValues
                 grappled = false;
                 slider.gameObject.SetActive(false);
             }
+            SpawnAttacks();
+    }
+    void SpawnAttacks()
+    {
+        if (attackdelay <= 0 && AttackDelay)
+        {
+            if (animator.GetBool("isPunching"))
+            {
+                if (animator.GetFloat("X") > 0)
+                {
+                    Instantiate(Punch_Right, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("X") < 0)
+                {
+                    Instantiate(Punch_Left, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") > 0)
+                {
+                    Instantiate(Punch_Up, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") < 0)
+                {
+                    Instantiate(Punch_Down, this.transform); attackdelay = attackDelay;
+                }
+            }
+            if (animator.GetBool("isKicking"))
+            {
+                if (animator.GetFloat("X") > 0)
+                {
+                    Instantiate(Kick_Right, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("X") < 0)
+                {
+                    Instantiate(Kick_Left, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") > 0)
+                {
+                    Instantiate(Kick_Up, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") < 0)
+                {
+                    Instantiate(Kick_Down, this.transform); attackdelay = attackDelay;
+                }
+            }
+        }
     }
 }
