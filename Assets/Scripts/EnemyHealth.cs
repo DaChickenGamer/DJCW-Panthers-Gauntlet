@@ -4,27 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : EnemyValues
 {
     public Slider slider;
-    public static int health,MaxHealth=100;
     private void Start()
     {
-        health=MaxHealth;
-        SetMaxHealth(MaxHealth);
+        enemyHealth = enemyMaxHealth;
+        SetMaxHealth(enemyMaxHealth);
     }
     public void TakeDamage(int damage)
     {
-        
-        health -= damage;
-        Debug.Log(health);
-        if (health <= 0)
+
+        enemyHealth -= damage;
+        Debug.Log(enemyHealth);
+        if (enemyHealth <= 0)
         {
             Debug.Log("Knockout");
 
             SceneManager.LoadScene(3); Destroy(gameObject);
         }
-        SetHealth(health);
+        SetHealth(enemyHealth);
     }
     public void SetMaxHealth(int health)
     {

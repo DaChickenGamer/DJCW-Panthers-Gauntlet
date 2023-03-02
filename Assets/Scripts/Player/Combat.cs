@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Combat : MonoBehaviour
+public class Combat : EnemyValues
 {
     public static Animator animator;
     public Slider slider;
@@ -19,8 +16,11 @@ public class Combat : MonoBehaviour
     [Header("Grapple Meter")]
     public GameObject GrappleMeter;
 
-    private float kickValue, attackDelay=0.25f,grappledelay;
-    private float punchValue;
+    private float kickValue; // Used for the input system
+    private float punchValue; // Also used for the input system
+
+    private float attackDelay = 0.25f; // Waits to spawn another attack for the player
+    private float grappledelay; // The delay after grapple so you can't spam the button
 
     [Header("Grapple Bools")]
     [SerializeField] private int grappleWinCounter = 0;
@@ -29,14 +29,7 @@ public class Combat : MonoBehaviour
 
     [Header("Grapple Settings")]
     // Higher for harder characters
-    [SerializeField] private float delay = 1f;
-    [SerializeField] private float attackdelay;
-
-    // Make wincount higher for harder characters
-    [SerializeField] private int winCount = 100;
-
-    // Makes the fight easier by giving the player a bigger saftey net
-    [SerializeField] private int failCount = -10;
+    [SerializeField] private float attackdelay; // Delays players attack
 
     [Header("Enemy")]
     public Collider2D enemycollider;
