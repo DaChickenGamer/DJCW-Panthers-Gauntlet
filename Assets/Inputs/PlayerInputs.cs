@@ -71,6 +71,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""EnterDoor"",
+                    ""type"": ""Value"",
+                    ""id"": ""f0c7a800-dad1-4aa8-b7b9-c4a0a000f875"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Dialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""486285e0-fcca-4124-9301-a4ceb5f7cca1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnterDoor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +293,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_InGame_Kick = m_InGame.FindAction("Kick", throwIfNotFound: true);
         m_InGame_Grapple = m_InGame.FindAction("Grapple", throwIfNotFound: true);
         m_InGame_Dialogue = m_InGame.FindAction("Dialogue", throwIfNotFound: true);
+        m_InGame_EnterDoor = m_InGame.FindAction("EnterDoor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +360,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Kick;
     private readonly InputAction m_InGame_Grapple;
     private readonly InputAction m_InGame_Dialogue;
+    private readonly InputAction m_InGame_EnterDoor;
     public struct InGameActions
     {
         private @PlayerInputs m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Kick => m_Wrapper.m_InGame_Kick;
         public InputAction @Grapple => m_Wrapper.m_InGame_Grapple;
         public InputAction @Dialogue => m_Wrapper.m_InGame_Dialogue;
+        public InputAction @EnterDoor => m_Wrapper.m_InGame_EnterDoor;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -372,6 +395,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Dialogue.started += instance.OnDialogue;
             @Dialogue.performed += instance.OnDialogue;
             @Dialogue.canceled += instance.OnDialogue;
+            @EnterDoor.started += instance.OnEnterDoor;
+            @EnterDoor.performed += instance.OnEnterDoor;
+            @EnterDoor.canceled += instance.OnEnterDoor;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -391,6 +417,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Dialogue.started -= instance.OnDialogue;
             @Dialogue.performed -= instance.OnDialogue;
             @Dialogue.canceled -= instance.OnDialogue;
+            @EnterDoor.started -= instance.OnEnterDoor;
+            @EnterDoor.performed -= instance.OnEnterDoor;
+            @EnterDoor.canceled -= instance.OnEnterDoor;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -415,5 +444,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnKick(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
         void OnDialogue(InputAction.CallbackContext context);
+        void OnEnterDoor(InputAction.CallbackContext context);
     }
 }

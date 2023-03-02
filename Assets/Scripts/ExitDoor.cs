@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class ExitDoor : MonoBehaviour
 {
-    private static int sceneID=2;
-    public void OnTriggerEnter2D(Collider2D other)
+    [Header("Door Popup")]
+    [SerializeField] private UnityEvent customEvent;
+    
+    private void OnEnterDoor(InputValue value)
     {
-        if(other.gameObject.tag == "Player")
-        {
-            SceneManager.LoadScene(sceneID);
-        }
+        Debug.Log("Door Popup Menu");
     }
+
+    private void OnTriggerEnter2D(Collider2D collider) 
+    {
+        if(collider.gameObject.tag == "Player")
+        {
+        customEvent.Invoke();
+        Debug.Log("Door Popup Menu");
+        }
+        
+    }
+
 }
