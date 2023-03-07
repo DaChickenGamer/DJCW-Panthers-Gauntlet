@@ -23,6 +23,7 @@ public class ball : MonoBehaviour
             int y = Random.Range(-10, 10);
 
             rb.velocity = new Vector2(x, y);
+            rb.rotation = x + y;
             movedelay = 1;
         }
     }

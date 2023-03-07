@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
@@ -11,9 +13,8 @@ public class Dialogue : MonoBehaviour
     public GameObject dialogueBox;
     
     [Header("Dialogue Settings")]
-    [SerializeField] private string[] lines;
+    [SerializeField] private string[] lines= new string[100];
     [SerializeField] private float textSpeed;
-
     [HideInInspector] [Header("Bools")]
     private bool doDialogue = false;
     private bool skip = false;
@@ -50,7 +51,11 @@ public class Dialogue : MonoBehaviour
     }
     private void Start()
     {
+        string[] nextLine = {"hello","UwU","Hehe"};
+        
+        
         StopDialogue();
+        NewLine(nextLine);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -94,6 +99,10 @@ public class Dialogue : MonoBehaviour
         {
             StopDialogue();
         }
+    }
+    void NewLine(string[] newline)
+    {
+        lines = newline;
     }
     IEnumerator TypeLine()
     {

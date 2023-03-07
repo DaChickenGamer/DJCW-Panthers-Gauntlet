@@ -273,6 +273,22 @@ PrefabInstance:
       propertyPath: textComponent
       value: 
       objectReference: {fileID: 23196008}
+    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: lines.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: lines.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: lines.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: lines.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -411,7 +427,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1000
+  m_PixelsPerUnitMultiplier: 10
 --- !u!222 &194300545
 CanvasRenderer:
   m_ObjectHideFlags: 0
