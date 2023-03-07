@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
-
-public class EnemyController : MonoBehaviour
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+public class EnemyController : EnemyValues
 {
     private Rigidbody2D enemyRB;
 
+    public Slider slider; // Slider for enemy health
     private Animator animator;
-    private Transform target;
+    private Transform target; // The target for the enemy
     private bool attack = false, attacktiming=false, enemyMove;
-    [SerializeField] private float speed = 4f;
     private float timing, stopattack, attackDelay;
-    [SerializeField] private int damage = 5;
 
     void Start()
     {
+        enemyHealth = enemyMaxHealth;
+        SetMaxHealth(enemyMaxHealth);
+
         enemyRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
         target = FindObjectOfType<PlayerMovement>().transform;
         FollowPlayer();
         enemyMove = true;
@@ -24,6 +29,8 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E)) // Testing for health
+            TakeDamage(10);
         if (Combat.animator.GetBool("isGrapple"))
         {
             animator.SetBool("isGrapple", true);
@@ -34,7 +41,7 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("isGrapple",false);
         }
-        if (EnemyHealth.health <= 0)
+        if (enemyHealth <= 0)
         {
             animator.SetBool("isKnocked", true);
         }
@@ -71,6 +78,29 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+    }
+    public void TakeDamage(int damage)
+    {
+
+        enemyHealth -= damage;
+        Debug.Log(enemyHealth);
+        if (enemyHealth <= 0)
+        {
+            Debug.Log("Knockout");
+
+            SceneManager.LoadScene(3); Destroy(gameObject);
+        }
+        SetHealth(enemyHealth);
+    }
+    public void SetMaxHealth(int health)
+    {
+        slider.maxValue = health;
+        slider.value = health;
+    }
+
+    public void SetHealth(int health)
+    {
+        slider.value = health;
     }
     public void FollowPlayer()
     {
@@ -111,7 +141,7 @@ public class EnemyController : MonoBehaviour
                 if (attack == true)
                     if (attackDelay <= 0)
                     {
-                        player.TakeDamage(damage);
+                        player.TakeDamage(enemyDamage);
                         attackDelay = 2;
                     }
             }

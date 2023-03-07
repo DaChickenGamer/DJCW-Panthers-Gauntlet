@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Combat : MonoBehaviour
+public class Combat : EnemyValues
 {
     public static Animator animator;
     public Slider slider;
@@ -18,9 +15,14 @@ public class Combat : MonoBehaviour
 
     [Header("Grapple Meter")]
     public GameObject GrappleMeter;
+    private float grappledelay; // The delay after grapple so you can't spam the button
 
-    private float kickValue, attackDelay=0.25f,grappledelay;
-    private float punchValue;
+    [HideInInspector][Header("Attack Values")]
+    private float kickValue; // Used for the input system
+    private float punchValue; // Also used for the input system
+
+    private float attackDelay = 0.25f; // Waits to spawn another attack for the player
+    private bool AttackDelay;
 
     [Header("Grapple Bools")]
     [SerializeField] private int grappleWinCounter = 0;
@@ -29,14 +31,7 @@ public class Combat : MonoBehaviour
 
     [Header("Grapple Settings")]
     // Higher for harder characters
-    [SerializeField] private float delay = 1f;
-    [SerializeField] private float attackdelay;
-
-    // Make wincount higher for harder characters
-    [SerializeField] private int winCount = 100;
-
-    // Makes the fight easier by giving the player a bigger saftey net
-    [SerializeField] private int failCount = -10;
+    [SerializeField] private float attackdelay; // Delays players attack
 
     [Header("Enemy")]
     public Collider2D enemycollider;
@@ -61,10 +56,12 @@ public class Combat : MonoBehaviour
             if (punchValue != 0)
             {
                 animator.SetBool("isPunching", true);
+                AttackDelay = false;
             }
             else
             {
                 animator.SetBool("isPunching", false);
+                AttackDelay = true;
             }
             Debug.Log("Punched");
         }
@@ -78,10 +75,12 @@ public class Combat : MonoBehaviour
             if (kickValue != 0)
             {
                 animator.SetBool("isKicking", true);
+                AttackDelay = false;
             }
             else
             {
                 animator.SetBool("isKicking", false);
+                AttackDelay = true;
             }
             Debug.Log("Kicked");
         }
@@ -121,10 +120,8 @@ public class Combat : MonoBehaviour
                     grappledelay -= Time.deltaTime;
                 }
 
-                if (attackdelay > 0)
-                {
+                if (attackdelay > 0) 
                     attackdelay -= Time.deltaTime;
-                }
                 if (inGrappleState == true)
                 {
                     if (grappleWinCounter >= winCount)     //detects player's success in grapple
@@ -163,47 +160,6 @@ public class Combat : MonoBehaviour
                 Debug.Log("Grapple " + grappleWinCounter);
                 inputDelay = false;
             }
-            if (attackdelay <= 0)
-            {
-                if (animator.GetBool("isPunching"))
-                {
-                    if (animator.GetFloat("X") > 0)
-                    {
-                        Instantiate(Punch_Right, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("X") < 0)
-                    {
-                        Instantiate(Punch_Left, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") > 0)
-                    {
-                        Instantiate(Punch_Up, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") < 0)
-                    {
-                        Instantiate(Punch_Down, this.transform); attackdelay = attackDelay;
-                    }
-                }
-                if (animator.GetBool("isKicking"))
-                {
-                    if (animator.GetFloat("X") > 0)
-                    {
-                        Instantiate(Kick_Right, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("X") < 0)
-                    {
-                        Instantiate(Kick_Left, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") > 0)
-                    {
-                        Instantiate(Kick_Up, this.transform); attackdelay = attackDelay;
-                    }
-                    if (animator.GetFloat("Y") < 0)
-                    {
-                        Instantiate(Kick_Down, this.transform); attackdelay = attackDelay;
-                    }
-                }
-            }
             if (animator.GetBool("isGrapple"))
             {
                 if (!grappled)
@@ -219,5 +175,50 @@ public class Combat : MonoBehaviour
                 grappled = false;
                 slider.gameObject.SetActive(false);
             }
+            SpawnAttacks();
+    }
+    void SpawnAttacks()
+    {
+        if (attackdelay <= 0 && AttackDelay)
+        {
+            if (animator.GetBool("isPunching"))
+            {
+                if (animator.GetFloat("X") > 0)
+                {
+                    Instantiate(Punch_Right, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("X") < 0)
+                {
+                    Instantiate(Punch_Left, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") > 0)
+                {
+                    Instantiate(Punch_Up, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") < 0)
+                {
+                    Instantiate(Punch_Down, this.transform); attackdelay = attackDelay;
+                }
+            }
+            if (animator.GetBool("isKicking"))
+            {
+                if (animator.GetFloat("X") > 0)
+                {
+                    Instantiate(Kick_Right, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("X") < 0)
+                {
+                    Instantiate(Kick_Left, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") > 0)
+                {
+                    Instantiate(Kick_Up, this.transform); attackdelay = attackDelay;
+                }
+                if (animator.GetFloat("Y") < 0)
+                {
+                    Instantiate(Kick_Down, this.transform); attackdelay = attackDelay;
+                }
+            }
+        }
     }
 }
