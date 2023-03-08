@@ -299,6 +299,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ba45e1a036b7a49a51546e01ff8989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KOEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maxHealth: 100
   koBar: {fileID: 8440384296707024141}
 --- !u!114 &8440384296746258918
@@ -313,6 +328,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDamage: 5
+  speed: 4
+  winCount: 10
+  failCount: -10
+  delay: 1
   slider: {fileID: 5101827424675514859}
   Kick_Down: {fileID: 7883809063392186827, guid: 8245c9d58d4ed0c4e9095d8c03ceb180, type: 3}
   Kick_Left: {fileID: 877102421860789350, guid: 9747423b975b95147a280b4417170c98, type: 3}
@@ -326,10 +346,7 @@ MonoBehaviour:
   grappleWinCounter: 0
   inGrappleState: 0
   grappled: 0
-  delay: 1
   attackdelay: 0
-  winCount: 10
-  failCount: -10
   enemycollider: {fileID: 0}
 --- !u!95 &8440384296746258919
 Animator:

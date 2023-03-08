@@ -4,8 +4,10 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 public class EnemyController : EnemyValues
 {
+    [SerializeField] private UnityEvent EnemyKOEvent;
     private Rigidbody2D enemyRB;
 
     public Slider slider; // Slider for enemy health
@@ -87,8 +89,12 @@ public class EnemyController : EnemyValues
         if (enemyHealth <= 0)
         {
             Debug.Log("Knockout");
+            //Will set the Enemyknockout panel active once 
+            //the enemy's KOBar reaches bellow zero and will destroy
+            //the enemy object
+            Destroy(gameObject);
+            EnemyKOEvent.Invoke();
 
-            SceneManager.LoadScene(3); Destroy(gameObject);
         }
         SetHealth(enemyHealth);
     }

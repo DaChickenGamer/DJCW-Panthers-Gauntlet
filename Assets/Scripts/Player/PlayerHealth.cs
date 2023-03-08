@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
 
+    [SerializeField] private UnityEvent KOEvent;
     [SerializeField] private int maxHealth = 100;
     [SerializeField] public static int currentHealth;
     private float damageDelay,damageTick, deathDelay, damageSpeed=45;
@@ -48,9 +50,13 @@ public class PlayerHealth : MonoBehaviour
             {
                 deathDelay = 4;
             }
-            if (deathDelay <= 0)
-            {
-                SceneManager.LoadScene(3); Destroy(gameObject);
+            //Will set the Playerknockout panel active once 
+            //the player KOBar reaches bellow zero and will destroy
+            //the player object
+            if (deathDelay <= 0)    
+            {                          
+                Destroy(gameObject);
+                KOEvent.Invoke();
             }
         }
     }

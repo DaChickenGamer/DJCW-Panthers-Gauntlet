@@ -15,7 +15,6 @@ public class ExitDoor : MonoBehaviour
         {
             Debug.Log("Door Popup Menu");
             customEvent.Invoke();
-
         }
         
     }

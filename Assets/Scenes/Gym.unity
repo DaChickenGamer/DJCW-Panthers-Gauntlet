@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 399782493}
   - component: {fileID: 399782492}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ExitPopupText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1823,7 +1823,7 @@ GameObject:
   - component: {fileID: 1394824535}
   - component: {fileID: 1394824534}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: EnterRingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
