@@ -9,12 +9,13 @@ public class ExitDoor : MonoBehaviour
     [Header("Door Popup")]
     [SerializeField] private UnityEvent customEvent;
     [SerializeField] private UnityEvent talkToCoach;
+    [SerializeField] private UnityEvent awayFromDoor;
     [HideInInspector] public bool enterDoor = false;
 
     [HideInInspector]
     [Header("Coach Bool")]
     public Dialogue dialogue;
-    private void OnEnterDoor(InputValue value)
+    private void OnInteract(InputValue value)
     {
         bool MetCoach = Dialogue.metCoach;
         if (enterDoor == true && MetCoach == true)
@@ -43,6 +44,7 @@ public class ExitDoor : MonoBehaviour
     {
         if(collider.gameObject.name == "ExitDoor")
         {
+            awayFromDoor.Invoke();
             Debug.Log("Exit Door");
             enterDoor = false;
         }

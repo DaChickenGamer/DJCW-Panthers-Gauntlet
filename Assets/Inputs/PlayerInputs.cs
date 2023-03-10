@@ -64,22 +64,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dialogue"",
-                    ""type"": ""Value"",
-                    ""id"": ""dd23ac21-f966-4ab5-afd9-7c89db5141b6"",
-                    ""expectedControlType"": ""Axis"",
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""901c65ea-10b4-42e5-97f5-7f26f297a35a"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""EnterDoor"",
-                    ""type"": ""Value"",
-                    ""id"": ""f0c7a800-dad1-4aa8-b7b9-c4a0a000f875"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -250,34 +241,23 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3db0d583-4984-463e-8121-d7fea97b9567"",
+                    ""id"": ""27d83af8-3508-426d-b556-9070ae1ee535"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dialogue"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8fe3b486-25dd-489b-82fc-7db63dc43ac9"",
+                    ""id"": ""9495298d-a1d8-4704-a980-1ef004fdc623"",
                     ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dialogue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""486285e0-fcca-4124-9301-a4ceb5f7cca1"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EnterDoor"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -292,8 +272,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_InGame_Punch = m_InGame.FindAction("Punch", throwIfNotFound: true);
         m_InGame_Kick = m_InGame.FindAction("Kick", throwIfNotFound: true);
         m_InGame_Grapple = m_InGame.FindAction("Grapple", throwIfNotFound: true);
-        m_InGame_Dialogue = m_InGame.FindAction("Dialogue", throwIfNotFound: true);
-        m_InGame_EnterDoor = m_InGame.FindAction("EnterDoor", throwIfNotFound: true);
+        m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -359,8 +338,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Punch;
     private readonly InputAction m_InGame_Kick;
     private readonly InputAction m_InGame_Grapple;
-    private readonly InputAction m_InGame_Dialogue;
-    private readonly InputAction m_InGame_EnterDoor;
+    private readonly InputAction m_InGame_Interact;
     public struct InGameActions
     {
         private @PlayerInputs m_Wrapper;
@@ -369,8 +347,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Punch => m_Wrapper.m_InGame_Punch;
         public InputAction @Kick => m_Wrapper.m_InGame_Kick;
         public InputAction @Grapple => m_Wrapper.m_InGame_Grapple;
-        public InputAction @Dialogue => m_Wrapper.m_InGame_Dialogue;
-        public InputAction @EnterDoor => m_Wrapper.m_InGame_EnterDoor;
+        public InputAction @Interact => m_Wrapper.m_InGame_Interact;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -392,12 +369,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Grapple.started += instance.OnGrapple;
             @Grapple.performed += instance.OnGrapple;
             @Grapple.canceled += instance.OnGrapple;
-            @Dialogue.started += instance.OnDialogue;
-            @Dialogue.performed += instance.OnDialogue;
-            @Dialogue.canceled += instance.OnDialogue;
-            @EnterDoor.started += instance.OnEnterDoor;
-            @EnterDoor.performed += instance.OnEnterDoor;
-            @EnterDoor.canceled += instance.OnEnterDoor;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -414,12 +388,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Grapple.started -= instance.OnGrapple;
             @Grapple.performed -= instance.OnGrapple;
             @Grapple.canceled -= instance.OnGrapple;
-            @Dialogue.started -= instance.OnDialogue;
-            @Dialogue.performed -= instance.OnDialogue;
-            @Dialogue.canceled -= instance.OnDialogue;
-            @EnterDoor.started -= instance.OnEnterDoor;
-            @EnterDoor.performed -= instance.OnEnterDoor;
-            @EnterDoor.canceled -= instance.OnEnterDoor;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -443,7 +414,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnPunch(InputAction.CallbackContext context);
         void OnKick(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
-        void OnDialogue(InputAction.CallbackContext context);
-        void OnEnterDoor(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

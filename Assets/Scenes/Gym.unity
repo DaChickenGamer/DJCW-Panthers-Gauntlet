@@ -274,47 +274,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 23196008}
     - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: lines.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: lines.Array.data[0]
+      propertyPath: nearCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 194300541}
     - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: lines.Array.data[1]
+      propertyPath: awayFromCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: lines.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 194300541}
     - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 195680167}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 195680167}
     - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
@@ -322,61 +290,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1438030993}
     - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      propertyPath: awayFromDoor.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 195680167}
     - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      propertyPath: awayFromDoor.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: talkToCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1438030993}
     - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1970,6 +1890,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   talkToCoach:
+    m_PersistentCalls:
+      m_Calls: []
+  awayFromDoor:
     m_PersistentCalls:
       m_Calls: []
   enterDoor: 0

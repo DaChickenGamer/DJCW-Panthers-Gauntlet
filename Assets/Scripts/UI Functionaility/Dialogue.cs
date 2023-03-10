@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Dialogue : MonoBehaviour
@@ -11,7 +12,7 @@ public class Dialogue : MonoBehaviour
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    
+
     [Header("Dialogue Settings")]
     [SerializeField] private string[] lines= new string[100];
     [SerializeField] private float textSpeed;
@@ -24,7 +25,7 @@ public class Dialogue : MonoBehaviour
 
     public static bool metCoach = false;
 
-    private void OnDialogue(InputValue value)
+    private void OnInteract(InputValue value)
     {
         if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
         {
@@ -68,6 +69,7 @@ public class Dialogue : MonoBehaviour
     {
         if (collision.gameObject.tag == "Coach")
         {
+            StopDialogue();
             inCoachArea = false;
         }
     }
