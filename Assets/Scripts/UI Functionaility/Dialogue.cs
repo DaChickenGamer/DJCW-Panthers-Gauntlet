@@ -21,10 +21,11 @@ public class Dialogue : MonoBehaviour
     private bool tutorialComplete = false;
     private bool inCoachArea = false;
     private int index;
- 
+
+    public static bool metCoach = false;
+
     private void OnDialogue(InputValue value)
     {
-        Debug.Log("Input Working");
         if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
         {
                 Debug.Log("Key Pressed");
@@ -52,7 +53,6 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         string[] nextLine = {"hello","UwU","Hehe"};
-        
         
         StopDialogue();
         NewLine(nextLine);
@@ -97,6 +97,8 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            metCoach = true;
+            Debug.Log(metCoach);
             StopDialogue();
         }
     }

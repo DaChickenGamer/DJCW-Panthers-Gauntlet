@@ -8,20 +8,31 @@ public class ExitDoor : MonoBehaviour
 {
     [Header("Door Popup")]
     [SerializeField] private UnityEvent customEvent;
-    private bool enterDoor = false;
+    [SerializeField] private UnityEvent talkToCoach;
+    [HideInInspector] public bool enterDoor = false;
+
+    [HideInInspector]
+    [Header("Coach Bool")]
+    public Dialogue dialogue;
     private void OnEnterDoor(InputValue value)
     {
-        if(enterDoor == true)
+        bool MetCoach = Dialogue.metCoach;
+        if (enterDoor == true && MetCoach == true)
         {
             Debug.Log("Door Popup Menu");
             customEvent.Invoke();
+        }
+        else if (enterDoor == true && MetCoach == false)
+        {
+            Debug.Log("Haven't met coach yet");
+            talkToCoach.Invoke();
         }
         
     }
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
-        if(collider.gameObject.name == "ExitDoor")
+        if (collider.gameObject.name == "ExitDoor")
         {
              Debug.Log("Enter Door");
             enterDoor = true;
@@ -32,7 +43,7 @@ public class ExitDoor : MonoBehaviour
     {
         if(collider.gameObject.name == "ExitDoor")
         {
-             Debug.Log("Exit Door");
+            Debug.Log("Exit Door");
             enterDoor = false;
         }
     }
