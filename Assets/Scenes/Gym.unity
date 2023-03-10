@@ -273,14 +273,6 @@ PrefabInstance:
       propertyPath: textComponent
       value: 
       objectReference: {fileID: 23196008}
-    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: nearCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 194300541}
-    - target: {fileID: 523259447, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-      propertyPath: awayFromCoach.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 194300541}
     - target: {fileID: 2587597581275534286, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
