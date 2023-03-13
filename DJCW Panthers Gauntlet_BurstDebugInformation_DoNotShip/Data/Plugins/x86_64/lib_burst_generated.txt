@@ -7,7 +7,7 @@ Library: lib_burst_generated
 --float-precision=Standard
 --format=Coff
 --disable-warnings=BC1370
---compilation-defines=UNITY_2021_3_15
+--compilation-defines=UNITY_2021_3_19
 --compilation-defines=UNITY_2021_3
 --compilation-defines=UNITY_2021
 --compilation-defines=UNITY_5_3_OR_NEWER
@@ -34,11 +34,6 @@ Library: lib_burst_generated
 --compilation-defines=UNITY_2021_3_OR_NEWER
 --compilation-defines=PLATFORM_ARCH_64
 --compilation-defines=UNITY_64
---compilation-defines=USE_SEARCH_ENGINE_API
---compilation-defines=USE_SEARCH_TABLE
---compilation-defines=USE_SEARCH_MODULE
---compilation-defines=USE_PROPERTY_DATABASE
---compilation-defines=USE_SEARCH_EXTENSION_API
 --compilation-defines=ENABLE_AR
 --compilation-defines=ENABLE_AUDIO
 --compilation-defines=ENABLE_CACHING
@@ -115,6 +110,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_INPUT_SYSTEM
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
+--compilation-defines=TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
@@ -144,12 +140,12 @@ Library: lib_burst_generated
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.InputSystem.dll
+--root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Cinemachine.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.Animation.Runtime.dll
---root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.Tilemap.Extras.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.SpriteShape.Runtime.dll
@@ -171,7 +167,7 @@ Library: lib_burst_generated
 --float-precision=Standard
 --format=Coff
 --disable-warnings=BC1370
---compilation-defines=UNITY_2021_3_15
+--compilation-defines=UNITY_2021_3_19
 --compilation-defines=UNITY_2021_3
 --compilation-defines=UNITY_2021
 --compilation-defines=UNITY_5_3_OR_NEWER
@@ -198,11 +194,6 @@ Library: lib_burst_generated
 --compilation-defines=UNITY_2021_3_OR_NEWER
 --compilation-defines=PLATFORM_ARCH_64
 --compilation-defines=UNITY_64
---compilation-defines=USE_SEARCH_ENGINE_API
---compilation-defines=USE_SEARCH_TABLE
---compilation-defines=USE_SEARCH_MODULE
---compilation-defines=USE_PROPERTY_DATABASE
---compilation-defines=USE_SEARCH_EXTENSION_API
 --compilation-defines=ENABLE_AR
 --compilation-defines=ENABLE_AUDIO
 --compilation-defines=ENABLE_CACHING
@@ -279,6 +270,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_INPUT_SYSTEM
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
+--compilation-defines=TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
@@ -308,12 +300,12 @@ Library: lib_burst_generated
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.InputSystem.dll
+--root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Cinemachine.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.Animation.Runtime.dll
---root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.Tilemap.Extras.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
 --root-assembly=C:\DJCW-Panthers-Gauntlet\Temp\StagingArea\Data\Managed\Unity.2D.SpriteShape.Runtime.dll
