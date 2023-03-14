@@ -1202,6 +1202,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7937709179395261556, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+      propertyPath: LoadingScreen
+      value: 
+      objectReference: {fileID: 1765952751}
+    - target: {fileID: 7937709179395261556, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+      propertyPath: LoadingBarFill
+      value: 
+      objectReference: {fileID: 1728397755}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
 --- !u!114 &1338403858 stripped
@@ -2130,6 +2138,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1728397755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5135687050108391623, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+  m_PrefabInstance: {fileID: 1338403857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1765952751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 752792426707599670, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+  m_PrefabInstance: {fileID: 1338403857}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1784326673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,6 +2555,10 @@ PrefabInstance:
     - target: {fileID: 5101827425370014571, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598862592523611200, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8440384295268941865, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_Name

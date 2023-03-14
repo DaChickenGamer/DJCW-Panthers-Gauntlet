@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] private UnityEvent KOEvent;
+    [SerializeField] private UnityEvent PlayerKOEvent;
     [SerializeField] private int maxHealth = 100;
     [SerializeField] public static int currentHealth;
     private float damageDelay,damageTick, deathDelay, damageSpeed=45;
@@ -56,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
             if (deathDelay <= 0)    
             {                          
                 Destroy(gameObject);
-                KOEvent.Invoke();
+                PlayerKOEvent.Invoke();
             }
         }
     }
