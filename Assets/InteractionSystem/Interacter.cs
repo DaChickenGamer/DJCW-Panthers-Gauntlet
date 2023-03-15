@@ -12,6 +12,7 @@ public class Interacter : MonoBehaviour
 
     private readonly Collider2D[] _colliders = new Collider2D[3];
     [SerializeField] private int _numFound; // Number of colliders found
+    private bool _interacting = false; // Makes interacting into a bool
 
     private void Update()
     {
@@ -21,11 +22,16 @@ public class Interacter : MonoBehaviour
         {
             var interactable = _colliders[0].GetComponent<IInteractable>(); // Gets the interface
 
-            if (interactable != null && Keyboard.current.eKey.wasPressedThisFrame) // New input system get key down || Implement Other Devices Later
+            if (interactable != null && _interacting == true) // New input system get key down || Implement Other Devices Later
             {
                 interactable.Interact(this);
+                _interacting = false;
             }
         }
+    }
+    private void OnInteract(InputValue value)
+    {
+        _interacting = true;
     }
     private void OnDrawGizmos()
     {
