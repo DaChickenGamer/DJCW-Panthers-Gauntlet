@@ -24,6 +24,8 @@ public class Dialogue : MonoBehaviour, IInteractable
 
     private bool inCoach = false; // Don't Hunter
 
+    private bool inCoach = false; // Don't Hunter
+
     public static bool metCoach = false;
 
     public bool Interact(Interacter interactor)
