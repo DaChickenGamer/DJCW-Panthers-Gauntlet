@@ -1,14 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class Dialogue : MonoBehaviour
+public class Dialogue : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _prompt;
+    public string InteractionPrompt => _prompt;
+
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
@@ -23,15 +22,20 @@ public class Dialogue : MonoBehaviour
     private bool inCoachArea = false;
     private int index;
 
+    private bool inCoach = false; // Don't Hunter
+
     public static bool metCoach = false;
 
-    private void OnInteract(InputValue value)
+    public bool Interact(Interacter interactor)
     {
-        if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
+
+            inCoach = true;
+        if (doDialogue == false && tutorialComplete == false && inCoach == true)
         {
-                Debug.Log("Key Pressed");
-                doDialogue = true;
-                StartDialogue();
+            Debug.Log("Key Pressed");
+            doDialogue = true;
+            inCoach = false;
+            StartDialogue();
         }
         if (doDialogue == true && skip == true) // Checks if it can skip the dialogue
         {
@@ -50,6 +54,7 @@ public class Dialogue : MonoBehaviour
         {
             skip = true;
         }
+        return true;
     }
     private void Start()
     {
@@ -60,14 +65,14 @@ public class Dialogue : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if (collision.gameObject.tag == "Coach")
+       if (collision.gameObject.tag == "Player")
         {
             inCoachArea = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Coach")
+        if (collision.gameObject.tag == "Player")
         {
             StopDialogue();
             inCoachArea = false;
