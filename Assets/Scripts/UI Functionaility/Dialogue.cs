@@ -12,9 +12,7 @@ public class Dialogue : MonoBehaviour
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    public GameObject DesktopInteract;
-    public GameObject ConsoleInteract;
-    public GameObject MobileInteract;
+    public GameObject Interact;
     private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
@@ -29,6 +27,15 @@ public class Dialogue : MonoBehaviour
     private bool DesktopBool, ConsoleBool, MobileBool, OtherBool;
 
     public static bool metCoach = false;
+    [Header("Interact Sprites")]
+    public Sprite DesktopInteract;
+    public Sprite ConsoleInteract;
+    public Sprite MobileInteract;
+    public Sprite OtherInteract;
+    public Sprite DesktopUninteract;
+    public Sprite ConsoleUninteract;
+    public Sprite MobileUninteract;
+    public Sprite OtherUninteract;
 
     private void OnInteract(InputValue value)
     {
@@ -145,12 +152,12 @@ public class Dialogue : MonoBehaviour
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            DesktopInteract.gameObject.SetActive(true);
+            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopInteract;
             InteractDelay = 2;
         }
         if(UnInteractDelay <= 0)
         {
-            DesktopInteract.gameObject.SetActive(false);
+            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopUninteract;
         }
     }
     void Console()
@@ -158,12 +165,12 @@ public class Dialogue : MonoBehaviour
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            ConsoleInteract.gameObject.SetActive(true);
+            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleInteract;
             InteractDelay = 2;
         }
         if (UnInteractDelay <= 0)
         {
-            DesktopInteract.gameObject.SetActive(false);
+            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleUninteract;
         }
     }
     void Mobile()
@@ -171,12 +178,12 @@ public class Dialogue : MonoBehaviour
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            MobileInteract.gameObject.SetActive(true);
+            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileInteract;
             InteractDelay = 2;
         }
         if (UnInteractDelay <= 0)
         {
-            DesktopInteract.gameObject.SetActive(false);
+            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileUninteract;
         }
     }
     void Other()
