@@ -12,6 +12,10 @@ public class Dialogue : MonoBehaviour
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
+    public GameObject DesktopInteract;
+    public GameObject ConsoleInteract;
+    public GameObject MobileInteract;
+    private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
     [SerializeField] private string[] lines= new string[100];
@@ -22,6 +26,7 @@ public class Dialogue : MonoBehaviour
     private bool tutorialComplete = false;
     private bool inCoachArea = false;
     private int index;
+    private bool DesktopBool, ConsoleBool, MobileBool, OtherBool;
 
     public static bool metCoach = false;
 
@@ -53,10 +58,37 @@ public class Dialogue : MonoBehaviour
     }
     private void Start()
     {
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+            DesktopBool = true;
+        else if (SystemInfo.deviceType == DeviceType.Console)
+            ConsoleBool = true;
+        else if (SystemInfo.deviceType == DeviceType.Handheld)
+            MobileBool = true;
+        else if (SystemInfo.deviceType == DeviceType.Unknown)
+            OtherBool = true;
         string[] nextLine = {"hello","UwU","Hehe"};
         
         StopDialogue();
         NewLine(nextLine);
+    }
+    private void Update()
+    {
+        if (InteractDelay > 0)
+        {
+            InteractDelay -= Time.deltaTime;
+        }
+        if (UnInteractDelay > 0)
+        {
+            UnInteractDelay -= Time.deltaTime;
+        }
+        if (DesktopBool)
+            Desktop();
+        if (ConsoleBool)
+            Console();
+        if (MobileBool)
+            Mobile();
+        if (OtherBool)
+            Other();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -107,6 +139,49 @@ public class Dialogue : MonoBehaviour
     void NewLine(string[] newline)
     {
         lines = newline;
+    }
+    void Desktop()
+    {
+        if (InteractDelay <= 0)
+        {
+            UnInteractDelay = 1;
+            DesktopInteract.gameObject.SetActive(true);
+            InteractDelay = 2;
+        }
+        if(UnInteractDelay <= 0)
+        {
+            DesktopInteract.gameObject.SetActive(false);
+        }
+    }
+    void Console()
+    {
+        if (InteractDelay <= 0)
+        {
+            UnInteractDelay = 1;
+            ConsoleInteract.gameObject.SetActive(true);
+            InteractDelay = 2;
+        }
+        if (UnInteractDelay <= 0)
+        {
+            DesktopInteract.gameObject.SetActive(false);
+        }
+    }
+    void Mobile()
+    {
+        if (InteractDelay <= 0)
+        {
+            UnInteractDelay = 1;
+            MobileInteract.gameObject.SetActive(true);
+            InteractDelay = 2;
+        }
+        if (UnInteractDelay <= 0)
+        {
+            DesktopInteract.gameObject.SetActive(false);
+        }
+    }
+    void Other()
+    {
+
     }
     IEnumerator TypeLine()
     {

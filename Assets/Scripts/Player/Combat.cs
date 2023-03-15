@@ -35,6 +35,7 @@ public class Combat : EnemyValues
 
     [Header("Enemy")]
     public Collider2D enemycollider;
+    public Collider2D playercollider;
 
     private bool inputDelay = false;
     private void Start()
@@ -84,6 +85,14 @@ public class Combat : EnemyValues
             }
             Debug.Log("Kicked");
         }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        enemycollider=collision;
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        enemycollider= playercollider;
     }
     private void OnGrapple(InputValue value)
     {
