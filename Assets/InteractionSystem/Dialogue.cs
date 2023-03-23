@@ -11,7 +11,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    public GameObject Interact;
+    public GameObject interact;
     private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
@@ -156,12 +156,12 @@ public class Dialogue : MonoBehaviour, IInteractable
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopInteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopInteract;
             InteractDelay = 2;
         }
         if(UnInteractDelay <= 0)
         {
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopUninteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopUninteract;
         }
     }
     void Console()
@@ -169,12 +169,12 @@ public class Dialogue : MonoBehaviour, IInteractable
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleInteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleInteract;
             InteractDelay = 2;
         }
         if (UnInteractDelay <= 0)
         {
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleUninteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleUninteract;
         }
     }
     void Mobile()
@@ -182,12 +182,12 @@ public class Dialogue : MonoBehaviour, IInteractable
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileInteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileInteract;
             InteractDelay = 2;
         }
         if (UnInteractDelay <= 0)
         {
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileUninteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileUninteract;
         }
     }
     void Other()
