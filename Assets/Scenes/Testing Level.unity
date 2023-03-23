@@ -2672,6 +2672,10 @@ PrefabInstance:
       propertyPath: enemycollider
       value: 
       objectReference: {fileID: 1844525883}
+    - target: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: playercollider
+      value: 
+      objectReference: {fileID: 8440384294905355537}
     - target: {fileID: 8440384296746258936, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: grappled
       value: 
@@ -2713,3 +2717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &8440384294905355537 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8440384296746258941, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+  m_PrefabInstance: {fileID: 8440384294905355529}
+  m_PrefabAsset: {fileID: 0}
