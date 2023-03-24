@@ -7,15 +7,14 @@ public class Dialogue : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
     public string InteractionPrompt => _prompt;
-
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    public GameObject Interact;
+    //public GameObject interact;
     private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
-    [SerializeField] private string[] lines= new string[100];
+    [SerializeField] private string[] lines= new string[0];
     [SerializeField] private float textSpeed;
     [HideInInspector] [Header("Bools")]
     private bool doDialogue = false;
@@ -41,7 +40,7 @@ public class Dialogue : MonoBehaviour, IInteractable
 
     public bool Interact(Interacter interactor)
     {
-        if (doDialogue == false && tutorialComplete == false && inCoach == true)
+        if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
         {
             Debug.Log("Key Pressed");
             doDialogue = true;
@@ -92,14 +91,14 @@ public class Dialogue : MonoBehaviour, IInteractable
         {
             UnInteractDelay -= Time.deltaTime;
         }
-        if (DesktopBool)
+        /*if (DesktopBool)
             Desktop();
         if (ConsoleBool)
             Console();
         if (MobileBool)
             Mobile();
         if (OtherBool)
-            Other();
+            Other();/**/
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -151,17 +150,17 @@ public class Dialogue : MonoBehaviour, IInteractable
     {
         lines = newline;
     }
-    void Desktop()
+    /*void Desktop()
     {
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopInteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopInteract;
             InteractDelay = 2;
         }
         if(UnInteractDelay <= 0)
         {
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopUninteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopUninteract;
         }
     }
     void Console()
@@ -169,12 +168,12 @@ public class Dialogue : MonoBehaviour, IInteractable
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleInteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleInteract;
             InteractDelay = 2;
         }
         if (UnInteractDelay <= 0)
         {
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleUninteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleUninteract;
         }
     }
     void Mobile()
@@ -182,18 +181,18 @@ public class Dialogue : MonoBehaviour, IInteractable
         if (InteractDelay <= 0)
         {
             UnInteractDelay = 1;
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileInteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileInteract;
             InteractDelay = 2;
         }
         if (UnInteractDelay <= 0)
         {
-            Interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileUninteract;
+            interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileUninteract;
         }
     }
     void Other()
     {
 
-    }
+    }/**/
     IEnumerator TypeLine()
     {
         // Type each character 1 by 1
