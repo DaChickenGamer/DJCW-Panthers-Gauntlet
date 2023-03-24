@@ -21,8 +21,9 @@ public class Combat : EnemyValues
     private float kickValue; // Used for the input system
     private float punchValue; // Also used for the input system
 
-    private float attackDelay = 0.25f; // Waits to spawn another attack for the player
-    private bool AttackDelay;
+    private float attackSpawnDelay = 0.25f; // Waits to spawn another attack for the player
+    private bool isAttacking; // Checks if the player is attacking
+    private float attackDuration = 0.1f; // The duration the attack can last for
 
     [Header("Grapple Bools")]
     [SerializeField] private int grappleWinCounter = 0;
@@ -31,7 +32,7 @@ public class Combat : EnemyValues
 
     [Header("Grapple Settings")]
     // Higher for harder characters
-    [SerializeField] private float attackdelay; // Delays players attack
+    [SerializeField] private float attackDelay = .5f; // Delays players attack
 
     [Header("Enemy")]
     public Collider2D enemycollider;
@@ -47,53 +48,63 @@ public class Combat : EnemyValues
     private void Awake()
     {
        animator = GetComponent<Animator>();
+
     }
+    // Player Input For Punching
     private void OnPunch(InputValue value)
     {
-        if (!animator.GetBool("isKnocked")&&!animator.GetBool("isGrapple"))
+        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
             punchValue = value.Get<float>();
 
             if (punchValue != 0)
             {
                 animator.SetBool("isPunching", true);
-                AttackDelay = false;
+                isAttacking = true;
+                Debug.Log("Punched");
+                attackDuration -= Time.deltaTime;
+                if (attackDuration <= 0)
+                {
+                    punchValue = 0;
+                }
             }
             else
             {
                 animator.SetBool("isPunching", false);
-                AttackDelay = true;
+                isAttacking = false;
             }
-            Debug.Log("Punched");
         }
     }
+    // Player Input For Kicking
     private void OnKick(InputValue value)
     {
-        if (!animator.GetBool("isKnocked")&&!animator.GetBool("isGrapple"))
+        if (animator.GetBool("isKnocked") == false && animator.GetBool("isGrapple") == false)
         {
             kickValue = value.Get<float>();
 
-            if (kickValue != 0)
+            if (kickValue != 0 && attackDelay <= 0)
             {
                 animator.SetBool("isKicking", true);
-                AttackDelay = false;
+                isAttacking = true;
+                Debug.Log("Kicked"); 
+                attackDuration -= Time.deltaTime;
             }
             else
             {
                 animator.SetBool("isKicking", false);
-                AttackDelay = true;
+                isAttacking = false;
             }
-            Debug.Log("Kicked");
         }
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+    // Makes the palyer collider = the player collider?
+    /*public void OnTriggerEnter2D(Collider2D collision)
     {
         enemycollider=collision;
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
         enemycollider= playercollider;
-    }
+    }*/
     private void OnGrapple(InputValue value)
     {
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Gym") && enemycollider.gameObject.tag == "Enemy" && grappledelay <= 0 && !animator.GetBool("isKnocked"))
@@ -114,6 +125,11 @@ public class Combat : EnemyValues
     }
     void Update()
     {
+        if (attackDelay <= 0 && isAttacking == true)
+        {
+            SpawnAttacks();
+        }
+
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Gym"))
         {
             slider.gameObject.SetActive(true);
@@ -122,15 +138,17 @@ public class Combat : EnemyValues
             {
                 animator.SetBool("isKnocked", true);
             }
-            if (!animator.GetBool("isKnocked"))
+            else if (!animator.GetBool("isKnocked"))
             {
+                animator.SetBool("isKnocked", false);
+
                 if (grappledelay > 0)
                 {
                     grappledelay -= Time.deltaTime;
                 }
 
-                if (attackdelay > 0) 
-                    attackdelay -= Time.deltaTime;
+                if (attackDelay > 0) // Checks if time is greater than 0
+                    attackDelay -= Time.deltaTime; // Subtracts the delay by the time
                 if (inGrappleState == true)
                 {
                     if (grappleWinCounter >= winCount)     //detects player's success in grapple
@@ -161,72 +179,84 @@ public class Combat : EnemyValues
         {
             slider.gameObject.SetActive(false);
         }
-            IEnumerator BotDelay()      //delays value addition
-            {
-                yield return new WaitForSeconds(delay);
+        IEnumerator BotDelay()      //delays value addition
+        {
+            yield return new WaitForSeconds(delay);
 
-                grappleWinCounter--;
-                Debug.Log("Grapple " + grappleWinCounter);
-                inputDelay = false;
-            }
-            if (animator.GetBool("isGrapple"))
+            grappleWinCounter--;
+            Debug.Log("Grapple " + grappleWinCounter);
+            inputDelay = false;
+        }
+        if (animator.GetBool("isGrapple"))
+        {
+            if (!grappled)
             {
-                if (!grappled)
-                {
-                    slider.gameObject.SetActive(true);
-                    grappled = true;
-                    animator.SetBool("isWalking", false);
-                }
+                slider.gameObject.SetActive(true);
+                grappled = true;
+                animator.SetBool("isWalking", false);
             }
-            if (!animator.GetBool("isGrapple"))
-            {
-                if(grappled) grappledelay = 2f;
-                grappled = false;
-                slider.gameObject.SetActive(false);
-            }
-            SpawnAttacks();
+        }
+        if (!animator.GetBool("isGrapple"))
+        {
+            if(grappled) grappledelay = 2f;
+            grappled = false;
+            slider.gameObject.SetActive(false);
+        }
     }
     void SpawnAttacks()
     {
-        if (attackdelay <= 0 && AttackDelay)
+        if (animator.GetBool("isPunching"))
         {
-            if (animator.GetBool("isPunching"))
+            if (animator.GetFloat("X") > 0)
             {
-                if (animator.GetFloat("X") > 0)
-                {
-                    Instantiate(Punch_Right, this.transform); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("X") < 0)
-                {
-                    Instantiate(Punch_Left, this.transform); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") > 0)
-                {
-                    Instantiate(Punch_Up, this.transform); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") < 0)
-                {
-                    Instantiate(Punch_Down, this.transform); attackdelay = attackDelay;
-                }
+                Instantiate(Punch_Right, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isPunching", false);
             }
-            if (animator.GetBool("isKicking"))
+            if (animator.GetFloat("X") < 0)
             {
-                if (animator.GetFloat("X") > 0)
-                {
-                    Instantiate(Kick_Right, this.transform); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("X") < 0)
-                {
-                    Instantiate(Kick_Left, this.transform); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") > 0)
-                {
-                    Instantiate(Kick_Up, this.transform); attackdelay = attackDelay;
-                }
-                if (animator.GetFloat("Y") < 0)
-                {
-                    Instantiate(Kick_Down, this.transform); attackdelay = attackDelay;
-                }
+                Instantiate(Punch_Left, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isPunching", false);
+            }
+            if (animator.GetFloat("Y") > 0)
+            {
+                Instantiate(Punch_Up, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isPunching", false);
+            }
+            if (animator.GetFloat("Y") < 0)
+            {
+                Instantiate(Punch_Down, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isPunching", false);
+            }
+        }
+        if (animator.GetBool("isKicking"))
+        {
+            if (animator.GetFloat("X") > 0)
+            {
+                Instantiate(Kick_Right, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isKicking", false);
+            }
+            if (animator.GetFloat("X") < 0)
+            {
+                Instantiate(Kick_Left, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isKicking", false);
+            }
+            if (animator.GetFloat("Y") > 0)
+            {
+                Instantiate(Kick_Up, this.transform); 
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isKicking", false);
+            }
+            if (animator.GetFloat("Y") < 0)
+            {
+                Instantiate(Kick_Down, this.transform);
+                attackDelay = attackSpawnDelay;
+                animator.SetBool("isKicking", false);
             }
         }
     }

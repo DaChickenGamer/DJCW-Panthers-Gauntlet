@@ -7,14 +7,15 @@ public class Dialogue : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
     public string InteractionPrompt => _prompt;
+
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    //public GameObject interact;
+    public GameObject interact;
     private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
-    [SerializeField] private string[] lines= new string[0];
+    [SerializeField] private string[] lines= new string[100];
     [SerializeField] private float textSpeed;
     [HideInInspector] [Header("Bools")]
     private bool doDialogue = false;
@@ -40,7 +41,7 @@ public class Dialogue : MonoBehaviour, IInteractable
 
     public bool Interact(Interacter interactor)
     {
-        if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
+        if (doDialogue == false && tutorialComplete == false && inCoach == true)
         {
             Debug.Log("Key Pressed");
             doDialogue = true;
@@ -91,14 +92,14 @@ public class Dialogue : MonoBehaviour, IInteractable
         {
             UnInteractDelay -= Time.deltaTime;
         }
-        /*if (DesktopBool)
+        if (DesktopBool)
             Desktop();
         if (ConsoleBool)
             Console();
         if (MobileBool)
             Mobile();
         if (OtherBool)
-            Other();/**/
+            Other();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -150,7 +151,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     {
         lines = newline;
     }
-    /*void Desktop()
+    void Desktop()
     {
         if (InteractDelay <= 0)
         {
@@ -192,7 +193,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     void Other()
     {
 
-    }/**/
+    }
     IEnumerator TypeLine()
     {
         // Type each character 1 by 1
