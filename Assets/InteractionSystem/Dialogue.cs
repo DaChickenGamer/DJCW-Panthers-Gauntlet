@@ -69,6 +69,8 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Start()
     {
+        if (inCoachArea == false)
+            inCoachArea = false;
         if (SystemInfo.deviceType == DeviceType.Desktop)
             DesktopBool = true;
         else if (SystemInfo.deviceType == DeviceType.Console)
