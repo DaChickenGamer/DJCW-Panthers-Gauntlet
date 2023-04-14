@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
     {
         foreach(Keybindings.KeybindingCheck keybindingCheck in keybindings.keybindingChecks)
         {
-            if(keybindingCheck.keybindingAction== keybindingAction)
+            if(keybindingCheck.keybindingAction == keybindingAction)
             {
                 return keybindingCheck.keyCode;
             }

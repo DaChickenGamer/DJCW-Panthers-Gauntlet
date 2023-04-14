@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ReadInput : MonoBehaviour
 {
-    private string punch;
-    private string kick;
-    private string pause;
-    private string grapple;
-    private string interact;
+    public static string punch;
+    public static string kick;
+    public static string pause;
+    public static string grapple;
+    public static string interact;
     public void Punch(string s)
     {
         punch = s;

@@ -330,21 +330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ba45e1a036b7a49a51546e01ff8989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KOEvent:
+  PlayerKOEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   maxHealth: 100
   koBar: {fileID: 8440384296707024141}
 --- !u!114 &8440384296746258918
@@ -377,8 +365,9 @@ MonoBehaviour:
   grappleWinCounter: 0
   inGrappleState: 0
   grappled: 0
-  attackdelay: 0
+  attackDelay: 0.5
   enemycollider: {fileID: 0}
+  playercollider: {fileID: 0}
 --- !u!95 &8440384296746258919
 Animator:
   serializedVersion: 5
