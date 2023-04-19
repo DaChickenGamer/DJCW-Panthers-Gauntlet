@@ -2404,6 +2404,11 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 7929901879653296410, guid: b57606ab61d1ded4783894695b0d026a, type: 3}
   m_PrefabInstance: {fileID: 7929901880315679246}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2105206893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8440384295268941865, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+  m_PrefabInstance: {fileID: 8440384294905355529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2109293236 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5101827424675514859, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
@@ -2679,7 +2684,7 @@ PrefabInstance:
     - target: {fileID: 8440384296746258936, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: grappled
       value: 
-      objectReference: {fileID: 8440384294905355530}
+      objectReference: {fileID: 0}
     - target: {fileID: 8440384296746258937, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: KOEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -2704,21 +2709,23 @@ PrefabInstance:
       propertyPath: KOEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
---- !u!114 &8440384294905355530 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8440384296746258918, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
-  m_PrefabInstance: {fileID: 8440384294905355529}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd3f81dc1bdebca4884bc0297429e3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8440384294905355537 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8440384296746258941, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
   m_PrefabInstance: {fileID: 8440384294905355529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8440384294905355546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105206893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa21a0974aa740469cb2e211a8cf353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

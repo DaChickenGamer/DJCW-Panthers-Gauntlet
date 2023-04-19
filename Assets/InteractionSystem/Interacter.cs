@@ -33,11 +33,11 @@ public class Interacter : MonoBehaviour
                 _interacting = false;Debug.Log("something");
             }
         }
-        if (_inputManager.GetKeyDown(KeybindingActions.Interact))
-        {
-            Debug.Log("interaction");
-            Interaction();
-        }
+        //if (_inputManager.GetKeyDown(KeybindingActions.Interact))
+        //{
+        //    Debug.Log("interaction");
+        //    Interaction();
+        //}
     }
     private void Interaction()
     {
