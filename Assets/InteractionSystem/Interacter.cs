@@ -14,9 +14,11 @@ public class Interacter : MonoBehaviour
     [SerializeField] private int _numFound; // Number of colliders found
     private bool _interacting = false; // Makes interacting into a bool
 
+    private KeybindManager _keybindManager;
     private InputManager _inputManager;
     private void Start()
     {
+        _keybindManager = KeybindManager.MyInstance;
         _inputManager = InputManager.instance;
     }
     private void Update()
@@ -33,7 +35,7 @@ public class Interacter : MonoBehaviour
                 _interacting = false;Debug.Log("something");
             }
         }
-        if (_inputManager.GetKeyDown(KeybindingActions.Interact))
+        if (_keybindManager.Actions.enabled)
         {
             Debug.Log("interaction");
             Interaction();

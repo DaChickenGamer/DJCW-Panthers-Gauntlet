@@ -24,7 +24,6 @@ public class KeybindMenu : MonoBehaviour
     {
         keybindButtons = GameObject.FindGameObjectsWithTag("Keybind");
     }
-
     public void UpdateKeyText(string key, KeyCode code)
     {
         TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();

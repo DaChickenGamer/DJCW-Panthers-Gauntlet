@@ -7,13 +7,12 @@ using UnityEngine.InputSystem;
 
 public class KeybindManager : MonoBehaviour
 {
-
-    private InputActionRebindingExtensions.RebindingOperation rebindingOperation=null;
     private static KeybindManager instance;
     [SerializeField] private GameObject MovementKeybinds;
     [SerializeField] private GameObject ActionKeybinds;
     [SerializeField] private GameObject ButtonMapping;
     public InputActionMap Actions;
+    
     public static KeybindManager MyInstance
     {
         get
@@ -102,7 +101,7 @@ public class KeybindManager : MonoBehaviour
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {
             if (key == "UP") Actions.FindAction("Movement").ChangeBinding(1).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "LEFT") Actions.FindAction("Movement").ChangeBinding(2).WithPath(" < Keyboard>/" + keyBind.ToString());
+            if (key == "LEFT") Actions.FindAction("Movement").ChangeBinding(2).WithPath("<Keyboard>/" + keyBind.ToString());
             if (key == "DOWN") Actions.FindAction("Movement").ChangeBinding(3).WithPath("<Keyboard>/" + keyBind.ToString());
             if (key == "RIGHT") Actions.FindAction("Movement").ChangeBinding(4).WithPath("<Keyboard>/" + keyBind.ToString());
             if (key == "ACTPUNCH") Actions.FindAction("Punch").ChangeBinding(0).WithPath("<Keyboard>/" + keyBind.ToString());
