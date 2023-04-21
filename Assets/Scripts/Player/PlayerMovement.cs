@@ -19,25 +19,9 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void OnMovement(InputValue value)
     {
-        if (Input.GetKey(KeybindManager.MyInstance.Keybinds["UP"]))
-        {
-            movement.x = 1;
-        }
-        if (Input.GetKey(KeybindManager.MyInstance.Keybinds["LEFT"]))
-        {
-            movement.y = -1;
-        }
-        if (Input.GetKey(KeybindManager.MyInstance.Keybinds["DOWN"]))
-        {
-            movement.x = -1;
-        }
-        if (Input.GetKey(KeybindManager.MyInstance.Keybinds["RIGHT"]))
-        {
-            movement.y = 1;
-        }
-        if(Input.GetKey(KeybindManager.MyInstance.Keybinds["UP"]))
+        movement = value.Get<Vector2>();
         if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
             if (movement.x != 0 || movement.y != 0)

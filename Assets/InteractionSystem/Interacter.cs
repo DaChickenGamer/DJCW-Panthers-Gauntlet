@@ -13,14 +13,6 @@ public class Interacter : MonoBehaviour
     private readonly Collider2D[] _colliders = new Collider2D[3];
     [SerializeField] private int _numFound; // Number of colliders found
     private bool _interacting = false; // Makes interacting into a bool
-
-    private KeybindManager _keybindManager;
-    private InputManager _inputManager;
-    private void Start()
-    {
-        _keybindManager = KeybindManager.MyInstance;
-        _inputManager = InputManager.instance;
-    }
     private void Update()
     {
         _numFound = Physics2D.OverlapCircleNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
@@ -32,16 +24,11 @@ public class Interacter : MonoBehaviour
             if (interactable != null && _interacting == true) // New input system get key down || Implement Other Devices Later
             {
                 interactable.Interact(this);
-                _interacting = false;Debug.Log("something");
+                _interacting = false;
             }
         }
-        if (_keybindManager.Actions.enabled)
-        {
-            Debug.Log("interaction");
-            Interaction();
-        }
     }
-    private void Interaction()
+    private void OnInteraction(InputValue Input)
     {
         _interacting = true;
     }

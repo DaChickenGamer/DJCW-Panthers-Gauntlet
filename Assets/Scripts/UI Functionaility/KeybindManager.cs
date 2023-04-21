@@ -12,7 +12,6 @@ public class KeybindManager : MonoBehaviour
     [SerializeField] private GameObject ActionKeybinds;
     [SerializeField] private GameObject ButtonMapping;
     public InputActionMap Actions;
-    
     public static KeybindManager MyInstance
     {
         get
@@ -31,6 +30,10 @@ public class KeybindManager : MonoBehaviour
 
     private string bindName;
     // Start is called before the first frame update
+    public void Update()
+    {
+        
+    }
     void Start()
     {
         
@@ -75,17 +78,23 @@ public class KeybindManager : MonoBehaviour
 
     public void BindKey(string key, KeyCode keyBind)
     {
-        Dictionary<string, KeyCode> currentDictionary = Keybinds;
+        /*Dictionary<string, KeyCode> currentDictionary = Keybinds;
 
         if (key.Contains("ACT"))
         {
             currentDictionary = ActionBinds;
         }
+        if (currentDictionary.ContainsKey(key))
+        {
+        }
+        if (!key.Contains("Act"))
+        {
+            currentDictionary = Keybinds;
+        }
         if (!currentDictionary.ContainsValue(keyBind))
         {
             currentDictionary.Add(key, keyBind);
             KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
-
         }
         else if (currentDictionary.ContainsValue(keyBind))
         {
@@ -95,7 +104,7 @@ public class KeybindManager : MonoBehaviour
             KeybindMenu.MyInstance.UpdateKeyText(key, KeyCode.None);
         }
 
-        currentDictionary[key] = keyBind;
+        currentDictionary[key] = keyBind;*/
         KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
         bindName = string.Empty;
         if (SystemInfo.deviceType == DeviceType.Desktop) 

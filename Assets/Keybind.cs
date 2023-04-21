@@ -26,8 +26,8 @@ public class Keybind : MonoBehaviour
                 if (Input.GetKey(keycode))
                 {
                     buttonUp.fontSize = 30;
-                    buttonUp.text = keycode.ToString();
-                    KeybindMenu.MyInstance.UpdateKeyText("UP", keycode);
+                    //buttonUp.text = keycode.ToString();
+                    KeybindManager.MyInstance.BindKey("UP", keycode);
                     PlayerPrefs.SetString("CustomKeyUp", keycode.ToString());
                     PlayerPrefs.Save();
                 }
