@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class KeybindManager : MonoBehaviour
-{
+{/*
     private static KeybindManager instance;
     [SerializeField] private GameObject MovementKeybinds;
     [SerializeField] private GameObject ActionKeybinds;
@@ -103,8 +103,8 @@ public class KeybindManager : MonoBehaviour
             currentDictionary[myKey] = KeyCode.None;
             KeybindMenu.MyInstance.UpdateKeyText(key, KeyCode.None);
         }
-
-        currentDictionary[key] = keyBind;*/
+        
+        currentDictionary[key] = keyBind;*//*
         KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
         bindName = string.Empty;
         if (SystemInfo.deviceType == DeviceType.Desktop) 
@@ -127,5 +127,5 @@ public class KeybindManager : MonoBehaviour
             if (key == "ACTINTERACT") Actions.FindAction("Interact").ChangeBinding(1).WithPath("<XInputController>/" + keyBind.ToString());
             if (key == "ACTPAUSE") Actions.FindAction("Pause").ChangeBinding(1).WithPath("<XInputController>/" + keyBind.ToString());
         }
-    }
+    }*/
 }

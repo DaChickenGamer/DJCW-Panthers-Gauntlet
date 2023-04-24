@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 public class Keybind : MonoBehaviour
-{
+{/*
     [Header("Objects")]
     [SerializeField] private TextMeshProUGUI buttonUp;
     [SerializeField] private TextMeshProUGUI buttonLeft, buttonDown, buttonRight, buttonPunch, buttonKick, buttonGrapple, buttonInteract, buttonPause;
@@ -190,5 +190,5 @@ public class Keybind : MonoBehaviour
     {
         buttonPause.text = "Awaiting Input";
         buttonPause.fontSize = 18;
-    }
+    }*/
 }
