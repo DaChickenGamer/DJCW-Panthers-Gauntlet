@@ -12,25 +12,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDisposable
+public partial class @PlayerInputs: IInputActionCollection2, IDisposable
 {
-    private static PlayerInputs instance;
-    public static PlayerInputs MyInstance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<PlayerInputs>();
-            }
-            return instance;
-        }
-    }
     public InputActionAsset asset { get; }
     public @PlayerInputs()
     {
@@ -43,48 +29,48 @@ public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDi
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""1fcf2360-9467-48ad-ad45-39a4e37774e0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Punch"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""1a98bb09-815d-4fa9-b117-75efdfa77bc8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Kick"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""28425303-124d-460a-96da-d169b995d9ba"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Grapple"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""3290616c-da10-4d42-80d5-6781e51d9605"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Interact"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""3409f6f1-d72d-4330-9f9e-67568234258e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Pause"",
@@ -329,7 +315,7 @@ public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDi
         m_InGame_Kick = m_InGame.FindAction("Kick", throwIfNotFound: true);
         m_InGame_Grapple = m_InGame.FindAction("Grapple", throwIfNotFound: true);
         m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
-        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: false);
+        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -399,10 +385,9 @@ public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDi
     private readonly InputAction m_InGame_Pause;
     public struct InGameActions
     {
-        
-        private static @PlayerInputs m_Wrapper;
+        private @PlayerInputs m_Wrapper;
         public InGameActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public static InputAction Movement => m_Wrapper.m_InGame_Movement;
+        public InputAction @Movement => m_Wrapper.m_InGame_Movement;
         public InputAction @Punch => m_Wrapper.m_InGame_Punch;
         public InputAction @Kick => m_Wrapper.m_InGame_Kick;
         public InputAction @Grapple => m_Wrapper.m_InGame_Grapple;
