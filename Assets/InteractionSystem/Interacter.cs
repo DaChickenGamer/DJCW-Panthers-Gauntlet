@@ -25,13 +25,18 @@ public class Interacter : MonoBehaviour
             {
                 interactable.Interact(this);
                 _interacting = false;
+
+                if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsPressed())
+                {
+                    _interacting=true;
+                }
             }
         }
     }
-    private void OnInteraction(InputValue Input)
+    /*private void OnInteraction(InputValue Input)
     {
         _interacting = true;
-    }
+    }*/
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

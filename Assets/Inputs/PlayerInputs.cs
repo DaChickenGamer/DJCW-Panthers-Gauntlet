@@ -12,25 +12,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDisposable
+public partial class @PlayerInputs: IInputActionCollection2, IDisposable
 {
-    private static PlayerInputs instance;
-    public static PlayerInputs MyInstance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<PlayerInputs>();
-            }
-            return instance;
-        }
-    }
     public InputActionAsset asset { get; }
     public @PlayerInputs()
     {
@@ -43,12 +29,12 @@ public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDi
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""1fcf2360-9467-48ad-ad45-39a4e37774e0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Punch"",
@@ -329,7 +315,7 @@ public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDi
         m_InGame_Kick = m_InGame.FindAction("Kick", throwIfNotFound: true);
         m_InGame_Grapple = m_InGame.FindAction("Grapple", throwIfNotFound: true);
         m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
-        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: false);
+        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -399,10 +385,9 @@ public partial class @PlayerInputs : MonoBehaviour, IInputActionCollection2, IDi
     private readonly InputAction m_InGame_Pause;
     public struct InGameActions
     {
-        
-        private static @PlayerInputs m_Wrapper;
+        private @PlayerInputs m_Wrapper;
         public InGameActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public static InputAction Movement => m_Wrapper.m_InGame_Movement;
+        public InputAction @Movement => m_Wrapper.m_InGame_Movement;
         public InputAction @Punch => m_Wrapper.m_InGame_Punch;
         public InputAction @Kick => m_Wrapper.m_InGame_Kick;
         public InputAction @Grapple => m_Wrapper.m_InGame_Grapple;

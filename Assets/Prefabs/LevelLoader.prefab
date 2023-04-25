@@ -566,7 +566,7 @@ MonoBehaviour:
     m_Asset: {fileID: 0}
     m_Actions:
     - m_Name: Movement
-      m_Type: 1
+      m_Type: 0
       m_ExpectedControlType: Button
       m_Id: fe053c6d-15e6-4a88-8c79-e2d6da933d1f
       m_Processors: 
@@ -574,7 +574,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     - m_Name: Punch
-      m_Type: 1
+      m_Type: 0
       m_ExpectedControlType: Button
       m_Id: 209160fc-ff1f-4001-becb-8436ab64d87d
       m_Processors: 
@@ -582,7 +582,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     - m_Name: Kick
-      m_Type: 1
+      m_Type: 0
       m_ExpectedControlType: Button
       m_Id: cd7e0907-01b8-454f-8671-b24ce4230f42
       m_Processors: 
@@ -590,7 +590,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     - m_Name: Grapple
-      m_Type: 1
+      m_Type: 0
       m_ExpectedControlType: Button
       m_Id: 9a145e73-c0a1-4739-8beb-350c4ae4d6a8
       m_Processors: 
@@ -598,7 +598,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     - m_Name: Interact
-      m_Type: 1
+      m_Type: 0
       m_ExpectedControlType: Button
       m_Id: 4d6b701d-3ad6-460c-aa9e-1da057d4f470
       m_Processors: 
@@ -606,7 +606,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     - m_Name: Pause
-      m_Type: 1
+      m_Type: 0
       m_ExpectedControlType: Button
       m_Id: b97e8d4b-afeb-48f6-a427-2e86d2dabe0c
       m_Processors: 

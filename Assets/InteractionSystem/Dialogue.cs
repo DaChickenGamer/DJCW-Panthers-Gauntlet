@@ -11,7 +11,6 @@ public class Dialogue : MonoBehaviour, IInteractable
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    public GameObject interact;
     private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
@@ -23,21 +22,11 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool tutorialComplete = false;
     private bool inCoachArea = false;
     private int index;
-    private bool DesktopBool, ConsoleBool, MobileBool, OtherBool;
 
     private bool inCoach = false; // Don't Hunter
 
 
     public static bool metCoach = false;
-    [Header("Interact Sprites")]
-    public Sprite DesktopInteract;
-    public Sprite ConsoleInteract;
-    public Sprite MobileInteract;
-    public Sprite OtherInteract;
-    public Sprite DesktopUninteract;
-    public Sprite ConsoleUninteract;
-    public Sprite MobileUninteract;
-    public Sprite OtherUninteract;
 
     public bool Interact(Interacter interactor)
     {
@@ -69,14 +58,6 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Start()
     {
-        if (SystemInfo.deviceType == DeviceType.Desktop)
-            DesktopBool = true;
-        else if (SystemInfo.deviceType == DeviceType.Console)
-            ConsoleBool = true;
-        else if (SystemInfo.deviceType == DeviceType.Handheld)
-            MobileBool = true;
-        else if (SystemInfo.deviceType == DeviceType.Unknown)
-            OtherBool = true;
         string[] nextLine = {"hello","UwU","Hehe"};
         
         StopDialogue();
@@ -92,14 +73,6 @@ public class Dialogue : MonoBehaviour, IInteractable
         {
             UnInteractDelay -= Time.deltaTime;
         }
-        if (DesktopBool)
-            Desktop();
-        if (ConsoleBool)
-            Console();
-        if (MobileBool)
-            Mobile();
-        if (OtherBool)
-            Other();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -151,49 +124,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     {
         lines = newline;
     }
-    void Desktop()
-    {
-        if (InteractDelay <= 0)
-        {
-            UnInteractDelay = 1;
-            interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopInteract;
-            InteractDelay = 2;
-        }
-        if(UnInteractDelay <= 0)
-        {
-            interact.gameObject.GetComponent<SpriteRenderer>().sprite = DesktopUninteract;
-        }
-    }
-    void Console()
-    {
-        if (InteractDelay <= 0)
-        {
-            UnInteractDelay = 1;
-            interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleInteract;
-            InteractDelay = 2;
-        }
-        if (UnInteractDelay <= 0)
-        {
-            interact.gameObject.GetComponent<SpriteRenderer>().sprite = ConsoleUninteract;
-        }
-    }
-    void Mobile()
-    {
-        if (InteractDelay <= 0)
-        {
-            UnInteractDelay = 1;
-            interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileInteract;
-            InteractDelay = 2;
-        }
-        if (UnInteractDelay <= 0)
-        {
-            interact.gameObject.GetComponent<SpriteRenderer>().sprite = MobileUninteract;
-        }
-    }
-    void Other()
-    {
-
-    }
+    
     IEnumerator TypeLine()
     {
         // Type each character 1 by 1

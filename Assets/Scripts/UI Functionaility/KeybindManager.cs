@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class KeybindManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class KeybindManager : MonoBehaviour
     [SerializeField] private GameObject ActionKeybinds;
     [SerializeField] private GameObject ButtonMapping;
     public InputActionMap Actions;
+    private PlayerInput playerInput;
     public static KeybindManager MyInstance
     {
         get
@@ -36,15 +38,20 @@ public class KeybindManager : MonoBehaviour
     }
     void Start()
     {
-        
+        playerInput = GetComponent<PlayerInput>();
+        Actions.Enable();
         Keybinds = new Dictionary<string, KeyCode>();
 
         ActionBinds = new Dictionary<string, KeyCode>();
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {
-            MovementKeybinds.SetActive(true);
-            ActionKeybinds.SetActive(true);
-            ButtonMapping.SetActive(false);
+
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+            {
+                MovementKeybinds.SetActive(true);
+                ActionKeybinds.SetActive(true);
+                ButtonMapping.SetActive(false);
+            }
             BindKey("UP", KeyCode.W);
             BindKey("LEFT", KeyCode.A);
             BindKey("DOWN", KeyCode.S);
@@ -58,9 +65,12 @@ public class KeybindManager : MonoBehaviour
         }
         if (SystemInfo.deviceType == DeviceType.Console)
         {
-            MovementKeybinds.SetActive(false);
-            ActionKeybinds.SetActive(true);
-            ButtonMapping.SetActive(false);
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+            {
+                MovementKeybinds.SetActive(false);
+                ActionKeybinds.SetActive(true);
+                ButtonMapping.SetActive(false);
+            }
             BindKey("ACTPUNCH", KeyCode.A);
             BindKey("ACTKICK", KeyCode.X);
             BindKey("ACTGRAPPLE", KeyCode.Y);
@@ -69,9 +79,12 @@ public class KeybindManager : MonoBehaviour
         }
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            MovementKeybinds.SetActive(false);
-            ActionKeybinds.SetActive(false);
-            ButtonMapping.SetActive(true);
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+            {
+                MovementKeybinds.SetActive(false);
+                ActionKeybinds.SetActive(false);
+                ButtonMapping.SetActive(true);
+            }
 
         }
     }
@@ -87,7 +100,7 @@ public class KeybindManager : MonoBehaviour
         if (currentDictionary.ContainsKey(key))
         {
         }
-        if (!key.Contains("Act"))
+        if (!key.Contains("ACT"))
         {
             currentDictionary = Keybinds;
         }
@@ -105,7 +118,10 @@ public class KeybindManager : MonoBehaviour
         }
 
         currentDictionary[key] = keyBind;*/
-        KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
+        }
         bindName = string.Empty;
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {

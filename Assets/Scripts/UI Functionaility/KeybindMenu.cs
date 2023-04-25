@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class KeybindMenu : MonoBehaviour
@@ -19,6 +20,9 @@ public class KeybindMenu : MonoBehaviour
             return instance; 
         } 
     }
+    public void Update()
+    {
+    }
     private GameObject[] keybindButtons;
     private void Awake()
     {
@@ -29,4 +33,5 @@ public class KeybindMenu : MonoBehaviour
         TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();
         tmp.text = code.ToString();
     }
+
 }
