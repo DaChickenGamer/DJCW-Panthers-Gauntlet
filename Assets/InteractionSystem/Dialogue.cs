@@ -27,7 +27,6 @@ public class Dialogue : MonoBehaviour, IInteractable
 
 
     public static bool metCoach = false;
-
     public bool Interact(Interacter interactor)
     {
         if (doDialogue == false && tutorialComplete == false && inCoach == true)
@@ -58,21 +57,14 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Start()
     {
-        string[] nextLine = {"hello","UwU","Hehe"};
-        
+        string[] nextLine = { "hello", "UwU", "Hehe" };
+
+        // Disables warning below but has no use
+        if (inCoachArea == false)
+            inCoachArea = false;
+
         StopDialogue();
         NewLine(nextLine);
-    }
-    private void Update()
-    {
-        if (InteractDelay > 0)
-        {
-            InteractDelay -= Time.deltaTime;
-        }
-        if (UnInteractDelay > 0)
-        {
-            UnInteractDelay -= Time.deltaTime;
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -124,7 +116,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     {
         lines = newline;
     }
-    
+  
     IEnumerator TypeLine()
     {
         // Type each character 1 by 1
