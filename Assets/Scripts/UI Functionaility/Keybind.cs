@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Keybind : MonoBehaviour
-{/*
+{
     [Header("Objects")]
     [SerializeField] private TextMeshProUGUI buttonUp;
     [SerializeField] private TextMeshProUGUI buttonLeft, buttonDown, buttonRight, buttonPunch, buttonKick, buttonGrapple, buttonInteract, buttonPause;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,120 +30,123 @@ public class Keybind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (buttonUp.text == "Awaiting Input")
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonUp.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonUp.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("UP", keycode);
-                    PlayerPrefs.SetString("CustomKeyUp", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonUp.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("UP", keycode);
+                        PlayerPrefs.SetString("CustomKeyUp", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonLeft.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonLeft.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonLeft.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("LEFT", keycode);
-                    PlayerPrefs.SetString("CustomKeyLeft", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonLeft.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("LEFT", keycode);
+                        PlayerPrefs.SetString("CustomKeyLeft", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonDown.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonDown.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonDown.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("DOWN", keycode);
-                    PlayerPrefs.SetString("CustomKeyDown", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonDown.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("DOWN", keycode);
+                        PlayerPrefs.SetString("CustomKeyDown", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonRight.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonRight.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonRight.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("RIGHT", keycode);
-                    PlayerPrefs.SetString("CustomKeyRight", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonRight.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("RIGHT", keycode);
+                        PlayerPrefs.SetString("CustomKeyRight", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonPunch.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonPunch.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonPunch.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("ACTPUNCH", keycode);
-                    PlayerPrefs.SetString("CustomKeyPunch", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonPunch.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("ACTPUNCH", keycode);
+                        PlayerPrefs.SetString("CustomKeyPunch", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonKick.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonKick.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonKick.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("ACTKICK", keycode);
-                    PlayerPrefs.SetString("CustomKeyKick", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonKick.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("ACTKICK", keycode);
+                        PlayerPrefs.SetString("CustomKeyKick", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonGrapple.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonGrapple.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonGrapple.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("ACTGRAPPLE", keycode);
-                    PlayerPrefs.SetString("CustomKeyGrapple", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonGrapple.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("ACTGRAPPLE", keycode);
+                        PlayerPrefs.SetString("CustomKeyGrapple", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonInteract.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonInteract.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonInteract.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("ACTINTERACT", keycode);
-                    PlayerPrefs.SetString("CustomKeyInteract", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonInteract.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("ACTINTERACT", keycode);
+                        PlayerPrefs.SetString("CustomKeyInteract", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
-        }
-        if (buttonPause.text == "Awaiting Input")
-        {
-            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+            if (buttonPause.text == "Awaiting Input")
             {
-                if (Input.GetKey(keycode))
+                foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    buttonPause.fontSize = 30;
-                    KeybindManager.MyInstance.BindKey("ACTPAUSE", keycode);
-                    PlayerPrefs.SetString("CustomKeyPause", keycode.ToString());
-                    PlayerPrefs.Save();
+                    if (Input.GetKey(keycode))
+                    {
+                        buttonPause.fontSize = 30;
+                        KeybindManager.MyInstance.BindKey("ACTPAUSE", keycode);
+                        PlayerPrefs.SetString("CustomKeyPause", keycode.ToString());
+                        PlayerPrefs.Save();
+                    }
                 }
             }
         }
@@ -190,5 +195,5 @@ public class Keybind : MonoBehaviour
     {
         buttonPause.text = "Awaiting Input";
         buttonPause.fontSize = 18;
-    }*/
+    }
 }

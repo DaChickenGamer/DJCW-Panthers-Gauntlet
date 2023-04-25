@@ -51,17 +51,18 @@ public class KeybindManager : MonoBehaviour
                 MovementKeybinds.SetActive(true);
                 ActionKeybinds.SetActive(true);
                 ButtonMapping.SetActive(false);
-            }
-            BindKey("UP", KeyCode.W);
-            BindKey("LEFT", KeyCode.A);
-            BindKey("DOWN", KeyCode.S);
-            BindKey("RIGHT", KeyCode.D);
 
-            BindKey("ACTPUNCH", KeyCode.Z);
-            BindKey("ACTKICK", KeyCode.X);
-            BindKey("ACTGRAPPLE", KeyCode.C);
-            BindKey("ACTINTERACT", KeyCode.E);
-            BindKey("ACTPAUSE", KeyCode.Escape);
+                BindKey("UP", KeyCode.W);
+                BindKey("LEFT", KeyCode.A);
+                BindKey("DOWN", KeyCode.S);
+                BindKey("RIGHT", KeyCode.D);
+
+                BindKey("ACTPUNCH", KeyCode.Z);
+                BindKey("ACTKICK", KeyCode.X);
+                BindKey("ACTGRAPPLE", KeyCode.C);
+                BindKey("ACTINTERACT", KeyCode.E);
+                BindKey("ACTPAUSE", KeyCode.Escape);
+            }
         }
         if (SystemInfo.deviceType == DeviceType.Console)
         {
@@ -70,12 +71,13 @@ public class KeybindManager : MonoBehaviour
                 MovementKeybinds.SetActive(false);
                 ActionKeybinds.SetActive(true);
                 ButtonMapping.SetActive(false);
+
+                BindKey("ACTPUNCH", KeyCode.A);
+                BindKey("ACTKICK", KeyCode.X);
+                BindKey("ACTGRAPPLE", KeyCode.Y);
+                BindKey("ACTINTERACT", KeyCode.B);
+                BindKey("ACTPAUSE", KeyCode.Menu);
             }
-            BindKey("ACTPUNCH", KeyCode.A);
-            BindKey("ACTKICK", KeyCode.X);
-            BindKey("ACTGRAPPLE", KeyCode.Y);
-            BindKey("ACTINTERACT", KeyCode.B);
-            BindKey("ACTPAUSE", KeyCode.Menu);
         }
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {

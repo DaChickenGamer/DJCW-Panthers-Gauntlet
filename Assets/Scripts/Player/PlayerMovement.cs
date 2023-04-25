@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;
+    private int Value;
 
     [SerializeField] private Combat grappled;
 
@@ -19,22 +20,27 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void OnMovement(InputValue value)
+    private void Update()
     {
-        movement = value.Get<Vector2>();
-        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
+        movement = KeybindManager.MyInstance.Actions.FindAction("Movement").ReadValue<Vector2>();
+        if (KeybindManager.MyInstance.Actions.FindAction("Movement").IsPressed())
         {
-            if (movement.x != 0 || movement.y != 0)
-            {
-                animator.SetFloat("X", movement.x);
-                animator.SetFloat("Y", movement.y);
 
-                animator.SetBool("isWalking", true);
-            }
-            else
+            
+            if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
             {
-                animator.SetBool("isWalking", false);
+                if (movement.x != 0 || movement.y != 0)
+                {
+                    animator.SetFloat("X", movement.x);
+                    animator.SetFloat("Y", movement.y);
+
+                    animator.SetBool("isWalking", true);
+                }
             }
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
         }
     }
     private void FixedUpdate()
