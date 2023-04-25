@@ -15,54 +15,60 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private UnityEvent awayFromDoor;
     [HideInInspector] public bool enterDoor = false;
 
+    [SerializeField] private Interacter interacter;
+    private bool _doorIsActive = false;
+
+
     [HideInInspector]
     [Header("Coach Bool")]
     public Dialogue dialogue;
-    private bool inDoor;
 
 
     public bool Interact(Interacter interactor)
     {
         Debug.Log("Opening Door!");
+        _doorIsActive = true;
         bool MetCoach = Dialogue.metCoach;
-        if (MetCoach == true && inDoor == false)
+        if (MetCoach == true && enterDoor == true)
         {
-            Debug.Log("Door Popup Menu");
-            inDoor = true;
-            customEvent.Invoke();
+            if (_doorIsActive == false)
+            {
+                Debug.Log("Door Popup Closed");
+                awayFromDoor.Invoke();
+            }
+            if (_doorIsActive == true)
+            {
+                Debug.Log("Door Popup Menu");
+                customEvent.Invoke();
+            }
         }
-        else if (MetCoach == false && inDoor == false)
+        else if (MetCoach == false && enterDoor == true)
         {
-            Debug.Log("Haven't met coach yet");
-            inDoor = true;
-            talkToCoach.Invoke();
-        }
-        else if (inDoor == true)
-        {
-            inDoor = false;
-            awayFromDoor.Invoke();
+            if (_doorIsActive == false)
+            {
+                Debug.Log("Door Popup Closed!!");
+                awayFromDoor.Invoke();
+            }
+            else if (_doorIsActive == true)
+            {
+                Debug.Log("Haven't met coach yet");
+                talkToCoach.Invoke();
+            }
         }
         return true;
     }
 
-        private void OnTriggerEnter2D(Collider2D collider)
-        {
-            Debug.Log("test");
-            if (collider.gameObject.name == "ExitDoor")
-            {
-                Debug.Log("Enter Door");
-                enterDoor = true;
-            }
-        }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("Entered Door");
+        enterDoor = true;
+    }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Debug.Log("test");
-        if (collider.gameObject.name == "ExitDoor")
-        {
-            awayFromDoor.Invoke();
-            Debug.Log("Exit Door");
-            enterDoor = false;
-        }
+        Debug.Log("Left Door");
+        enterDoor = false;
+        _doorIsActive = false;
+        awayFromDoor.Invoke();
     }
 }
