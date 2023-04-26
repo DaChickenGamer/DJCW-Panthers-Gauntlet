@@ -273,6 +273,10 @@ PrefabInstance:
       propertyPath: textComponent
       value: 
       objectReference: {fileID: 23196008}
+    - target: {fileID: 1669798627, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_TagString
+      value: Interaction
+      objectReference: {fileID: 0}
     - target: {fileID: 1254533320279399164, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1144,7 +1148,6 @@ MonoBehaviour:
   _prompt: 
   textComponent: {fileID: 23196008}
   dialogueBox: {fileID: 1487085591}
-  interact: {fileID: 0}
   lines:
   - 
   textSpeed: 0
