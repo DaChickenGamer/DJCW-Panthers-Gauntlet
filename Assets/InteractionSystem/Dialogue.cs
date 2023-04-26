@@ -29,6 +29,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     public static bool metCoach = false;
     public bool Interact(Interacter interactor)
     {
+        Debug.Log("Interacting With Coach");
         if (doDialogue == false && tutorialComplete == false && inCoach == true)
         {
             Debug.Log("Key Pressed");

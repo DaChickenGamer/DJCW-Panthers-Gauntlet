@@ -43,7 +43,6 @@ public class Door : MonoBehaviour, IInteractable
                 customEvent.Invoke();
                 _doorIsActive = true;
                 Debug.Log(_doorIsActive);
-
             }
         }
         else if (MetCoach == false && enterDoor == true)
@@ -67,15 +66,21 @@ public class Door : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Entered Door");
-        enterDoor = true;
+        if (collider.gameObject.tag == "Interaction")
+        {
+            Debug.Log("Entered Door");
+            enterDoor = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Debug.Log("Left Door");
-        enterDoor = false;
-        _doorIsActive = false;
-        awayFromDoor.Invoke();
+        if (collider.gameObject.tag == "Interaction")
+        {
+            Debug.Log("Left Door");
+            enterDoor = false;
+            _doorIsActive = false;
+            awayFromDoor.Invoke();
+        }
     }
 }
