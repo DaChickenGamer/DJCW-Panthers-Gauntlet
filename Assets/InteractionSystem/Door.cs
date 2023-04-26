@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -15,54 +16,71 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private UnityEvent awayFromDoor;
     [HideInInspector] public bool enterDoor = false;
 
+    [SerializeField] private Interacter interacter;
+    private bool _doorIsActive = false;
+
+
     [HideInInspector]
     [Header("Coach Bool")]
     public Dialogue dialogue;
-    private bool inDoor;
 
 
     public bool Interact(Interacter interactor)
     {
         Debug.Log("Opening Door!");
         bool MetCoach = Dialogue.metCoach;
-        if (MetCoach == true && inDoor == false)
+        if (MetCoach == true && enterDoor == true)
         {
-            Debug.Log("Door Popup Menu");
-            inDoor = true;
-            customEvent.Invoke();
+            if (_doorIsActive == true)
+            {
+                Debug.Log("Door Popup Closed");
+                awayFromDoor.Invoke();
+                _doorIsActive = false;
+            }
+            else if (_doorIsActive == false)
+            {
+                Debug.Log("Door Popup Menu");
+                customEvent.Invoke();
+                _doorIsActive = true;
+                Debug.Log(_doorIsActive);
+            }
         }
-        else if (MetCoach == false && inDoor == false)
+        else if (MetCoach == false && enterDoor == true)
         {
-            Debug.Log("Haven't met coach yet");
-            inDoor = true;
-            talkToCoach.Invoke();
-        }
-        else if (inDoor == true)
-        {
-            inDoor = false;
-            awayFromDoor.Invoke();
+            if (_doorIsActive == true)
+            {
+                Debug.Log("Door Popup Closed");
+                awayFromDoor.Invoke();
+                _doorIsActive = false;
+            }
+            else if (_doorIsActive == false)
+            {
+                Debug.Log("Haven't met coach yet");
+                talkToCoach.Invoke();
+                _doorIsActive = true;
+                Debug.Log(_doorIsActive);
+            }
         }
         return true;
     }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Interaction")
         {
-            Debug.Log("test");
-            if (collider.gameObject.name == "ExitDoor")
-            {
-                Debug.Log("Enter Door");
-                enterDoor = true;
-            }
+            Debug.Log("Entered Door");
+            enterDoor = true;
         }
+    }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Debug.Log("test");
-        if (collider.gameObject.name == "ExitDoor")
+        if (collider.gameObject.tag == "Interaction")
         {
-            awayFromDoor.Invoke();
-            Debug.Log("Exit Door");
+            Debug.Log("Left Door");
             enterDoor = false;
+            _doorIsActive = false;
+            awayFromDoor.Invoke();
         }
     }
 }

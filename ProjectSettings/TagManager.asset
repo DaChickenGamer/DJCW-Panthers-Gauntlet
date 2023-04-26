@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Coach
   - Keybind
+  - Interaction
   layers:
   - Default
   - TransparentFX
