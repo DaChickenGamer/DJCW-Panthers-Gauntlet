@@ -31,7 +31,7 @@ public class Interacter : MonoBehaviour
 
                 if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsPressed())
                 {
-                    _interacting=true;
+                    
                 }
             }
         }

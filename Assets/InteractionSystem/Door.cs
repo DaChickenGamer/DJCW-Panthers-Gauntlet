@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -27,32 +28,38 @@ public class Door : MonoBehaviour, IInteractable
     public bool Interact(Interacter interactor)
     {
         Debug.Log("Opening Door!");
-        _doorIsActive = true;
         bool MetCoach = Dialogue.metCoach;
         if (MetCoach == true && enterDoor == true)
         {
-            if (_doorIsActive == false)
+            if (_doorIsActive == true)
             {
                 Debug.Log("Door Popup Closed");
                 awayFromDoor.Invoke();
+                _doorIsActive = false;
             }
-            if (_doorIsActive == true)
+            else if (_doorIsActive == false)
             {
                 Debug.Log("Door Popup Menu");
                 customEvent.Invoke();
+                _doorIsActive = true;
+                Debug.Log(_doorIsActive);
+
             }
         }
         else if (MetCoach == false && enterDoor == true)
         {
-            if (_doorIsActive == false)
+            if (_doorIsActive == true)
             {
-                Debug.Log("Door Popup Closed!!");
+                Debug.Log("Door Popup Closed");
                 awayFromDoor.Invoke();
+                _doorIsActive = false;
             }
-            else if (_doorIsActive == true)
+            else if (_doorIsActive == false)
             {
                 Debug.Log("Haven't met coach yet");
                 talkToCoach.Invoke();
+                _doorIsActive = true;
+                Debug.Log(_doorIsActive);
             }
         }
         return true;
