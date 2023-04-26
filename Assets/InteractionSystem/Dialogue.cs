@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,6 @@ public class Dialogue : MonoBehaviour, IInteractable
     [Header("Dialogue Parts")]
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
-    private float InteractDelay, UnInteractDelay;
 
     [Header("Dialogue Settings")]
     [SerializeField] private string[] lines= new string[100];
@@ -23,18 +23,15 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool inCoachArea = false;
     private int index;
 
-    private bool inCoach = false; // Don't Hunter
-
-
     public static bool metCoach = false;
+    
     public bool Interact(Interacter interactor)
     {
         Debug.Log("Interacting With Coach");
-        if (doDialogue == false && tutorialComplete == false && inCoach == true)
+        if (doDialogue == false && tutorialComplete == false && inCoachArea == true)
         {
             Debug.Log("Key Pressed");
             doDialogue = true;
-            inCoach = false;
             StartDialogue();
         }
         if (doDialogue == true && skip == true) // Checks if it can skip the dialogue
@@ -69,14 +66,14 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if (collision.gameObject.tag == "Player")
+       if (collision.gameObject.tag == "Interaction")
         {
             inCoachArea = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Interaction")
         {
             StopDialogue();
             inCoachArea = false;
