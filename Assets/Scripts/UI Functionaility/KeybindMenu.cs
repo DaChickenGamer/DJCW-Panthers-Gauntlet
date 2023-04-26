@@ -31,7 +31,16 @@ public class KeybindMenu : MonoBehaviour
     public void UpdateKeyText(string key, KeyCode code)
     {
         TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();
-        tmp.text = code.ToString();
+        string ReplaceText = code.ToString();
+        if (code.ToString().Contains("Arrow"))
+        {
+            ReplaceText =code.ToString().Replace("Arrow", " Arrow");
+        }
+        if (code.ToString().Contains("Alpha"))
+        {
+            ReplaceText = code.ToString().Replace("Alpha", "");
+        }
+        tmp.text =ReplaceText;
     }
 
 }

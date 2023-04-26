@@ -295,7 +295,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000029564, y: 0.00001955}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &85915963
 MonoBehaviour:
@@ -2107,7 +2107,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000038147, y: 0.000023842}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475579418
 MonoBehaviour:
@@ -2253,7 +2253,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000038147, y: -0.000019073}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493005675
 MonoBehaviour:
@@ -2491,7 +2491,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000038147, y: -0.000019073}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &533548686
 MonoBehaviour:
@@ -3394,6 +3394,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 624421116615623895, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+      propertyPath: TextFont
+      value: I'm Gay --Diego
+      objectReference: {fileID: 0}
+    - target: {fileID: 624421116615623895, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+      propertyPath: TextSize
+      value: I'm Gay --Diego
+      objectReference: {fileID: 0}
+    - target: {fileID: 624421116615623895, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
       propertyPath: buttonUp
       value: 
       objectReference: {fileID: 533548686}
@@ -3409,6 +3417,10 @@ PrefabInstance:
       propertyPath: buttonLeft
       value: 
       objectReference: {fileID: 475579418}
+    - target: {fileID: 624421116615623895, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+      propertyPath: KeyBindText
+      value: I'm Gay --Diego
+      objectReference: {fileID: 0}
     - target: {fileID: 624421116615623895, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
       propertyPath: buttonPause
       value: 
@@ -7157,7 +7169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000029564, y: -0.00001955}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1515819636
 MonoBehaviour:
@@ -7908,7 +7920,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000039101, y: -0.000014782}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706220488
 MonoBehaviour:
@@ -8310,7 +8322,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000029564, y: 0.00001955}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1797306462
 MonoBehaviour:
@@ -8603,7 +8615,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000038147, y: -0.000019073}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1875336911
 MonoBehaviour:
@@ -8911,7 +8923,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000029564, y: -0.00001955}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 155, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936596738
 MonoBehaviour:

@@ -10,6 +10,7 @@ public class Keybind : MonoBehaviour
     [Header("Objects")]
     [SerializeField] private TextMeshProUGUI buttonUp;
     [SerializeField] private TextMeshProUGUI buttonLeft, buttonDown, buttonRight, buttonPunch, buttonKick, buttonGrapple, buttonInteract, buttonPause;
+    public string TextFont, TextSize, KeyBindText;
 
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class Keybind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(TextFont);
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
             if (buttonUp.text == "Awaiting Input")
@@ -45,6 +47,7 @@ public class Keybind : MonoBehaviour
                     }
                 }
             }
+            //Debug.Log(TextSize);
             if (buttonLeft.text == "Awaiting Input")
             {
                 foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
@@ -58,6 +61,7 @@ public class Keybind : MonoBehaviour
                     }
                 }
             }
+            //Debug.Log(KeyBindText);
             if (buttonDown.text == "Awaiting Input")
             {
                 foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
