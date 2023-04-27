@@ -4868,5 +4868,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7047590668960077847, guid: cb5c60ca9a04e4a559c85326679b4f77, type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb5c60ca9a04e4a559c85326679b4f77, type: 3}
