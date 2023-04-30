@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7047590668960077847}
   x: 100
-  positionIncrement: 44
+  positionIncrement: 100
 --- !u!50 &7047590668960077847
 Rigidbody2D:
   serializedVersion: 4
