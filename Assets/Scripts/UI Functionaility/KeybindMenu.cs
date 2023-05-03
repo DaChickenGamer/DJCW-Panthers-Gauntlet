@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class KeybindMenu : MonoBehaviour
@@ -40,7 +41,27 @@ public class KeybindMenu : MonoBehaviour
         {
             ReplaceText = code.ToString().Replace("Alpha", "");
         }
-        tmp.text =ReplaceText;
+        if (code.ToString().Contains("Mouse0"))
+        {
+            ReplaceText = code.ToString().Replace("Mouse0", "Left Click");
+        }
+        if (code.ToString().Contains("Mouse1"))
+        {
+            ReplaceText = code.ToString().Replace("Mouse1", "Right Click");
+        }
+        if (code.ToString().Contains("Mouse2"))
+        {
+            ReplaceText = code.ToString().Replace("Mouse2", "Middle Click");
+        }
+        if (code.ToString().Contains("Return"))
+        {
+            ReplaceText = code.ToString().Replace("Return", "Enter");
+        }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            SpriteManager.MyInstance.ImageBinding(key, ReplaceText);
+        }
+        tmp.text = ReplaceText;
     }
 
 }

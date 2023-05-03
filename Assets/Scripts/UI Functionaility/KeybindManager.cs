@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ public class KeybindManager : MonoBehaviour
     [SerializeField] private GameObject ButtonMapping;
     public InputActionMap Actions;
     private PlayerInput playerInput;
+    string ReplaceText;
     public static KeybindManager MyInstance
     {
         get
@@ -93,6 +95,42 @@ public class KeybindManager : MonoBehaviour
 
     public void BindKey(string key, KeyCode keyBind)
     {
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            ReplaceText = "<Keyboard>/"+ char.ToLower(keyBind.ToString()[0]) + keyBind.ToString().Substring(1);
+            if (keyBind.ToString().Contains("Alpha"))
+            {
+                ReplaceText = "<Keyboard>/" + keyBind.ToString().Replace("Alpha", "");
+            }
+            if (keyBind.ToString().Contains("Mouse0"))
+            {
+                ReplaceText = "<Mouse>/"+ keyBind.ToString().Replace("Mouse0", "leftButton");
+            }
+            if (keyBind.ToString().Contains("Mouse1"))
+            {
+                ReplaceText = "<Mouse>/" + keyBind.ToString().Replace("Mouse1", "rightButton");
+            }
+            if (keyBind.ToString().Contains("Mouse2"))
+            {
+                ReplaceText = "<Mouse>/" + keyBind.ToString().Replace("Mouse2", "middleButton");
+            }
+            if (keyBind.ToString().Contains("Return"))
+            {
+                ReplaceText = "<Keyboard>/" + keyBind.ToString().Replace("Return", "Enter");
+            }
+            if (keyBind.ToString().Contains("Control"))
+            {
+                ReplaceText = "<Keyboard>/" + keyBind.ToString().Replace("Control", "Ctrl");
+            }
+        }
+        if (SystemInfo.deviceType == DeviceType.Console)
+        {
+            ReplaceText = "<XInputController>/"+keyBind.ToString();
+        }
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            ReplaceText = null;
+        }
         /*Dictionary<string, KeyCode> currentDictionary = Keybinds;
 
         if (key.Contains("ACT"))
@@ -127,15 +165,15 @@ public class KeybindManager : MonoBehaviour
         bindName = string.Empty;
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {
-            if (key == "UP") Actions.FindAction("Movement").ChangeBinding(1).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "LEFT") Actions.FindAction("Movement").ChangeBinding(2).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "DOWN") Actions.FindAction("Movement").ChangeBinding(3).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "RIGHT") Actions.FindAction("Movement").ChangeBinding(4).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "ACTPUNCH") Actions.FindAction("Punch").ChangeBinding(0).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "ACTKICK") Actions.FindAction("Kick").ChangeBinding(0).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "ACTGRAPPLE") Actions.FindAction("Grapple").ChangeBinding(0).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "ACTINTERACT") Actions.FindAction("Interact").ChangeBinding(0).WithPath("<Keyboard>/" + keyBind.ToString());
-            if (key == "ACTPAUSE") Actions.FindAction("Pause").ChangeBinding(0).WithPath("<Keyboard>/" + keyBind.ToString()); 
+            if (key == "UP") Actions.FindAction("Movement").ChangeBinding(1).WithPath(ReplaceText);
+            if (key == "LEFT") Actions.FindAction("Movement").ChangeBinding(2).WithPath(ReplaceText);
+            if (key == "DOWN") Actions.FindAction("Movement").ChangeBinding(3).WithPath(ReplaceText);
+            if (key == "RIGHT") Actions.FindAction("Movement").ChangeBinding(4).WithPath(ReplaceText);
+            if (key == "ACTPUNCH") Actions.FindAction("Punch").ChangeBinding(0).WithPath(ReplaceText);
+            if (key == "ACTKICK") Actions.FindAction("Kick").ChangeBinding(0).WithPath(ReplaceText);
+            if (key == "ACTGRAPPLE") Actions.FindAction("Grapple").ChangeBinding(0).WithPath(ReplaceText);
+            if (key == "ACTINTERACT") Actions.FindAction("Interact").ChangeBinding(0).WithPath(ReplaceText);
+            if (key == "ACTPAUSE") Actions.FindAction("Pause").ChangeBinding(0).WithPath(ReplaceText); 
         }
         if (SystemInfo.deviceType == DeviceType.Console)
         {
