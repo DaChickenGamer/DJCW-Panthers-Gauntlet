@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Combat : EnemyValues
 {
+    // Test Push
     public static Animator animator;
     public Slider slider;
 
