@@ -17,6 +17,15 @@ public class Keybind : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!PlayerPrefs.HasKey("CustomKeyUp")) { PlayerPrefs.SetString("CustomKeyUp", "W") ;PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyLeft")) { PlayerPrefs.SetString("CustomKeyLeft", "A"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyDown")) { PlayerPrefs.SetString("CustomKeyDown", "S"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyRight")) { PlayerPrefs.SetString("CustomKeyRight", "D"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyPunch")) { PlayerPrefs.SetString("CustomKeyPunch", "Z"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyKick")) { PlayerPrefs.SetString("CustomKeyKick", "X"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyGrapple")) { PlayerPrefs.SetString("CustomKeyGrapple", "C"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyInteract")) { PlayerPrefs.SetString("CustomKeyInteract", "E"); PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyPause")) { PlayerPrefs.SetString("CustomKeyPause", "Escape"); PlayerPrefs.Save(); }
         KeybindManager.MyInstance.BindKey("UP", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CustomKeyUp")));
         KeybindManager.MyInstance.BindKey("LEFT", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CustomKeyLeft")));
         KeybindManager.MyInstance.BindKey("DOWN", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CustomKeyDown")));
@@ -27,6 +36,7 @@ public class Keybind : MonoBehaviour
         KeybindManager.MyInstance.BindKey("ACTGRAPPLE", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CustomKeyGrapple")));
         KeybindManager.MyInstance.BindKey("ACTINTERACT", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CustomKeyInteract")));
         KeybindManager.MyInstance.BindKey("ACTPAUSE", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CustomKeyPause")));
+        
     }
 
     // Update is called once per frame
@@ -66,31 +76,31 @@ public class Keybind : MonoBehaviour
                 buttonPause.GetComponentInParent<Button>().interactable = true;
             }
         }
-        /*
+        
         if (KeybindManager.MyInstance.Actions.FindAction("Movement").IsPressed())
         {
             Debug.Log("Movement"+ KeybindManager.MyInstance.Actions.FindAction("Movement").ReadValue<Vector2>());
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Punch").IsPressed())
+        if (KeybindManager.MyInstance.Actions.FindAction("Punch").IsInProgress())
         {
             Debug.Log("Punch");
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Kick").IsPressed())
+        if (KeybindManager.MyInstance.Actions.FindAction("Kick").IsInProgress())
         {
             Debug.Log("Kick");
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Grapple").IsPressed())
+        if (KeybindManager.MyInstance.Actions.FindAction("Grapple").IsInProgress())
         {
             Debug.Log("Grapple");
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsPressed())
+        if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsInProgress())
         {
             Debug.Log("Interact");
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Pause").IsPressed())
+        if (KeybindManager.MyInstance.Actions.FindAction("Pause").IsInProgress())
         {
             Debug.Log("Pause");
-        }*/
+        }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
             if (buttonUp.text == "Awaiting Input")
@@ -99,7 +109,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonUp.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("UP", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyUp", keycode.ToString());
@@ -113,7 +122,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonLeft.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("LEFT", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyLeft", keycode.ToString());
@@ -127,7 +135,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonDown.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("DOWN", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyDown", keycode.ToString());
@@ -141,7 +148,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonRight.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("RIGHT", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyRight", keycode.ToString());
@@ -155,7 +161,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonPunch.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("ACTPUNCH", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyPunch", keycode.ToString());
@@ -169,7 +174,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonKick.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("ACTKICK", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyKick", keycode.ToString());
@@ -183,7 +187,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonGrapple.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("ACTGRAPPLE", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyGrapple", keycode.ToString());
@@ -197,7 +200,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonInteract.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("ACTINTERACT", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyInteract", keycode.ToString());
@@ -211,7 +213,6 @@ public class Keybind : MonoBehaviour
                 {
                     if (Input.GetKey(keycode))
                     {
-                        buttonPause.fontSize = 30;
                         KeybindManager.MyInstance.BindKey("ACTPAUSE", keycode);
                         keyBindDelay = true;
                         PlayerPrefs.SetString("CustomKeyPause", keycode.ToString());

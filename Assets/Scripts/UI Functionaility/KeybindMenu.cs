@@ -27,11 +27,13 @@ public class KeybindMenu : MonoBehaviour
     private GameObject[] keybindButtons;
     private void Awake()
     {
-        keybindButtons = GameObject.FindGameObjectsWithTag("Keybind");
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            keybindButtons = GameObject.FindGameObjectsWithTag("Keybind");
+        }
     }
     public void UpdateKeyText(string key, KeyCode code)
     {
-        TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();
         string ReplaceText = code.ToString();
         if (code.ToString().Contains("Arrow"))
         {
@@ -57,11 +59,12 @@ public class KeybindMenu : MonoBehaviour
         {
             ReplaceText = code.ToString().Replace("Return", "Enter");
         }
+        SpriteManager.MyInstance.ImageBinding(key, ReplaceText); 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
-            SpriteManager.MyInstance.ImageBinding(key, ReplaceText);
+            TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();
+            tmp.text = ReplaceText;
         }
-        tmp.text = ReplaceText;
     }
 
 }

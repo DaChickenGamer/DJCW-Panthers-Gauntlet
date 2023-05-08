@@ -30,21 +30,17 @@ public class KeybindManager : MonoBehaviour
 
     public Dictionary<string, KeyCode> Keybinds { get; private set; }
 
-    public Dictionary<string, KeyCode> ActionBinds { get; private set; }
-
     private string bindName;
     // Start is called before the first frame update
-    public void Update()
+    public void Awake()
     {
-        
+        Keybinds = new Dictionary<string, KeyCode>();
     }
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         Actions.Enable();
-        Keybinds = new Dictionary<string, KeyCode>();
-
-        ActionBinds = new Dictionary<string, KeyCode>();
+        
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {
 
@@ -53,17 +49,6 @@ public class KeybindManager : MonoBehaviour
                 MovementKeybinds.SetActive(true);
                 ActionKeybinds.SetActive(true);
                 ButtonMapping.SetActive(false);
-
-                BindKey("UP", KeyCode.W);
-                BindKey("LEFT", KeyCode.A);
-                BindKey("DOWN", KeyCode.S);
-                BindKey("RIGHT", KeyCode.D);
-
-                BindKey("ACTPUNCH", KeyCode.Z);
-                BindKey("ACTKICK", KeyCode.X);
-                BindKey("ACTGRAPPLE", KeyCode.C);
-                BindKey("ACTINTERACT", KeyCode.E);
-                BindKey("ACTPAUSE", KeyCode.Escape);
             }
         }
         if (SystemInfo.deviceType == DeviceType.Console)
@@ -73,12 +58,6 @@ public class KeybindManager : MonoBehaviour
                 MovementKeybinds.SetActive(false);
                 ActionKeybinds.SetActive(true);
                 ButtonMapping.SetActive(false);
-
-                BindKey("ACTPUNCH", KeyCode.A);
-                BindKey("ACTKICK", KeyCode.X);
-                BindKey("ACTGRAPPLE", KeyCode.Y);
-                BindKey("ACTINTERACT", KeyCode.B);
-                BindKey("ACTPAUSE", KeyCode.Menu);
             }
         }
         if (SystemInfo.deviceType == DeviceType.Handheld)
@@ -131,37 +110,24 @@ public class KeybindManager : MonoBehaviour
         {
             ReplaceText = null;
         }
-        /*Dictionary<string, KeyCode> currentDictionary = Keybinds;
-
-        if (key.Contains("ACT"))
+        if (Keybinds.ContainsKey(key))
         {
-            currentDictionary = ActionBinds;
+            Keybinds.Remove(key);
         }
-        if (currentDictionary.ContainsKey(key))
+        if (!Keybinds.ContainsValue(keyBind))
         {
-        }
-        if (!key.Contains("ACT"))
-        {
-            currentDictionary = Keybinds;
-        }
-        if (!currentDictionary.ContainsValue(keyBind))
-        {
-            currentDictionary.Add(key, keyBind);
+            Keybinds.Add(key, keyBind);
             KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
         }
-        else if (currentDictionary.ContainsValue(keyBind))
+        else if (Keybinds.ContainsValue(keyBind))
         {
-            string myKey = currentDictionary.FirstOrDefault(x => x.Value == keyBind).Key;
+            string myKey = Keybinds.FirstOrDefault(x => x.Value == keyBind).Key;
 
-            currentDictionary[myKey] = KeyCode.None;
+            Keybinds[myKey] = KeyCode.None;
             KeybindMenu.MyInstance.UpdateKeyText(key, KeyCode.None);
         }
 
-        currentDictionary[key] = keyBind;*/
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
-        {
-            KeybindMenu.MyInstance.UpdateKeyText(key, keyBind);
-        }
+        Keybinds[key] = keyBind;
         bindName = string.Empty;
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {
