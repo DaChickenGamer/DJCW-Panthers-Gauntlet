@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8440384296746258940, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8913183225591791259, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -17.848328
@@ -2031,6 +2035,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e749aa9846dd1074e8bb83bd7b63dd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1364206007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8440384296746258937, guid: d63e7025b060872499a3a86cb129c98a, type: 3}
+  m_PrefabInstance: {fileID: 125359773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ba45e1a036b7a49a51546e01ff8989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1394824532
 GameObject:
   m_ObjectHideFlags: 0
@@ -3529,6 +3544,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1777563145674296711, guid: 2578d13bf70fbd242bf52d9197932858, type: 3}
+      propertyPath: keypad
+      value: 
+      objectReference: {fileID: 1340654956}
+    - target: {fileID: 1777563145674296711, guid: 2578d13bf70fbd242bf52d9197932858, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1364206007}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2578d13bf70fbd242bf52d9197932858, type: 3}
 --- !u!1001 &7162929322617066382

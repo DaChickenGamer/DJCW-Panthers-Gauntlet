@@ -15,7 +15,6 @@ public class Keypad_Interact : MonoBehaviour, IInteractable
     public bool Interact(Interacter ineracter)
     {
         Debug.Log("Interacting With Keypad");
-        Debug.Log("KeyPad Canvas: " + keypadCanvas.gameObject.activeSelf);
         if(keypadCanvas.gameObject.activeSelf == true)
         {
             keypadCanvas.gameObject.SetActive(false);

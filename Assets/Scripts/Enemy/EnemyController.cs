@@ -15,6 +15,7 @@ public class EnemyController : EnemyValues
     private Transform target; // The target for the enemy
     private bool attack = false, attacktiming=false, enemyMove;
     private float timing, stopattack, attackDelay;
+    public bool testingTools = false;
 
     void Start()
     {
@@ -31,8 +32,9 @@ public class EnemyController : EnemyValues
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Testing for health
-            TakeDamage(10);
+        if (testingTools)
+            if (Input.GetKeyDown(KeyCode.G)) // Testing for health
+                TakeDamage(10);
         if (Combat.animator.GetBool("isGrapple"))
         {
             animator.SetBool("isGrapple", true);
@@ -80,6 +82,10 @@ public class EnemyController : EnemyValues
                 }
             }
         }
+    }
+    public void DevTools()
+    {
+        testingTools = true;
     }
     public void TakeDamage(int damage)
     {

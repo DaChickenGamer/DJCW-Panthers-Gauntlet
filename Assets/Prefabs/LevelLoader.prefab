@@ -205,6 +205,9 @@ MonoBehaviour:
   buttonGrapple: {fileID: 0}
   buttonInteract: {fileID: 0}
   buttonPause: {fileID: 0}
+  TextFont: 
+  TextSize: 
+  KeyBindText: 
 --- !u!1 &752792426707599670
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 872426969600937079}
   - component: {fileID: 7937709179395261556}
+  - component: {fileID: 7265427396959809381}
   m_Layer: 0
   m_Name: LevelLoader
   m_TagString: Untagged
@@ -562,6 +566,22 @@ MonoBehaviour:
   LoadingBarFill: {fileID: 0}
   transition: {fileID: 4013793885367640805}
   transitionTime: 1
+--- !u!114 &7265427396959809381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965238381119166759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf571b6254767d4d828e84eb47cfbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keypad: {fileID: 0}
+  playerHealth: {fileID: 0}
+  enemyController: {fileID: 7929901879653296406, guid: b57606ab61d1ded4783894695b0d026a, type: 3}
+  _showConsole: 0
 --- !u!1 &5563196195941615770
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,18 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
+using UnityEngine.Device;
 
 public class PlayerHealth : MonoBehaviour
 {
 
     [SerializeField] private UnityEvent PlayerKOEvent;
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] public static int currentHealth;
+    public static int currentHealth;
     private float damageDelay,damageTick, deathDelay, damageSpeed=45;
-    private int damagetake=1;
     public KOBar koBar;
+
+    public bool onReturnActive; // TESTING CONSOLE SYSTEM
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         koBar.SetMaxHealth(maxHealth);
@@ -33,11 +38,7 @@ public class PlayerHealth : MonoBehaviour
             damageDelay-=damageSpeed*Time.deltaTime;
             damageTick+=damageSpeed*Time.deltaTime;
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            damagetake+=damagetake;
-            TakeDamage(damagetake);
-        }
+
         if(damageTick >= 1)
         {
             damageTick--;
@@ -60,9 +61,17 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-
+    public void OnReturn(InputValue value) // Used For Inputs In Console
+    {
+        onReturnActive = !onReturnActive;
+    }
     public void TakeDamage(int damage)
     {
         damageDelay += damage;
+    }
+    public void IncreaseHealth() // Used for Console
+    {
+        maxHealth += 100;
+        Debug.Log("Current Health" + maxHealth);
     }
 }

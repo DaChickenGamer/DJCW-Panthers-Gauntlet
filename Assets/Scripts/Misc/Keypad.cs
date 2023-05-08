@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Keypad : MonoBehaviour
 {
+    public bool showConsole;
+    public bool consoleEnabled; // Lets you use the keybind to use the console now
+
     public TMP_InputField charHolder;
     public GameObject button1;
     public GameObject button2;
@@ -69,9 +72,20 @@ public class Keypad : MonoBehaviour
         {
             Debug.Log("Nice Test Code!");
         }
+        else if (charHolder.text == "3444334666")
+        {
+            Debug.Log("I'm Gay!");
+        }
+        else if (charHolder.text == "42999")
+        {
+            showConsole = !showConsole;
+            Debug.Log("Console Popped Up");
+            Debug.Log(showConsole);
+        }
         else
         {
             Debug.Log("Failed");
         }
+        charHolder.text = null;
     }
 }
