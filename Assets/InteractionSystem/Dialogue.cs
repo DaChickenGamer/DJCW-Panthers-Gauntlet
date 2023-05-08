@@ -21,7 +21,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool skip = false;
     private bool tutorialComplete = false;
     private bool inCoachArea = false;
-    private bool allowNextLine = true;
+    private bool allowNextLine;
     private int index;
     
 
@@ -32,7 +32,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     [HideInInspector][Header("Image Definer")]
     private GameObject upInput;
     private GameObject leftInput, downInput, rightInput, punchInput, kickInput, grappleInput, interactInput, pauseInput;
-    private bool punchTask, kickTask, grappleTask, pauseTask;
+    private bool upTask, leftTask, downTask, rightTask, punchTask, kickTask, grappleTask, pauseTask;
 
     public static bool metCoach = false;
     
@@ -84,14 +84,14 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Start()
     {
-        upInput.SetActive(false);
-        leftInput.SetActive(false);
-        downInput.SetActive(false);
-        rightInput.SetActive(false);
+        upInput.SetActive(true);
+        leftInput.SetActive(true);
+        downInput.SetActive(true);
+        rightInput.SetActive(true);
         punchInput.SetActive(false);
         kickInput.SetActive(false);
         grappleInput.SetActive(false);
-        interactInput.SetActive(true);
+        interactInput.SetActive(false);
         pauseInput.SetActive(false);
         string[] nextLine = { "To punch you will need to press", "To kick you will need to press", "To grapple you will need to press", "To pause/unpause you will need to press" };
 
@@ -104,6 +104,31 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Update()
     {
+        if(keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString()=="(0.00, 1.00)"&&!upTask)
+        {
+            upTask= true;
+            upInput.SetActive(false);
+        }
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(-1.00, 0.00)" && !leftTask)
+        {
+            leftTask = true;
+            leftInput.SetActive(false);
+        }
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(0.00, -1.00)" && !downTask)
+        {
+            downTask = true;
+            downInput.SetActive(false);
+        }
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(1.00, 0.00)" && !rightTask)
+        {
+            rightTask = true;
+            rightInput.SetActive(false);
+        }
+        if (upTask && leftTask && downTask && rightTask)
+        {
+            allowNextLine = true;
+            interactInput.SetActive(true);
+        }
         if (textComponent.text.Contains("punch")&&!punchTask)
         {
             allowNextLine = false;
