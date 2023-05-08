@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-   public bool animationComplete = false;
+   public static bool animationComplete = false;
    public void PlayGame()
    {
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
    public void AnimationFinished()
    {
-      animationComplete = true;
+      //animationComplete = true;
       Debug.Log("Animation Complete" + animationComplete);
    }
 }

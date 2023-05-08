@@ -259,9 +259,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1516072626130217679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f88e0b5025797fa4fb98eb30f29951e1, type: 3}
+  m_Script: {fileID: 11500000, guid: c5263c53a1aeffa4b9a622f093f74ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationComplete: 0
   rb: {fileID: 7047590668960077847}
   x: 100
   positionIncrement: 100
