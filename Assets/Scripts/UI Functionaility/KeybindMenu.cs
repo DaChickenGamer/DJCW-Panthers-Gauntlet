@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class KeybindMenu : MonoBehaviour
@@ -26,11 +27,13 @@ public class KeybindMenu : MonoBehaviour
     private GameObject[] keybindButtons;
     private void Awake()
     {
-        keybindButtons = GameObject.FindGameObjectsWithTag("Keybind");
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            keybindButtons = GameObject.FindGameObjectsWithTag("Keybind");
+        }
     }
     public void UpdateKeyText(string key, KeyCode code)
     {
-        TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();
         string ReplaceText = code.ToString();
         if (code.ToString().Contains("Arrow"))
         {
@@ -40,7 +43,28 @@ public class KeybindMenu : MonoBehaviour
         {
             ReplaceText = code.ToString().Replace("Alpha", "");
         }
-        tmp.text =ReplaceText;
+        if (code.ToString().Contains("Mouse0"))
+        {
+            ReplaceText = code.ToString().Replace("Mouse0", "Left Click");
+        }
+        if (code.ToString().Contains("Mouse1"))
+        {
+            ReplaceText = code.ToString().Replace("Mouse1", "Right Click");
+        }
+        if (code.ToString().Contains("Mouse2"))
+        {
+            ReplaceText = code.ToString().Replace("Mouse2", "Middle Click");
+        }
+        if (code.ToString().Contains("Return"))
+        {
+            ReplaceText = code.ToString().Replace("Return", "Enter");
+        }
+        SpriteManager.MyInstance.ImageBinding(key, ReplaceText); 
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            TextMeshProUGUI tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<TextMeshProUGUI>();
+            tmp.text = ReplaceText;
+        }
     }
 
 }

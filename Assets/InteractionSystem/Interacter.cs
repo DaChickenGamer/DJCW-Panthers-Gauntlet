@@ -6,6 +6,18 @@ using UnityEngine.Rendering;
 
 public class Interacter : MonoBehaviour
 {
+    private static Interacter instance;
+    public static Interacter MyInstance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<Interacter>();
+            }
+            return instance;
+        }
+    }
     [SerializeField] private Transform _interactionPoint; // Interaction Point
     [SerializeField] private float _interactionPointRadius = 0.5f; // The radius in which you can interact
     [SerializeField] private LayerMask _interactableMask;
@@ -29,29 +41,30 @@ public class Interacter : MonoBehaviour
                 interactable.Interact(this);
                 _interacting = false;
 
-                if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsPressed())
-                {
-                    
-                }
+                
             }
         }
         else if(_numFound <= 0 )
         {
             inInteractionRadius = false;
         }
+        if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsInProgress())
+        {
+            if (_isInteracting == true)
+            {
+                _interacting = false;
+                _isInteracting = false;
+            }
+            else if (_isInteracting == false)
+            {
+                _interacting = true;
+                _isInteracting = true;
+            }
+        }
     }
     private void OnInteract(InputValue Input)
     {
-        if (_isInteracting == true)
-        {
-            _interacting = false;
-            _isInteracting = false;
-        }
-        else if (_isInteracting == false)
-        {
-            _interacting = true;
-            _isInteracting = true;
-        }
+        
     }
     private void OnDrawGizmos()
     {
