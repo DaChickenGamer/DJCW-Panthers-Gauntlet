@@ -1246,6 +1246,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4559101047731644598, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
+      propertyPath: keypad
+      value: 
+      objectReference: {fileID: 1340654956}
     - target: {fileID: 4965238381119166759, guid: a8a3803b15c3d9c46bef1cacc2265551, type: 3}
       propertyPath: m_Name
       value: LevelLoader
