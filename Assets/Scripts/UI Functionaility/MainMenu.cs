@@ -5,16 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-   public static bool animationComplete = false;
    public void PlayGame()
    {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-   }
-
-   public void AnimationFinished()
-   {
-      //animationComplete = true;
-      Debug.Log("Animation Complete" + animationComplete);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
    }
 }
