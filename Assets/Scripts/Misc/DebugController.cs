@@ -61,10 +61,10 @@ public class DebugController : MonoBehaviour
     }
     private void Update()
     {
-        _onReturnActive = _player.GetComponent<PlayerHealth>().onReturnActive;
+        //_onReturnActive = _player.GetComponent<PlayerHealth>().onReturnActive;
         _testingTools = enemyController.testingTools;
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gym"))
-            _showConsole = keypad.showConsole;
+        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gym"))
+        //    _showConsole = keypad.showConsole;
         if (_onReturnActive) // Fix Late - You have to press twice to fix input
         {
             if (_showConsole)
