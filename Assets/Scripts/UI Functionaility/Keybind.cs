@@ -77,30 +77,6 @@ public class Keybind : MonoBehaviour
             }
         }
         
-        if (KeybindManager.MyInstance.Actions.FindAction("Movement").IsPressed())
-        {
-            Debug.Log("Movement"+ KeybindManager.MyInstance.Actions.FindAction("Movement").ReadValue<Vector2>());
-        }
-        if (KeybindManager.MyInstance.Actions.FindAction("Punch").IsInProgress())
-        {
-            Debug.Log("Punch");
-        }
-        if (KeybindManager.MyInstance.Actions.FindAction("Kick").IsInProgress())
-        {
-            Debug.Log("Kick");
-        }
-        if (KeybindManager.MyInstance.Actions.FindAction("Grapple").IsInProgress())
-        {
-            Debug.Log("Grapple");
-        }
-        if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsInProgress())
-        {
-            Debug.Log("Interact");
-        }
-        if (KeybindManager.MyInstance.Actions.FindAction("Pause").IsInProgress())
-        {
-            Debug.Log("Pause");
-        }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
             if (buttonUp.text == "Awaiting Input")
