@@ -27,11 +27,13 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = 15;
             rb.velocity = new Vector2(-speed, rb.velocity.y);
+            rb.rotation += -speed;
         }
         else if (Input.GetKeyDown(right))
         {
             speed = 15;
             rb.velocity = new Vector2(speed, rb.velocity.y);
+            rb.rotation += speed;
         }
         else if (Input.GetKeyDown(up))
         {
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = 0;
             rb.velocity = Vector2.zero;
+            rb.rotation +=0;
         }
     }
     private void FixedUpdate()
