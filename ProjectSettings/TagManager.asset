@@ -8,6 +8,7 @@ TagManager:
   - Coach
   - Keybind
   - Interaction
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

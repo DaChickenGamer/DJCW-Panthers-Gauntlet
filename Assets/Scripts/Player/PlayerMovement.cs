@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         movement = KeybindManager.MyInstance.Actions.FindAction("Movement").ReadValue<Vector2>();
-        if (KeybindManager.MyInstance.Actions.FindAction("Movement").IsPressed())
+        if (KeybindManager.MyInstance.Actions.FindAction("Movement").IsInProgress())
         {
 
             
