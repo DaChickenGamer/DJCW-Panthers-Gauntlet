@@ -56,7 +56,6 @@ public class PlayerHealth : MonoBehaviour
             //the player object
             if (deathDelay <= 0)    
             {                          
-                Destroy(gameObject);
                 PlayerKOEvent.Invoke();
             }
         }
@@ -73,5 +72,7 @@ public class PlayerHealth : MonoBehaviour
     {
         maxHealth += 100;
         Debug.Log("Current Health" + maxHealth);
+        currentHealth +=100;
+        koBar.SetMaxHealth(maxHealth);
     }
 }

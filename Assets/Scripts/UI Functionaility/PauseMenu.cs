@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    private GameObject pauseMenu;
+    public GameObject pauseMenu;
     public GameObject volumeMenu, videoMenu, returnToGymButton;
     private bool paused, volumeFade, videoFade, volumeActive, volumeFadeOut, videoActive, videoFadeOut;
     private float timeManagement;
