@@ -225,6 +225,7 @@ public class SpriteManager : MonoBehaviour
         CanChange = true;
     }
     // Start is called before the first frame update
+
     void Awake()
     {
         CanChange = false;

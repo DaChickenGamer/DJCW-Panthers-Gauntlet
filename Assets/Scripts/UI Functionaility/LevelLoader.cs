@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
    public Image LoadingBarFill;
    public Animator transition;
 
+
    private static float transitionStop = 0f;
 
    public float transitionTime = 1f;
@@ -70,7 +71,6 @@ public class LevelLoader : MonoBehaviour
    {
       Application.Quit();
    }
-
 
    
 }

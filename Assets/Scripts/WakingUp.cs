@@ -87,4 +87,5 @@ public class WakingUp : MonoBehaviour
         //Update current state
         currentState = newState;
     }*/
+    
 }
