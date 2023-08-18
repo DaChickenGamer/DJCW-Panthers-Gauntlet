@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     private float timeManagement;
     private void Awake()
     {
-        pauseMenu = GameObject.FindWithTag("PauseMenu");
         timeManagement = Time.deltaTime;
     }
     // Start is called before the first frame update

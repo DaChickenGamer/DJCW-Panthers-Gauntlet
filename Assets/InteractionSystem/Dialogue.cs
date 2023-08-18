@@ -23,7 +23,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool inCoachArea = false;
     private bool allowNextLine;
     private int index;
-    
+
 
     [HideInInspector][Header("Managers")]
     private SpriteManager sprites;
@@ -35,7 +35,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool upTask, leftTask, downTask, rightTask, punchTask, kickTask, grappleTask, pauseTask;
 
     public static bool metCoach = false;
-    
+
     public bool Interact(Interacter interactor)
     {
 
@@ -104,9 +104,29 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Update()
     {
-        if(keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString()=="(0.00, 1.00)"&&!upTask)
+        CoachTutorial();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interaction")
         {
-            upTask= true;
+            inCoachArea = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interaction")
+        {
+            StopDialogue();
+            inCoachArea = false;
+        }
+    }
+    void CoachTutorial()
+    {
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(0.00, 1.00)" && !upTask)
+        {
+            upTask = true;
             upInput.SetActive(false);
         }
         if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(-1.00, 0.00)" && !leftTask)
@@ -129,7 +149,7 @@ public class Dialogue : MonoBehaviour, IInteractable
             allowNextLine = true;
             interactInput.SetActive(true);
         }
-        if (textComponent.text.Contains("punch")&&!punchTask)
+        if (textComponent.text.Contains("punch") && !punchTask)
         {
             allowNextLine = false;
             interactInput.SetActive(false);
@@ -137,7 +157,7 @@ public class Dialogue : MonoBehaviour, IInteractable
             if (keybinds.Actions.FindAction("Punch").IsInProgress())
             {
                 punchTask = true;
-                allowNextLine=true;
+                allowNextLine = true;
                 punchInput.SetActive(false);
                 interactInput.SetActive(true);
             }
@@ -182,21 +202,6 @@ public class Dialogue : MonoBehaviour, IInteractable
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-       if (collision.gameObject.tag == "Interaction")
-        {
-            inCoachArea = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Interaction")
-        {
-            StopDialogue();
-            inCoachArea = false;
-        }
-    }
     void StartDialogue()
     {
         textComponent.text = string.Empty;
@@ -233,6 +238,10 @@ public class Dialogue : MonoBehaviour, IInteractable
         lines = newline;
     }
   
+    public void SkipTutorial()
+    {
+        metCoach = true;
+    }
     IEnumerator TypeLine()
     {
             // Type each character 1 by 1
