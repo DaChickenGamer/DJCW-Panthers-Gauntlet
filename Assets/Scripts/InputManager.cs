@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
             Destroy(this);
         DontDestroyOnLoad(this);
     }
-    public KeyCode GetKeyForAction(KeybindingActions keybindingAction)
+    public KeyCode GetKeyForAction(KeybindingActions keybindingAction)//allows the key to go through a list of all possible keycodes
     {
         foreach(Keybindings.KeybindingCheck keybindingCheck in keybindings.keybindingChecks)
         {
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
         return KeyCode.None;
     }
 
-    public bool GetKeyDown(KeybindingActions key)
+    public bool GetKeyDown(KeybindingActions key)//checks if the key is pressed
     {
         foreach (Keybindings.KeybindingCheck keybindingCheck in keybindings.keybindingChecks)
         {
@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
 
         return false;
     }
-    public bool GetKey(KeybindingActions key)
+    public bool GetKey(KeybindingActions key)//checks if the key is held down
     {
         foreach (Keybindings.KeybindingCheck keybindingCheck in keybindings.keybindingChecks)
         {
@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
 
         return false;
     }
-    public bool GetKeyUp(KeybindingActions key)
+    public bool GetKeyUp(KeybindingActions key)//checks if the key lifted up
     {
         foreach (Keybindings.KeybindingCheck keybindingCheck in keybindings.keybindingChecks)
         {

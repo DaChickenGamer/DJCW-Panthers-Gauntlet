@@ -38,8 +38,8 @@ public class KeybindManager : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         Actions.Enable();
         
-        if (SystemInfo.deviceType == DeviceType.Desktop) 
-        {
+        if (SystemInfo.deviceType == DeviceType.Desktop) //finds what device the player is on
+			{
 
             if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
             {
@@ -73,7 +73,7 @@ public class KeybindManager : MonoBehaviour
     {
         if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            ReplaceText = "<Keyboard>/"+ char.ToLower(keyBind.ToString()[0]) + keyBind.ToString().Substring(1);
+            ReplaceText = "<Keyboard>/"+ char.ToLower(keyBind.ToString()[0]) + keyBind.ToString().Substring(1);//removes any unnessecary text
             if (keyBind.ToString().Contains("Alpha"))
             {
                 ReplaceText = "<Keyboard>/" + keyBind.ToString().Replace("Alpha", "");
@@ -128,7 +128,7 @@ public class KeybindManager : MonoBehaviour
         bindName = string.Empty;
         if (SystemInfo.deviceType == DeviceType.Desktop) 
         {
-            if (key == "UP") Actions.FindAction("Movement").ChangeBinding(1).WithPath(ReplaceText);
+            if (key == "UP") Actions.FindAction("Movement").ChangeBinding(1).WithPath(ReplaceText);//gets the selected keybinding then replaces the keybind with the players selected keybind
             if (key == "LEFT") Actions.FindAction("Movement").ChangeBinding(2).WithPath(ReplaceText);
             if (key == "DOWN") Actions.FindAction("Movement").ChangeBinding(3).WithPath(ReplaceText);
             if (key == "RIGHT") Actions.FindAction("Movement").ChangeBinding(4).WithPath(ReplaceText);
