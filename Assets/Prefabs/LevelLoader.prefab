@@ -205,9 +205,6 @@ MonoBehaviour:
   buttonGrapple: {fileID: 0}
   buttonInteract: {fileID: 0}
   buttonPause: {fileID: 0}
-  TextFont: 
-  TextSize: 
-  KeyBindText: 
 --- !u!1 &752792426707599670
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +459,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1173298387114405700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8771955372916069191}
+  - component: {fileID: 5117101133757516789}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8771955372916069191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173298387114405700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 872426969600937079}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5117101133757516789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173298387114405700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d9bab8cf4a11c47944083cecd9a16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1897292002786457612
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +945,7 @@ Transform:
   - {fileID: 8645387662496775893}
   - {fileID: 6798586052675420437}
   - {fileID: 524216598898354273}
+  - {fileID: 8771955372916069191}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -936,14 +978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypad: {fileID: 0}
-  playerHealth: {fileID: 0}
   enemyController: {fileID: 7929901879653296406, guid: b57606ab61d1ded4783894695b0d026a, type: 3}
   _showConsole: 0
-  m_Script: {fileID: 11500000, guid: 901b08fb6d3bb38448236fe0ca31b9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Display: {fileID: 0}
-  NameBox: {fileID: 0}
 --- !u!1 &5563196195941615770
 GameObject:
   m_ObjectHideFlags: 0

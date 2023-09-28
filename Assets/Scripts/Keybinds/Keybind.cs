@@ -17,7 +17,7 @@ public class Keybind : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("CustomKeyUp")) { PlayerPrefs.SetString("CustomKeyUp", "W") ;PlayerPrefs.Save(); }
+        if (!PlayerPrefs.HasKey("CustomKeyUp")) { PlayerPrefs.SetString("CustomKeyUp", "W") ;PlayerPrefs.Save(); }//saves the player custom inputs
         if (!PlayerPrefs.HasKey("CustomKeyLeft")) { PlayerPrefs.SetString("CustomKeyLeft", "A"); PlayerPrefs.Save(); }
         if (!PlayerPrefs.HasKey("CustomKeyDown")) { PlayerPrefs.SetString("CustomKeyDown", "S"); PlayerPrefs.Save(); }
         if (!PlayerPrefs.HasKey("CustomKeyRight")) { PlayerPrefs.SetString("CustomKeyRight", "D"); PlayerPrefs.Save(); }
@@ -270,4 +270,15 @@ public class Keybind : MonoBehaviour
         keyBindDelay = false;
         SpriteManager.CanChange = false;
     }
+	public void ChangeKey(string keyType)
+	{
+        if (keyType == "pause") 
+        {
+			buttonPause.text = "Awaiting Input";
+			buttonPause.fontSize = 18;
+		}
+		BindingDelay = delaySet;
+		keyBindDelay = false;
+		SpriteManager.CanChange = false;
+	}
 }

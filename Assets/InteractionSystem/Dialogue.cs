@@ -23,7 +23,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool inCoachArea = false;
     private bool allowNextLine;
     private int index;
-    
+
 
     [HideInInspector][Header("Managers")]
     private SpriteManager sprites;
@@ -35,7 +35,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool upTask, leftTask, downTask, rightTask, punchTask, kickTask, grappleTask, pauseTask;
 
     public static bool metCoach = false;
-    
+
     public bool Interact(Interacter interactor)
     {
 
@@ -68,7 +68,7 @@ public class Dialogue : MonoBehaviour, IInteractable
         }
         return true;
     }
-    private void Awake()
+    private void Awake()//input and action sprites
     {
         sprites = SpriteManager.MyInstance;
         upInput = sprites.upimage;
@@ -82,7 +82,7 @@ public class Dialogue : MonoBehaviour, IInteractable
         pauseInput = sprites.pauseimage;
         keybinds = KeybindManager.MyInstance;
     }
-    private void Start()
+    private void Start()//actives the sprites that need to be active
     {
         upInput.SetActive(true);
         leftInput.SetActive(true);
@@ -104,32 +104,52 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Update()
     {
-        if(keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString()=="(0.00, 1.00)"&&!upTask)
+        CoachTutorial();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interaction")
         {
-            upTask= true;
+            inCoachArea = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interaction")
+        {
+            StopDialogue();
+            inCoachArea = false;
+        }
+    }
+    void CoachTutorial()
+    {
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(0.00, 1.00)" && !upTask)//checks if the player move up
+        {
+            upTask = true;
             upInput.SetActive(false);
         }
-        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(-1.00, 0.00)" && !leftTask)
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(-1.00, 0.00)" && !leftTask)//chcks if the player moves left
         {
             leftTask = true;
             leftInput.SetActive(false);
         }
-        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(0.00, -1.00)" && !downTask)
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(0.00, -1.00)" && !downTask)//checks if the player moves down
         {
             downTask = true;
             downInput.SetActive(false);
         }
-        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(1.00, 0.00)" && !rightTask)
+        if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(1.00, 0.00)" && !rightTask)//chwcks if the player moves right
         {
             rightTask = true;
             rightInput.SetActive(false);
         }
-        if (upTask && leftTask && downTask && rightTask)
+        if (upTask && leftTask && downTask && rightTask)//allows the couch to be interacted with
         {
             allowNextLine = true;
             interactInput.SetActive(true);
         }
-        if (textComponent.text.Contains("punch")&&!punchTask)
+        if (textComponent.text.Contains("punch") && !punchTask)//chcks if the player presses the button to punch
         {
             allowNextLine = false;
             interactInput.SetActive(false);
@@ -137,12 +157,12 @@ public class Dialogue : MonoBehaviour, IInteractable
             if (keybinds.Actions.FindAction("Punch").IsInProgress())
             {
                 punchTask = true;
-                allowNextLine=true;
+                allowNextLine = true;
                 punchInput.SetActive(false);
                 interactInput.SetActive(true);
             }
         }
-        if (textComponent.text.Contains("kick") && !kickTask)
+        if (textComponent.text.Contains("kick") && !kickTask)//checks if the player presses the button to kick
         {
             allowNextLine = false;
             interactInput.SetActive(false);
@@ -155,7 +175,7 @@ public class Dialogue : MonoBehaviour, IInteractable
                 interactInput.SetActive(true);
             }
         }
-        if (textComponent.text.Contains("grapple") && !grappleTask)
+        if (textComponent.text.Contains("grapple") && !grappleTask)//checks if the player presses the button to grapple
         {
             allowNextLine = false;
             interactInput.SetActive(false);
@@ -168,7 +188,7 @@ public class Dialogue : MonoBehaviour, IInteractable
                 interactInput.SetActive(true);
             }
         }
-        if (textComponent.text.Contains("pause") && !pauseTask)
+        if (textComponent.text.Contains("pause") && !pauseTask)//checks if the player presses the button to pause
         {
             allowNextLine = false;
             interactInput.SetActive(false);
@@ -180,21 +200,6 @@ public class Dialogue : MonoBehaviour, IInteractable
                 pauseInput.SetActive(false);
                 interactInput.SetActive(true);
             }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-       if (collision.gameObject.tag == "Interaction")
-        {
-            inCoachArea = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Interaction")
-        {
-            StopDialogue();
-            inCoachArea = false;
         }
     }
     void StartDialogue()
@@ -233,6 +238,10 @@ public class Dialogue : MonoBehaviour, IInteractable
         lines = newline;
     }
   
+    public void SkipTutorial()
+    {
+        metCoach = true;
+    }
     IEnumerator TypeLine()
     {
             // Type each character 1 by 1

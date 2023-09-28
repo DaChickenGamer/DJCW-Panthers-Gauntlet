@@ -33,19 +33,19 @@ public class SpriteManager : MonoBehaviour
     {
         
         Debug.Log(name + " " + binding);
-        if (name.Contains("ACT"))
+        if (name.Contains("ACT"))//removes the act at the end of the action keys
         {
             name = name.Replace("ACT", "");
         }
-        if (name.Equals("INTER"))
+        if (name.Equals("INTER"))//adds act back onto the end on interact
         {
             name = name.Replace("INTER", "INTERACT");
         }
-        if(binding.Contains(" "))
+        if(binding.Contains(" "))//makes sure there are no spaces in the binding
         {
             binding = binding.Replace(" ", "");
         }
-            switch (binding)
+            switch (binding)//finds the binding that is used for the key
             {
                 case "0":
                     PlaceHolder = 1 + ImageHolder;
@@ -213,7 +213,7 @@ public class SpriteManager : MonoBehaviour
                     PlaceHolder=1+ImageHolder;
                 break;
         }
-        if (name == "UP") { UpInput = PlaceHolder; }
+        if (name == "UP") { UpInput = PlaceHolder; }//finds the key that is being replaced
         if (name == "LEFT") { LeftInput = PlaceHolder; }
         if (name == "DOWN") { DownInput = PlaceHolder; }
         if (name == "RIGHT") { RightInput = PlaceHolder; }
@@ -238,7 +238,7 @@ public class SpriteManager : MonoBehaviour
         {
             ImageDelay -= Time.deltaTime;
         }
-        UP = KeyboardKeyBinds.ElementAt(UpInput);
+        UP = KeyboardKeyBinds.ElementAt(UpInput);//the images are constatly updating
         LEFT = KeyboardKeyBinds.ElementAt(LeftInput);
         DOWN = KeyboardKeyBinds.ElementAt(DownInput);
         RIGHT = KeyboardKeyBinds.ElementAt(RightInput);
@@ -258,8 +258,8 @@ public class SpriteManager : MonoBehaviour
         pauseimage.GetComponent<SpriteRenderer>().sprite = PAUSE;
         if (ImageDelay <= 0&&CanChange)
         {
-            if (ImageChange)
-            {
+            if (ImageChange)//makes the keys flash
+				{
                 UpInput--;
                 LeftInput--;
                 DownInput--;
