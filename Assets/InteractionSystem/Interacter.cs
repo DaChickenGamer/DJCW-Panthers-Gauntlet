@@ -26,8 +26,8 @@ public class Interacter : MonoBehaviour
     private readonly Collider2D[] _colliders = new Collider2D[3];
     [SerializeField] private int _numFound; // Number of colliders found
     private bool _interacting = false; // Makes interacting into a bool
-
     private bool _isInteracting = false; // Prevents being away from a object and still doing the input
+
     private void Update()
     {
         _numFound = Physics2D.OverlapCircleNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
@@ -48,23 +48,19 @@ public class Interacter : MonoBehaviour
         {
             inInteractionRadius = false;
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Interact").IsInProgress())
-        {
-            if (_isInteracting == true)
-            {
-                _interacting = false;
-                _isInteracting = false;
-            }
-            else if (_isInteracting == false)
-            {
-                _interacting = true;
-                _isInteracting = true;
-            }
-        }
     }
-    private void OnInteract(InputValue Input)
+    public void OnInteract(InputAction.CallbackContext ctxt)
     {
-        
+        if (_isInteracting == true)
+        {
+            _interacting = false;
+            _isInteracting = false;
+        }
+        else if (_isInteracting == false)
+        {
+            _interacting = true;
+            _isInteracting = true;
+        }
     }
     private void OnDrawGizmos()
     {

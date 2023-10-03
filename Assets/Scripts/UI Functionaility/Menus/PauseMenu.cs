@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -36,12 +37,8 @@ public class PauseMenu : MonoBehaviour
         {
             Video();
         }
-        if (KeybindManager.MyInstance.Actions.FindAction("Pause").IsInProgress())
-        {
-            Pause();
-        }
     }
-    public void Pause()
+    public void OnPause(InputAction.CallbackContext ctxt)
     {
         if (!paused)
         {
