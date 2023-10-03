@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 ////TODO: localization support
 
