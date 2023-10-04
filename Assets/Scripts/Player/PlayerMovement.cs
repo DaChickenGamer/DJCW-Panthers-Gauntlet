@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int speed = 5;
 
-    private Vector2 movement;
+    private Vector2 direction;
     private Rigidbody2D rb;
     private Animator animator;
-    private int Value;
+
+    private PlayerInputs playerInput;
+    private InputAction movement;
 
     [SerializeField] private Combat grappled;
 
@@ -18,38 +20,36 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        playerInput = new PlayerInputs();
     }
-
-    private void Update()
+    public void OnMovement(InputAction.CallbackContext ctxt)
     {
-        movement = KeybindManager.MyInstance.Actions.FindAction("Movement").ReadValue<Vector2>();
-        if (KeybindManager.MyInstance.Actions.FindAction("Movement").IsInProgress())
+        direction = ctxt.ReadValue<Vector2>();
+
+        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
         {
-
-            
-            if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
+            if (direction.x != 0 || direction.y != 0)
             {
-                if (movement.x != 0 || movement.y != 0)
-                {
-                    animator.SetFloat("X", movement.x);
-                    animator.SetFloat("Y", movement.y);
+                animator.SetFloat("X", direction.x);
+                animator.SetFloat("Y", direction.y);
 
-                    animator.SetBool("isWalking", true);
-                }
+                animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
             }
         }
-        else
-        {
-            animator.SetBool("isWalking", false);
-        }
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
-            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         if (!grappled)
         {
             rb.velocity = Vector3.zero;
         }
     }
+
 }
