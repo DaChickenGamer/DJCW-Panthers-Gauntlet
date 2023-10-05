@@ -7,7 +7,19 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 public class EnemyController : EnemyValues
 {
-    [SerializeField] private UnityEvent EnemyKOEvent;
+	private static EnemyController instance;
+	public static EnemyController MyInstance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = FindObjectOfType<EnemyController>();
+			}
+			return instance;
+		}
+	}
+	[SerializeField] private UnityEvent EnemyKOEvent;
     private Rigidbody2D enemyRB;
 
     public Slider slider; // Slider for enemy health
@@ -16,6 +28,7 @@ public class EnemyController : EnemyValues
     private bool attack = false, attacktiming=false, enemyMove;
     private float timing, stopattack, attackDelay;
     public bool testingTools = false;
+    public bool dead;
 
     void Start()
     {
@@ -94,11 +107,12 @@ public class EnemyController : EnemyValues
         Debug.Log(enemyHealth);
         if (enemyHealth <= 0)
         {
+            dead = true;
             Debug.Log("Knockout");
             //Will set the Enemyknockout panel active once 
             //the enemy's KOBar reaches bellow zero and will destroy
             //the enemy object
-            Destroy(gameObject);
+            //Destroy(gameObject);
             EnemyKOEvent.Invoke();
 
         }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyValues : MonoBehaviour
 {
 
-    [Header("Enemy Stats")]
+	
+	[Header("Enemy Stats")]
     [SerializeField] protected int enemyDamage = 5;
 
     [SerializeField] protected static int enemyHealth;
