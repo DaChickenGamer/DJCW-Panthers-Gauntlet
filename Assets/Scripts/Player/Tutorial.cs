@@ -1,7 +1,10 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -36,8 +39,13 @@ public class Tutorial : MonoBehaviour
     // Colors For Flashing
 
     private Color32 normalColor = new Color32(255, 255, 255, 255);
-    private Color32 transparentColor = new Color32(255, 255, 255, 150); 
+    private Color32 transparentColor = new Color32(255, 255, 255, 150);
 
+
+    // Testing Keybind To Image
+
+    [SerializeField] private InputActionReference inputActionReference;
+    private InputAction inputAction;
 
     /*
     Tutorial Draft:
@@ -50,11 +58,11 @@ public class Tutorial : MonoBehaviour
         - Maybe mention the leaderboard
     */
 
-
-    // Update is called once per frame
     private void Update()
     {
         playerDirection = PlayerMovement.direction;
+
+        inputAction = inputActionReference.action;
 
         MovementFlashingKeys();
 
@@ -134,6 +142,17 @@ public class Tutorial : MonoBehaviour
     private IEnumerator FlashKeys()
     {
         isFlashing = true;
+
+        // W / A / S / D
+        // 0 1 2 3 4 5 6
+
+        // When we support multiple platforms we can also add a variable for platform
+        // The variable will be the folder of the platform name
+
+        flashingKeyUpImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + inputAction.GetBindingDisplayString()[0] + "_Pressed.png");
+        flashingKeyDownImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + inputAction.GetBindingDisplayString()[4] + "_Pressed.png");
+        flashingKeyLeftImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + inputAction.GetBindingDisplayString()[2] + "_Pressed.png");
+        flashingKeyRightImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + inputAction.GetBindingDisplayString()[6] + "_Pressed.png");
 
         if (flashOn)
         {
