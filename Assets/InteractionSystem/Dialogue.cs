@@ -21,6 +21,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     private bool skip = false;
     private bool tutorialComplete = false;
     private bool inCoachArea = false;
+    public static bool InCoachArea;
     private bool allowNextLine;
     private int index;
 
@@ -106,6 +107,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Update()
     {
+        InCoachArea = inCoachArea; // I can't edit it but I can see the current state
         //CoachTutorial();
     }
 

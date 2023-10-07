@@ -4092,7 +4092,8 @@ MonoBehaviour:
   flashingKeyDownImage: {fileID: 1802392719}
   flashingKeyLeftImage: {fileID: 1177723719}
   flashingKeyRightImage: {fileID: 2059446065}
-  inputActionReference: {fileID: -932537088577593993, guid: 75ecb6aeba01e3b4aad0f96f6d1b0147, type: 3}
+  movementInputActionReference: {fileID: -932537088577593993, guid: 75ecb6aeba01e3b4aad0f96f6d1b0147, type: 3}
+  interactionInputActionReference: {fileID: 4777419748493748383, guid: 75ecb6aeba01e3b4aad0f96f6d1b0147, type: 3}
 --- !u!1 &1861703125
 GameObject:
   m_ObjectHideFlags: 0
