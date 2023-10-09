@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Dialogue : MonoBehaviour, IInteractable
+public class CoachDialogue : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
     public string InteractionPrompt => _prompt;

@@ -76,7 +76,7 @@ public class Tutorial : MonoBehaviour
 
         MovementFlashingKeys();
 
-        if (Dialogue.metCoach == false && !skipTutorialPopup.activeSelf && !isTyping)
+        if (CoachDialogue.metCoach == false && !skipTutorialPopup.activeSelf && !isTyping)
         {
             tutorialDialogueBox.SetActive(true);
             if (!(DialogueStorage(CurrentDialogue) == tutorialDialogueBox.GetComponentInChildren<TextMeshProUGUI>().text)) // Checks to see if the current dialouge is the same has the text component
@@ -108,7 +108,7 @@ public class Tutorial : MonoBehaviour
     */
     private string ExampleDialogue()
     {
-        return "Welcome Adventurer";
+        return "Hey there fresh meat";
     }
     private string MovementCheck() // Step 1
     {
@@ -133,7 +133,7 @@ public class Tutorial : MonoBehaviour
             flashingKeyLeftImage.SetActive(false);
         }
 
-        return "Movement Check Placeholder";
+        return "Hey there fresh meat, welcome to the DJCW gym. Use _ _ _ _ to get over here I got a few things to say before you enter the ring";
     }
     private void MovementFlashingKeys()
     {
@@ -153,27 +153,34 @@ public class Tutorial : MonoBehaviour
     {
         // Tells the player how to interact ( interact with coach )
 
-        if (Dialogue.InCoachArea && interactionInputAction.triggered)
+        if (CoachDialogue.InCoachArea && interactionInputAction.triggered)
         {
             firstInteractionWithCoach = true;
             PunchingBagPunchedCheck();
         }
 
-        return "Talk to coach placeholder";
+        return "Great! Now use _ to chat with me.  You can also use _ to interact with other objects besides big ol' me";
+        //Welcome to the DJCW.  I can't let you into the ring just yet.  Before you wrestle for your fame and glory you must show me that you are capable of landing a few good blows.
     }
-    private void PunchingBagPunchedCheck() // Step 4
+    private string PunchingBagPunchedCheck() // Step 4
     {
-
+        return "Alright! You see that bag over there?  That red one over there is giving me a funny look.  Go give it a big wallop for me using _";
+        //Keep on punching it doesn't look like it's down yet
     }
-    private void PunchingBagKickedCheck() // Step 5
+    private string PunchingBagKickedCheck() // Step 5
     {
-
+        return "Great Punches, but I don't think that bag learned it's lesson.  Give it a good beatdown with those legs of yours using _.";
+        //Give it the good ol' left and right.
+        //Thats more like it.
     }
-    private void GrappledCheck() // Step 6
+    private string GrappledCheck() // Step 6
     {
-
+        return "The heat is picking up.  Use _ to grab em to get a clean finish.  Renember keep pressing _ to win the grapple.";
+        //drive em to the ground.
     }
-
+        //That punching bag definitely won't make a comeback any time soon.
+        //One last thing before you go.  You can use the ropes to make some high flyin moves if you charge at em.
+        //Your now ready to enter the ring.  Good luck, don't get busted open.
     private IEnumerator FlashKeys()
     {
         isFlashing = true;
