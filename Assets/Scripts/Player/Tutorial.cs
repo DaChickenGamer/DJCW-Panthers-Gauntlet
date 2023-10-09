@@ -40,6 +40,9 @@ public class Tutorial : MonoBehaviour
 
     private int CurrentDialogue;
 
+    public static bool firstInteractionWithCoach = false;
+    public static bool movementKeysPressed; // Checks if all movement keys have been pressed
+
     // Colors For Flashing
 
     private Color32 normalColor = new Color32(255, 255, 255, 255);
@@ -142,6 +145,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (isFlashing == false)
         {
+            movementKeysPressed = true;
             CurrentDialogue = 2;
         }
     }
@@ -151,6 +155,7 @@ public class Tutorial : MonoBehaviour
 
         if (Dialogue.InCoachArea && interactionInputAction.triggered)
         {
+            firstInteractionWithCoach = true;
             PunchingBagPunchedCheck();
         }
 
