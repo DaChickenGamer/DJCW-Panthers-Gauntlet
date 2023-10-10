@@ -25,9 +25,9 @@ public class Dialogue : MonoBehaviour, IInteractable
     private int index;
 
 
-    [HideInInspector][Header("Managers")]
-    private SpriteManager sprites;
-    private KeybindManager keybinds;
+    //[HideInInspector][Header("Managers")]
+    //private SpriteManager sprites;
+    //private KeybindManager keybinds;
 
     [HideInInspector][Header("Image Definer")]
     private GameObject upInput;
@@ -70,6 +70,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Awake()//input and action sprites
     {
+        /*
         sprites = SpriteManager.MyInstance;
         upInput = sprites.upimage;
         leftInput = sprites.leftimage;
@@ -81,10 +82,11 @@ public class Dialogue : MonoBehaviour, IInteractable
         interactInput = sprites.interactimage;
         pauseInput = sprites.pauseimage;
         keybinds = KeybindManager.MyInstance;
+        */
     }
     private void Start()//actives the sprites that need to be active
     {
-        upInput.SetActive(true);
+        /*upInput.SetActive(true);
         leftInput.SetActive(true);
         downInput.SetActive(true);
         rightInput.SetActive(true);
@@ -93,7 +95,7 @@ public class Dialogue : MonoBehaviour, IInteractable
         grappleInput.SetActive(false);
         interactInput.SetActive(false);
         pauseInput.SetActive(false);
-        string[] nextLine = { "To punch you will need to press", "To kick you will need to press", "To grapple you will need to press", "To pause/unpause you will need to press" };
+        */string[] nextLine = { "To punch you will need to press", "To kick you will need to press", "To grapple you will need to press", "To pause/unpause you will need to press" };
 
         // Disables warning below but has no use
         if (inCoachArea == false)
@@ -104,7 +106,7 @@ public class Dialogue : MonoBehaviour, IInteractable
     }
     private void Update()
     {
-        CoachTutorial();
+        //CoachTutorial();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -122,8 +124,10 @@ public class Dialogue : MonoBehaviour, IInteractable
             inCoachArea = false;
         }
     }
+    /*
     void CoachTutorial()
     {
+        
         if (keybinds.Actions.FindAction("Movement").ReadValue<Vector2>().ToString() == "(0.00, 1.00)" && !upTask)//checks if the player move up
         {
             upTask = true;
@@ -201,7 +205,7 @@ public class Dialogue : MonoBehaviour, IInteractable
                 interactInput.SetActive(true);
             }
         }
-    }
+    }*/
     void StartDialogue()
     {
         textComponent.text = string.Empty;
