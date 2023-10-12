@@ -9,6 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Tutorial : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class Tutorial : MonoBehaviour
     private bool isFlashing  = false;
     private bool isTyping = false;
 
-    private int CurrentDialogue;
+    private int CurrentDialogue = 0;
 
     public static bool firstInteractionWithCoach = false;
     public static bool movementKeysPressed; // Checks if all movement keys have been pressed
@@ -55,6 +56,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private InputActionReference interactionInputActionReference;
     private InputAction movementInputAction;
     private InputAction interactionInputAction;
+
+    private Coroutine typingCoroutine; // Stores the typing coroutine
 
     /*
     Tutorial Draft:
@@ -76,23 +79,44 @@ public class Tutorial : MonoBehaviour
 
         MovementFlashingKeys();
 
-        if (CoachDialogue.metCoach == false && !skipTutorialPopup.activeSelf && !isTyping)
+        if (CoachDialogue.metCoach == false && !skipTutorialPopup.activeSelf)
         {
-            tutorialDialogueBox.SetActive(true);
-            if (!(DialogueStorage(CurrentDialogue) == tutorialDialogueBox.GetComponentInChildren<TextMeshProUGUI>().text)) // Checks to see if the current dialouge is the same has the text component
-                StartCoroutine(TypeLine(DialogueStorage(CurrentDialogue)));
+            MovementCheck();
+
+            if (typingCoroutine == null)
+            {
+
+                tutorialDialogueBox.SetActive(true);
+                if (!(DialogueStorage() == tutorialDialogueBox.GetComponentInChildren<TextMeshProUGUI>().text)) // Checks to see if the current dialouge is the same has the text component
+                {
+                    typingCoroutine = StartCoroutine(TypeLine(DialogueStorage()));
+                }
+                if (isTyping == false)
+                    CurrentDialogue += 1;
+            }
+            else if (typingCoroutine != null && movedUp && movedDown && movedRight && movedLeft)
+            {
+                StopCoroutine(typingCoroutine);
+                CurrentDialogue += 1;
+                typingCoroutine = null;
+            }
         }
+
     }
-    private string DialogueStorage(int currentDialogue)
+    private string DialogueStorage()
     {
-        currentDialogue = CurrentDialogue; // So we can change the currentDialogue from other methods
         // Too add more you make a new case and you have to make sure the method is a string
-        switch(currentDialogue)
+        switch(CurrentDialogue)
         {
             case 0:
-                return MovementCheck();
+                return MovementDialogue();
             case 1:
-                return ExampleDialogue();
+                return "Use "
+            + movementInputAction.GetBindingDisplayString()[0]
+            + movementInputAction.GetBindingDisplayString()[4]
+            + movementInputAction.GetBindingDisplayString()[2]
+            + movementInputAction.GetBindingDisplayString()[6]
+            + " to get over here I got a few things to say before you enter the ring!";
             case 2:
                 return TalkToCoachCheck();
             default:
@@ -110,7 +134,11 @@ public class Tutorial : MonoBehaviour
     {
         return "Hey there fresh meat";
     }
-    private string MovementCheck() // Step 1
+    private string MovementDialogue()
+    {
+        return "Hey there fresh meat, welcome to the DJCW gym.";
+    }
+    private void MovementCheck() // Step 1
     {
         if (playerDirection.y > 0)
         {
@@ -132,8 +160,9 @@ public class Tutorial : MonoBehaviour
             movedLeft = true;
             flashingKeyLeftImage.SetActive(false);
         }
+        if (movedUp && movedDown && movedRight && movedLeft)
+            CurrentDialogue += 1;
 
-        return "Hey there fresh meat, welcome to the DJCW gym. Use _ _ _ _ to get over here I got a few things to say before you enter the ring";
     }
     private void MovementFlashingKeys()
     {
@@ -229,6 +258,8 @@ public class Tutorial : MonoBehaviour
         }
 
         isTyping = false; // Set to false when typing is complete
+
+        typingCoroutine = null;
     }
 
 }
