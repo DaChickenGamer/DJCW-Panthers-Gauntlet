@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LineToCoach : MonoBehaviour
 {
+    /*
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject coach;
     void Update()
@@ -26,4 +28,47 @@ public class LineToCoach : MonoBehaviour
         else if (Tutorial.movementKeysPressed && Tutorial.movementKeysPressed)
             lineRenderer.enabled = false;
     }
+    */
+    [SerializeField] private GameObject Coach;
+    [SerializeField] private Transform Player;
+    [SerializeField] private LineRenderer Path;
+    [SerializeField] private float PathUpdateSpeed = 0.25f;
+
+    private NavMeshTriangulation Triangulation;
+    private Coroutine DrawPathCoroutine;
+
+    private void Awake()
+    {
+        Triangulation = NavMesh.CalculateTriangulation();
+    }
+
+    private void Start()
+    {
+        DrawPath();
+    }
+
+
+    private void DrawPath()
+    {
+        if (DrawPathCoroutine != null)
+        {
+            StopCoroutine(DrawPathCoroutine);
+        }
+
+        DrawPathCoroutine = StartCoroutine(DrawPathToCoach());
+    }
+
+    private IEnumerator DrawPathToCoach()
+    {
+        WaitForSeconds wait = new WaitForSeconds(PathUpdateSpeed);
+        NavMeshPath path = new NavMeshPath();
+
+        if (NavMesh.CalculatePath(Player.position, Coach.transform.position,NavMesh.AllAreas, path))
+        {
+
+        }
+
+        yield return wait;
+    }
+
 }
