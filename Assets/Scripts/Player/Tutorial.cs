@@ -26,7 +26,12 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private GameObject flashingKeyDownImage;
     [SerializeField] private GameObject flashingKeyLeftImage;
     [SerializeField] private GameObject flashingKeyRightImage;
+    [SerializeField] private GameObject flashingInteractingImage;
 
+    // The amount of times the player has done the action
+    private int punchAmount;
+    private int kickAmount;
+    private int grappleAmount;
 
     // Booleans For Checking
     private bool movedUp = false;
@@ -42,7 +47,16 @@ public class Tutorial : MonoBehaviour
     private int CurrentDialogue = 0;
 
     public static bool firstInteractionWithCoach = false;
-    public static bool movementKeysPressed; // Checks if all movement keys have been pressed
+
+    private bool flashingKeysSetActive = false; // Checks if the keys have been set active yet
+
+    private bool skippedMovement = false; // Checks to see if the movement has been skipped
+    private bool skippedPunching = false;
+    private bool skippedKicking = false;
+    private bool skippedGrapple = false;
+    private bool skippedCoach = false;
+
+    private bool interactFlashing = false; // Flashes the interact key
 
     // Colors For Flashing
 
@@ -54,10 +68,24 @@ public class Tutorial : MonoBehaviour
     [Header("Keybinds")]
     [SerializeField] private InputActionReference movementInputActionReference;
     [SerializeField] private InputActionReference interactionInputActionReference;
+
+    [SerializeField] private InputActionReference punchInputActionReference;
+    [SerializeField] private InputActionReference kickInputActionReference;
+    [SerializeField] private InputActionReference grappleInputActionReference;
+
     private InputAction movementInputAction;
     private InputAction interactionInputAction;
 
+    private InputAction punchInputAction;
+    private InputAction kickInputAction;
+    private InputAction grappleInputAction;
+
     private Coroutine typingCoroutine; // Stores the typing coroutine
+
+
+    // Punching Bag For Checking
+
+    private Collider2D punchingBag;
 
     /*
     Tutorial Draft:
@@ -77,31 +105,28 @@ public class Tutorial : MonoBehaviour
         movementInputAction = movementInputActionReference.action;
         interactionInputAction = interactionInputActionReference.action;
 
-        MovementFlashingKeys();
+        punchInputAction = punchInputActionReference.action;
+        kickInputAction = kickInputActionReference.action;
+        grappleInputAction = grappleInputActionReference.action;
 
         if (CoachDialogue.metCoach == false && !skipTutorialPopup.activeSelf)
         {
-            MovementCheck();
 
             if (typingCoroutine == null)
             {
 
                 tutorialDialogueBox.SetActive(true);
-                if (!(DialogueStorage() == tutorialDialogueBox.GetComponentInChildren<TextMeshProUGUI>().text)) // Checks to see if the current dialouge is the same has the text component
+                if (!(DialogueStorage() == tutorialDialogueBox.GetComponentInChildren<TextMeshProUGUI>().text) && CurrentDialogue != 9) // Checks to see if the current dialouge is the same has the text component
                 {
                     typingCoroutine = StartCoroutine(TypeLine(DialogueStorage()));
                 }
-                if (isTyping == false)
+                if (isTyping == false && (CurrentDialogue == 0 || CurrentDialogue == 5 || CurrentDialogue == 7 || CurrentDialogue == 8) && Keyboard.current.anyKey.wasPressedThisFrame)
                     CurrentDialogue += 1;
             }
-            else if (typingCoroutine != null && movedUp && movedDown && movedRight && movedLeft)
-            {
-                StopCoroutine(typingCoroutine);
-                CurrentDialogue += 1;
-                typingCoroutine = null;
-            }
+            SkipDialogue();
         }
-
+        if (CurrentDialogue != 0 && CurrentDialogue != 5 && CurrentDialogue != 7 && CurrentDialogue != 8)
+            DialogueFunctions();
     }
     private string DialogueStorage()
     {
@@ -109,34 +134,117 @@ public class Tutorial : MonoBehaviour
         switch(CurrentDialogue)
         {
             case 0:
-                return MovementDialogue();
+                return "Hey there fresh meat, welcome to the DJCW gym.";
             case 1:
                 return "Use "
-            + movementInputAction.GetBindingDisplayString()[0]
-            + movementInputAction.GetBindingDisplayString()[4]
-            + movementInputAction.GetBindingDisplayString()[2]
-            + movementInputAction.GetBindingDisplayString()[6]
+            + movementInputAction.GetBindingDisplayString()[0] // W
+            + movementInputAction.GetBindingDisplayString()[2] // A
+            + movementInputAction.GetBindingDisplayString()[4] // S
+            + movementInputAction.GetBindingDisplayString()[6] // D
             + " to get over here I got a few things to say before you enter the ring!";
             case 2:
-                return TalkToCoachCheck();
+                return "Great! Now use " + interactionInputAction.GetBindingDisplayString()[0] + " to chat with me. You can also use " + interactionInputAction.GetBindingDisplayString()[0] + " to interact with other objects besides big ol' me.";
+            case 3:
+                return "Alright! You see that bag over there? That red one over there is giving me a funny look. Go give it a big wallop for me using " + punchInputAction.GetBindingDisplayString()[0] + ".";
+            case 4:
+                return "Great Punches, but I don't think that bag learned it's lesson. Give it a good beatdown with those legs of yours using " + kickInputAction.GetBindingDisplayString()[0] + ".";
+            case 5:
+                return "Placeholder Grapple Meter Text"; // Need to explain Grapple Meter
+            case 6:
+                return "The heat is picking up. Use " + grappleInputAction.GetBindingDisplayString()[0] + " to grab em to get a clean finish. Remember keep pressing " + grappleInputAction.GetBindingDisplayString()[0] + " to win the grapple.";
+            case 7:
+                return "Placeholder KO Bar Text"; // Need to explain KO Bar
+            case 8:
+                return "You did pretty well. You're ready to enter the ring.";
             default:
+                Debug.LogError("Inaccessible Dialogue Text");
                 return "No more text";
         }
     }
+    private void DialogueFunctions()
+    {
+        switch(CurrentDialogue)
+        {
+            case 1:
+                ActivateMovment();
+                break;
+            case 2:
+                TalkToCoachCheck();
+                break;
+            case 3:
+                PunchingBagPunchedCheck();
+                break;
+            case 4:
+                PunchingBagKickedCheck();
+                break;
+            case 6:
+                GrappledCheck();
+                break;
+            case 9:
+                ExitDialogue();
+                break;
+            default:
+                Debug.LogError("Inaccessible Dialogue Function");
+                break;
+        }
+    }
 
+    private void SkipDialogue()
+    {
+        if (typingCoroutine != null && movedUp && movedDown && movedRight && movedLeft && skippedMovement == false)
+        {
+            StopCoroutine(typingCoroutine);
+            CurrentDialogue = 2; // Don't change this number needed to function ( unless reassigning the dialogue )
+            typingCoroutine = null;
+            skippedMovement = true;
+        }
+        if (typingCoroutine != null && skippedPunching == false && CurrentDialogue == 3 && punchAmount >= 5)
+        {
+            StopCoroutine(typingCoroutine);
+            CurrentDialogue += 1;
+            typingCoroutine = null;
+            skippedPunching = true;
+        }
+        if (typingCoroutine != null && skippedKicking == false && CurrentDialogue == 4 && kickAmount >= 5)
+        {
+            StopCoroutine(typingCoroutine);
+            CurrentDialogue += 1;
+            typingCoroutine = null;
+            skippedKicking = true;
+        }
+        if (typingCoroutine != null && skippedGrapple == false && CurrentDialogue == 6 && grappleAmount >= 3)
+        {
+            StopCoroutine(typingCoroutine);
+            CurrentDialogue += 1;
+            typingCoroutine = null;
+            skippedGrapple = true;
+        }
+    }
     /*
         Pure Text but we'll need
 
         - KO Bar Explaination // Step 7
         - KO Meter Explaniation // Step 3
     */
-    private string ExampleDialogue()
+
+    private void ActivateMovment()
     {
-        return "Hey there fresh meat";
-    }
-    private string MovementDialogue()
-    {
-        return "Hey there fresh meat, welcome to the DJCW gym.";
+        if (flashingKeysSetActive == false)
+        {
+            flashingKeyDownImage.SetActive(true);
+            flashingKeyUpImage.SetActive(true);
+            flashingKeyRightImage.SetActive(true);
+            flashingKeyLeftImage.SetActive(true);
+
+            flashingKeysSetActive = true;
+        }
+
+        if ((!movedUp || !movedDown || !movedLeft || !movedRight) && isFlashing == false) // Makes keys flash if not true
+        {
+            StartCoroutine(FlashKeys());
+        }
+
+        MovementCheck();
     }
     private void MovementCheck() // Step 1
     {
@@ -160,56 +268,77 @@ public class Tutorial : MonoBehaviour
             movedLeft = true;
             flashingKeyLeftImage.SetActive(false);
         }
-        if (movedUp && movedDown && movedRight && movedLeft)
-            CurrentDialogue += 1;
-
-    }
-    private void MovementFlashingKeys()
-    {
-        // Need to tell the player how to move
-
-        if ((!movedUp || !movedDown || !movedLeft || !movedRight) && isFlashing == false) // Makes keys flash if not true
-        {
-            StartCoroutine(FlashKeys());
-        }
-        else if (isFlashing == false)
-        {
-            movementKeysPressed = true;
+        if (movedUp && movedDown && movedRight && movedLeft && skippedMovement == false)
             CurrentDialogue = 2;
-        }
     }
-    private string TalkToCoachCheck() // Step 2
+
+    private void TalkToCoachCheck() // Step 2
     {
-        // Tells the player how to interact ( interact with coach )
+        // Checks to see when the player interacted with the coach
+
+        flashingInteractingImage.SetActive(true);
+
+        interactFlashing = true;
+
+        if (isFlashing == false)
+            StartCoroutine(FlashKeys());
 
         if (CoachDialogue.InCoachArea && interactionInputAction.triggered)
         {
-            firstInteractionWithCoach = true;
-            PunchingBagPunchedCheck();
+            flashingInteractingImage.SetActive(false);
+            interactFlashing = false;
+            CurrentDialogue += 1;
         }
+    }
+    private void PunchingBagPunchedCheck() // Step 4
+    {
+        /*
+        Need for later:
 
-        return "Great! Now use _ to chat with me.  You can also use _ to interact with other objects besides big ol' me";
-        //Welcome to the DJCW.  I can't let you into the ring just yet.  Before you wrestle for your fame and glory you must show me that you are capable of landing a few good blows.
+        punchingBag.IsTouching(fist)
+
+        Don't have combat system but when we do this needs to be added
+        */
+
+        if (punchInputAction.triggered && punchAmount < 5)
+            punchAmount++;
+        else if (punchAmount >= 5)
+            CurrentDialogue += 1;
     }
-    private string PunchingBagPunchedCheck() // Step 4
+    private void PunchingBagKickedCheck() // Step 5
     {
-        return "Alright! You see that bag over there?  That red one over there is giving me a funny look.  Go give it a big wallop for me using _";
-        //Keep on punching it doesn't look like it's down yet
+        /*
+        Need for later:
+
+        punchingBag.IsTouching(kick)
+
+        Don't have combat system but when we do this needs to be added
+        */
+
+        if (kickInputAction.triggered && kickAmount < 5)
+            kickAmount++;
+        else if (kickAmount >= 5)
+            CurrentDialogue += 1;
     }
-    private string PunchingBagKickedCheck() // Step 5
+    private void GrappledCheck() // Step 6
     {
-        return "Great Punches, but I don't think that bag learned it's lesson.  Give it a good beatdown with those legs of yours using _.";
-        //Give it the good ol' left and right.
-        //Thats more like it.
+        /*
+        Need for later:
+
+        punchingBag.IsTouching(grapple)
+
+        Don't have combat system but when we do this needs to be added
+        */
+
+        if (grappleInputAction.triggered && grappleAmount < 3)
+            grappleAmount++;
+        else if (grappleAmount >= 3)
+            CurrentDialogue += 1;
     }
-    private string GrappledCheck() // Step 6
+    private void ExitDialogue()
     {
-        return "The heat is picking up.  Use _ to grab em to get a clean finish.  Renember keep pressing _ to win the grapple.";
-        //drive em to the ground.
+        tutorialDialogueBox.SetActive(false);
     }
-        //That punching bag definitely won't make a comeback any time soon.
-        //One last thing before you go.  You can use the ropes to make some high flyin moves if you charge at em.
-        //Your now ready to enter the ring.  Good luck, don't get busted open.
     private IEnumerator FlashKeys()
     {
         isFlashing = true;
@@ -225,21 +354,39 @@ public class Tutorial : MonoBehaviour
         flashingKeyLeftImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[2] + "_Pressed.png");
         flashingKeyRightImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[6] + "_Pressed.png");
 
+        flashingInteractingImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + interactionInputAction.GetBindingDisplayString()[0] + "_Pressed.png");
+
         if (flashOn)
         {
-            flashingKeyUpImage.GetComponent<Image>().color = normalColor;
-            flashingKeyDownImage.GetComponent<Image>().color = normalColor;
-            flashingKeyLeftImage.GetComponent<Image>().color = normalColor;
-            flashingKeyRightImage.GetComponent<Image>().color = normalColor;
-            flashOn = false;
+            if (movedDown == false || movedUp == false || movedRight == false || movedLeft == false)
+            {
+                flashingKeyUpImage.GetComponent<Image>().color = normalColor;
+                flashingKeyDownImage.GetComponent<Image>().color = normalColor;
+                flashingKeyLeftImage.GetComponent<Image>().color = normalColor;
+                flashingKeyRightImage.GetComponent<Image>().color = normalColor;
+                flashOn = false;
+            }
+            if (interactFlashing)
+            {
+                flashingInteractingImage.GetComponent<Image>().color = normalColor;
+                flashOn = false;
+            }
         }
         else
         {
-            flashingKeyUpImage.GetComponent<Image>().color = transparentColor;
-            flashingKeyDownImage.GetComponent<Image>().color = transparentColor;
-            flashingKeyLeftImage.GetComponent<Image>().color = transparentColor;
-            flashingKeyRightImage.GetComponent<Image>().color = transparentColor;
-            flashOn = true;
+            if (movedDown == false || movedUp == false || movedRight == false || movedLeft == false)
+            {
+                flashingKeyUpImage.GetComponent<Image>().color = transparentColor;
+                flashingKeyDownImage.GetComponent<Image>().color = transparentColor;
+                flashingKeyLeftImage.GetComponent<Image>().color = transparentColor;
+                flashingKeyRightImage.GetComponent<Image>().color = transparentColor;
+                flashOn = true;
+            }
+            if (interactFlashing)
+            {
+                flashingInteractingImage.GetComponent<Image>().color = transparentColor;
+                flashOn = true;
+            }
         }
 
         yield return new WaitForSeconds(1.0f);
