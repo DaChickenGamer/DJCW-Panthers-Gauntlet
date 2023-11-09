@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Combat : EnemyValues
 {
@@ -40,41 +41,53 @@ public class Combat : EnemyValues
     public Collider2D playercollider;
 
     private bool inputDelay = false;
+
+    private PlayerInputs playerInput;
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         slider.value = (winCount + failCount) / 2;
         slider.maxValue = winCount; // Grappling Highest Amount
         slider.minValue = failCount; // Grappling Lowest Amount
     }
-    private void Awake()
-    {
-       animator = GetComponent<Animator>();
-
-    }
     // Player Input For Punching
-    private void OnPunch(InputValue value)
+    /*private void OnEnable()
     {
-        if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
-        {
-            punchValue = value.Get<float>();
+      //  punchValue = playerInput.FindAction("Punch").ReadValue<float>();
 
-            if (punchValue != 0)
+        //playerInput.InGame.Punch.started += StartPunch;
+
+        //playerInput.InGame.Punch.canceled += StopPunch;
+
+       // playerInput.InGame.Enable();
+    }*/
+    /*
+    private void OnDisable()
+    {
+       playerInput.InGame.Disable();
+    }
+    */
+    private void StartPunch(InputAction.CallbackContext context)
+    {
+        if (punchValue != 0 && !animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
+        {
+            animator.SetBool("isPunching", true);
+            isAttacking = true;
+            Debug.Log("Punched");
+            attackDuration -= Time.deltaTime;
+            if (attackDuration <= 0)
             {
-                animator.SetBool("isPunching", true);
-                isAttacking = true;
-                Debug.Log("Punched");
-                attackDuration -= Time.deltaTime;
-                if (attackDuration <= 0)
-                {
-                    punchValue = 0;
-                }
-            }
-            else
-            {
-                animator.SetBool("isPunching", false);
-                isAttacking = false;
+                punchValue = 0;
             }
         }
+    }
+    private void StopPunch(InputAction.CallbackContext obj)
+    {
+        animator.SetBool("isPunching", false);
+        isAttacking = false;
     }
     // Player Input For Kicking
     private void OnKick(InputValue value)
@@ -188,7 +201,7 @@ public class Combat : EnemyValues
             Debug.Log("Grapple " + grappleWinCounter);
             inputDelay = false;
         }
-        if (animator.GetBool("isGrapple"))
+        /*if (animator.GetBool("isGrapple"))
         {
             if (!grappled)
             {
@@ -202,7 +215,7 @@ public class Combat : EnemyValues
             if(grappled) grappledelay = 2f;
             grappled = false;
             slider.gameObject.SetActive(false);
-        }
+        }*/
     }
     void SpawnAttacks()
     {

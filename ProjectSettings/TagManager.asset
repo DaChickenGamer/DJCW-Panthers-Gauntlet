@@ -13,11 +13,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Pathing
   - Water
   - UI
   - Interactable
-  - 
+  - Obstacle
   - 
   - 
   - 
