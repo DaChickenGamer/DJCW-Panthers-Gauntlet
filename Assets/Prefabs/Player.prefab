@@ -143,6 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3673211591502631123}
   - component: {fileID: 182624071057809739}
+  - component: {fileID: 950040265930783139}
   m_Layer: 0
   m_Name: SeekerPoint
   m_TagString: Untagged
@@ -181,6 +182,34 @@ MonoBehaviour:
   seeker: {fileID: 8440384296746258916}
   target: {fileID: 0}
   lR: {fileID: 7511103490028108103}
+--- !u!114 &950040265930783139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297085690315200228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &4006473296900552641
 GameObject:
   m_ObjectHideFlags: 0
