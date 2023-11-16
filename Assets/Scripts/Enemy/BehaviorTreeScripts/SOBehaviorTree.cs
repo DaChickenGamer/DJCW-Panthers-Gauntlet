@@ -2,6 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu()]
+public class SOBehaviorTree : ScriptableObject
+{
+    public Node rootNode;
+    public Node.State treeState = Node.State.Running;
+
+    public Node.State Update()
+    {
+        return rootNode.Update();
+    }
+}
+
+/*
 namespace BehaviorTree
 {
     public abstract class Tree : MonoBehaviour
@@ -24,3 +37,4 @@ namespace BehaviorTree
 
     }
 }
+*/

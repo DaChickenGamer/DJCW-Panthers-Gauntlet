@@ -1,6 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
+public abstract class Node : ScriptableObject
+{
+    public enum State
+    {
+        Running,
+        Faliure,
+        Success
+    }
+
+    public State state = State.Running;
+    public bool started = false;
+
+    public State Update()
+    {
+        if (!started)
+        {
+            OnStart();
+            started = true;
+        }
+
+        state = OnUpdate();
+
+        if (state == State.Faliure || state == State.Success)
+        {
+            OnStop();
+            started = false;
+        }
+        return state;
+    }
+
+    protected abstract void OnStart();
+    protected abstract void OnStop();
+    protected abstract State OnUpdate();
+}
+
+
+
+
+
+/*
 namespace BehaviorTree
 {
     public enum NodeState
@@ -78,3 +119,4 @@ namespace BehaviorTree
         }
     }
 }
+*/
