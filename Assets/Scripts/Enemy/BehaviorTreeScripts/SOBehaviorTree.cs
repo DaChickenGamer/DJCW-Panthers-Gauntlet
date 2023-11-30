@@ -10,7 +10,11 @@ public class SOBehaviorTree : ScriptableObject
 
     public Node.State Update()
     {
-        return rootNode.Update();
+        if (rootNode.state == Node.State.Running)
+        {
+            treeState = rootNode.Update();
+        }
+        return treeState;
     }
 }
 

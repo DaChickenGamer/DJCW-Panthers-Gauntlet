@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class CompositeNode : Node
 {
-    List<Node> children = new List<Node>();
+    public List<Node> children = new List<Node>();
 }
