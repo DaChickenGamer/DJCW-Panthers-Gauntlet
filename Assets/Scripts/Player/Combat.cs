@@ -4,9 +4,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro; // Remove Later
 
 public class Combat : EnemyValues
 {
+    // Test Data Persistence REMOVE LATER
+    public TextMeshProUGUI punchText;
+    private int punchCount;
+
     // Test Push
     public static Animator animator;
     public Slider slider;
@@ -54,16 +59,16 @@ public class Combat : EnemyValues
         slider.minValue = failCount; // Grappling Lowest Amount
     }
     // Player Input For Punching
-    /*private void OnEnable()
+    private void OnEnable()
     {
-      //  punchValue = playerInput.FindAction("Punch").ReadValue<float>();
+        //punchValue = playerInput.FindAction("Punch").ReadValue<float>();
 
-        //playerInput.InGame.Punch.started += StartPunch;
+        playerInput.InGame.Punch.started += StartPunch;
 
-        //playerInput.InGame.Punch.canceled += StopPunch;
+        playerInput.InGame.Punch.canceled += StopPunch;
 
-       // playerInput.InGame.Enable();
-    }*/
+        playerInput.InGame.Enable();
+    }
     /*
     private void OnDisable()
     {
@@ -76,6 +81,7 @@ public class Combat : EnemyValues
         {
             animator.SetBool("isPunching", true);
             isAttacking = true;
+            punchCount++;
             Debug.Log("Punched");
             attackDuration -= Time.deltaTime;
             if (attackDuration <= 0)
@@ -84,7 +90,7 @@ public class Combat : EnemyValues
             }
         }
     }
-    private void StopPunch(InputAction.CallbackContext obj)
+    private void StopPunch(InputAction.CallbackContext context)
     {
         animator.SetBool("isPunching", false);
         isAttacking = false;
@@ -139,6 +145,8 @@ public class Combat : EnemyValues
     }
     void Update()
     {
+        punchText.text = "Punch Count: " + punchCount;
+
         if (attackDelay <= 0 && isAttacking == true)
         {
             SpawnAttacks();
