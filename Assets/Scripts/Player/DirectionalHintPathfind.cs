@@ -13,13 +13,10 @@ public class DirectionalHintPathfind : MonoBehaviour
 
     private Seeker pathSeeker;
     private Path currentPath;
-    private int currentWaypoint = 0;
 
     private void Start()
     {
         pathSeeker = GetComponent<Seeker>();
-
-       
     }
 
     private void OnPathComplete(Path path)
@@ -29,7 +26,6 @@ public class DirectionalHintPathfind : MonoBehaviour
         if (!path.error)
         {
             currentPath = path;
-            currentWaypoint = 0;
             pathNodes.Clear();
 
         //addsd all the nodes positions from the path to an array for later use

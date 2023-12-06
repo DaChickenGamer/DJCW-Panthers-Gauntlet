@@ -54,7 +54,7 @@ public class Tutorial : MonoBehaviour
     private bool skippedPunching = false;
     private bool skippedKicking = false;
     private bool skippedGrapple = false;
-    private bool skippedCoach = false;
+    //private bool skippedCoach = false;
 
     private bool interactFlashing = false; // Flashes the interact key
 
