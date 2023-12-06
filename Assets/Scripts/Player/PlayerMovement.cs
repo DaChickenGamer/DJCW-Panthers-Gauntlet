@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private int speed = 5;
 
-    private Vector2 direction;
+    public static Vector2 direction;
     private Rigidbody2D rb;
     private Animator animator;
 

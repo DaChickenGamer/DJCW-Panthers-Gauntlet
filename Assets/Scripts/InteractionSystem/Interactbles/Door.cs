@@ -21,13 +21,13 @@ public class Door : MonoBehaviour, IInteractable
 
     [HideInInspector]
     [Header("Coach Bool")]
-    public Dialogue dialogue;
+    public CoachDialogue dialogue;
 
 
     public bool Interact(Interacter interactor)
     {
         Debug.Log("Opening Door!");
-        bool MetCoach = Dialogue.metCoach;
+        bool MetCoach = CoachDialogue.metCoach;
         if (MetCoach == true && enterDoor == true)
         {
             if (_doorIsActive == true)

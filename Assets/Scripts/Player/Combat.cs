@@ -201,7 +201,7 @@ public class Combat : EnemyValues
             Debug.Log("Grapple " + grappleWinCounter);
             inputDelay = false;
         }
-        if (animator.GetBool("isGrapple"))
+        /*if (animator.GetBool("isGrapple"))
         {
             if (!grappled)
             {
@@ -215,7 +215,7 @@ public class Combat : EnemyValues
             if(grappled) grappledelay = 2f;
             grappled = false;
             slider.gameObject.SetActive(false);
-        }
+        }*/
     }
     void SpawnAttacks()
     {
