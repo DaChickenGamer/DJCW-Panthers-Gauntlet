@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.febucci.custom-hierarchy": "file:C:/Users/24michalskir/Documents/GitHub/Custom-Hierarchy",
     "com.unity.ai.navigation": "1.1.4",
     "com.unity.cinemachine": "2.9.5",
     "com.unity.feature.2d": "2.0.0",
