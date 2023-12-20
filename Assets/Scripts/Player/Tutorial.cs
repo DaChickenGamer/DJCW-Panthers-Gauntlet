@@ -349,12 +349,12 @@ public class Tutorial : MonoBehaviour
         // When we support multiple platforms we can also add a variable for platform
         // The variable will be the folder of the platform name
 
-        flashingKeyUpImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[0] + "_Pressed.png");
-        flashingKeyDownImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[4] + "_Pressed.png");
-        flashingKeyLeftImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[2] + "_Pressed.png");
-        flashingKeyRightImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[6] + "_Pressed.png");
+        flashingKeyUpImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[0] + "_Pressed.png");
+        flashingKeyDownImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[4] + "_Pressed.png");
+        flashingKeyLeftImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[2] + "_Pressed.png");
+        flashingKeyRightImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + movementInputAction.GetBindingDisplayString()[6] + "_Pressed.png");
 
-        flashingInteractingImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + interactionInputAction.GetBindingDisplayString()[0] + "_Pressed.png");
+        flashingInteractingImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Art/Sprites/KeyBinds/Keyboard/Keyboard_" + interactionInputAction.GetBindingDisplayString()[0] + "_Pressed.png");
 
         if (flashOn)
         {
