@@ -10,10 +10,8 @@ using UnityEngine.Device;
 
 public class PlayerHealth : MonoBehaviour
 {
-
-    [SerializeField] private UnityEvent PlayerKOEvent;
     [SerializeField] private int maxHealth = 100;
-    public static int currentHealth;
+    public int currentHealth;
     private float damageDelay,damageTick, deathDelay, damageSpeed=45;
     public KOBar koBar;
 
@@ -51,13 +49,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 deathDelay = 4;
             }
-            //Will set the Playerknockout panel active once 
-            //the player KOBar reaches bellow zero and will destroy
-            //the player object
-            if (deathDelay <= 0)    
-            {                          
-                PlayerKOEvent.Invoke();
-            }
+            
         }
     }
     public void OnReturn(InputValue value) // Used For Inputs In Console

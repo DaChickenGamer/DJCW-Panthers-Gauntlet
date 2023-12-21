@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputs playerInput;
     private InputAction movement;
 
-    [SerializeField] private Combat grappled;
+    //[SerializeField] private Combat grappled;
 
     private void Awake()
     {
