@@ -2577,11 +2577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13dcf9cb7aca4b4b8aba4c7991f3ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  koBar: {fileID: 0}
-  onReturnActive: 0
-  victoryScreen: {fileID: 0}
-  victoryAnim: {fileID: 0}
+  victoryScreen: {fileID: 1420318714}
+  victoryAnim: {fileID: 1420318718}
 --- !u!1 &1305310295
 GameObject:
   m_ObjectHideFlags: 0

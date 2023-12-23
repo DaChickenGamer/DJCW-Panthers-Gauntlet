@@ -4,10 +4,10 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Events;
+
 public class EnemyController : EnemyValues
 {
-    [SerializeField] private UnityEvent EnemyKOEvent;
+
     private Rigidbody2D enemyRB;
 
     public Slider slider; // Slider for enemy health
@@ -35,6 +35,7 @@ public class EnemyController : EnemyValues
         if (testingTools)
             if (Input.GetKeyDown(KeyCode.G)) // Testing for health
                 TakeDamage(10);
+        /*
         if (Combat.animator.GetBool("isGrapple"))
         {
             animator.SetBool("isGrapple", true);
@@ -45,6 +46,7 @@ public class EnemyController : EnemyValues
         {
             animator.SetBool("isGrapple",false);
         }
+        */
         if (enemyHealth <= 0)
         {
             animator.SetBool("isKnocked", true);
@@ -99,7 +101,6 @@ public class EnemyController : EnemyValues
             //the enemy's KOBar reaches bellow zero and will destroy
             //the enemy object
             Destroy(gameObject);
-            EnemyKOEvent.Invoke();
 
         }
         SetHealth(enemyHealth);

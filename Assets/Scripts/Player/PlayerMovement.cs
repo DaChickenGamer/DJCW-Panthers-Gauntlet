@@ -46,10 +46,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!animator.GetBool("isKnocked") && !animator.GetBool("isGrapple"))
             rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
-        if (!grappled)
+        /*if (!grappled)
         {
             rb.velocity = Vector3.zero;
         }
+        */
     }
 
 }
