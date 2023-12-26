@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinLossScreenActivation : MonoBehaviour
 {
     private PlayerHealth _playerHealth;
-    private EnemyValues _enemyValues;
+    private EnemyController _enemyController;
     public GameObject victoryScreen;
     public Animator victoryAnim;
 
@@ -16,14 +16,14 @@ public class WinLossScreenActivation : MonoBehaviour
     private void Start()
     {
         _playerHealth = FindObjectOfType<PlayerHealth>();
-        _enemyValues = FindObjectOfType<EnemyValues>();
+        _enemyController = FindObjectOfType<EnemyController>();
         Debug.Log("start");
     }
 
     private void Update()
     {
         Debug.Log("update");
-        if (_enemyValues.enemyHealth < 1)
+        if (_enemyController._isDead == true)
         {
             Debug.Log("Victory");
             victoryScreen.SetActive(true);
