@@ -14,7 +14,6 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     private float damageDelay,damageTick, deathDelay, damageSpeed=45;
     public KOBar koBar;
-
     public bool onReturnActive; // TESTING CONSOLE SYSTEM
 
     // Start is called before the first frame update
@@ -66,5 +65,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Current Health" + maxHealth);
         currentHealth +=100;
         koBar.SetMaxHealth(maxHealth);
+    }
+
+    //Check if Player is dead
+    public bool IsDead()
+    {
+        if (!(currentHealth < 1))
+            return false;
+        return true;
     }
 }

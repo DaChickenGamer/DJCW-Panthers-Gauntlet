@@ -9,7 +9,7 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] protected int enemyDamage = 5;
 
     [SerializeField] protected static int enemyHealth; 
-    protected static int enemyMaxHealth = 0;
+    protected static int enemyMaxHealth = 100;
 
     [SerializeField] protected float speed = 4f;
 

@@ -16,12 +16,11 @@ public class EnemyController : EnemyValues
     private bool attack = false, attacktiming=false, enemyMove;
     private float timing, stopattack, attackDelay;
     public bool testingTools = false;
-    public bool _isDead = false;
 
     void Start()
     {
         enemyHealth = enemyMaxHealth;
-        SetMaxHealth(enemyMaxHealth);
+        SetMaxHealthOnBar(enemyMaxHealth);
         
         enemyRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -86,11 +85,15 @@ public class EnemyController : EnemyValues
             }
         }
 
-        //Check if Enemy is dead
-        if (enemyHealth < 1)
-        {
-            _isDead = true;
-        }
+
+  
+    }
+    //Check if Enemy is dead
+    public bool IsDead()
+    {
+        if (!(enemyHealth < 1))
+            return false;
+        return true;
     }
     public void DevTools()
     {
@@ -110,15 +113,15 @@ public class EnemyController : EnemyValues
             Destroy(gameObject);
 
         }
-        SetHealth(enemyHealth);
+        SetHealthBar(enemyHealth);
     }
-    public void SetMaxHealth(int health)
+    public void SetMaxHealthOnBar(int health)
     {
         slider.maxValue = health;
         slider.value = health;
     }
 
-    public void SetHealth(int health)
+    public void SetHealthBar(int health)
     {
         slider.value = health;
     }
