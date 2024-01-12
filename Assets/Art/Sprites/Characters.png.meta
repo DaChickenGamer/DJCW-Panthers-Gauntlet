@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -2908,235 +2913,234 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Characters_190: 1900630305
-      Characters_222: 1951749635
-      Characters_91: -2093253184
-      Characters_194: 991353181
-      Characters_61: 1786450727
-      Characters_225: 666651263
-      Characters_17: 2088255144
-      Characters_73: -107893435
-      Characters_166: -1475287344
-      Characters_29: -1039311258
-      Characters_196: -121473344
-      Characters_149: -279336875
-      Characters_151: -1939624383
-      Characters_140: -567015490
-      Characters_65: 1167389031
-      Characters_28: 1009027097
-      Characters_75: -1487442592
-      Characters_139: -1752653640
-      Characters_78: 774555288
-      Characters_48: 482067197
-      Characters_145: 2026551176
-      Characters_169: 260959354
-      Characters_24: -615673369
-      Characters_131: -1745350088
-      Characters_178: -1459273078
-      Characters_16: 1045391989
-      Characters_15: 1410943496
-      Characters_123: 1519207927
-      Characters_10: -1844391151
-      Characters_216: 783860423
-      Characters_77: -879557867
-      Characters_168: -754172797
-      Characters_186: -1239198884
-      Characters_58: 433459233
-      Characters_208: -184771750
-      Characters_40: 123281115
-      Characters_172: 2139481018
-      Characters_7: -1600863114
-      Characters_35: 1898670647
+      Characters_0: 356314164
       Characters_1: 157888826
-      Characters_136: -97473248
-      Characters_167: 892459271
-      Characters_154: -886502476
-      Characters_5: 631524195
-      Characters_42: 1187643153
-      Characters_209: 2120614296
-      Characters_117: 138395422
-      Characters_33: 1698240518
-      Characters_198: 506565206
-      Characters_19: -1699081454
-      Characters_125: 2018052883
-      Characters_109: -1942735487
-      Characters_203: 218738759
-      Characters_49: -1044288102
-      Characters_54: 1020954172
-      Characters_122: -479098166
-      Characters_13: 650640647
-      Characters_130: -1280110641
-      Characters_155: 1915467910
-      Characters_112: 1468390938
-      Characters_135: -998804466
-      Characters_68: -1429120811
-      Characters_12: -968442443
-      Characters_160: 1349730566
-      Characters_185: 1309273362
-      Characters_74: 1719947751
+      Characters_10: -1844391151
       Characters_100: -2048178265
       Characters_101: 1223184944
-      Characters_132: -418651758
-      Characters_150: -1833527018
-      Characters_46: 1189524227
-      Characters_138: 989563133
-      Characters_211: 1774519099
-      Characters_146: 610229318
-      Characters_95: -768633663
-      Characters_162: -2054255365
-      Characters_63: 1469471746
-      Characters_0: 356314164
-      Characters_204: -88223032
-      Characters_163: -824345024
-      Characters_81: -1600682994
-      Characters_213: -1846042674
-      Characters_127: 428115042
-      Characters_175: -1549026230
-      Characters_115: -1169169340
-      Characters_3: 582464953
-      Characters_188: -497469092
-      Characters_221: 1790548272
-      Characters_121: -832427797
       Characters_102: -1488541640
-      Characters_171: 560837213
-      Characters_224: -709653167
-      Characters_87: 1492650810
-      Characters_92: -1662345813
-      Characters_32: -1689919667
-      Characters_64: -763574933
-      Characters_23: -848968461
-      Characters_157: -2117853548
-      Characters_144: 730945279
-      Characters_113: 529861054
-      Characters_214: 909605495
-      Characters_11: -728795941
-      Characters_30: 929014224
-      Characters_200: -583674334
-      Characters_27: -718408872
-      Characters_201: 417122170
-      Characters_120: -1966696385
-      Characters_6: 1446845146
-      Characters_71: 1979029972
-      Characters_36: -1795226791
-      Characters_180: 965764512
-      Characters_215: 1451059188
-      Characters_50: -621072799
-      Characters_106: 160043009
-      Characters_34: -1859557191
-      Characters_182: 117513055
-      Characters_99: 1947785176
-      Characters_52: 133693760
-      Characters_137: -1923082431
-      Characters_183: 1464844489
-      Characters_165: 695618414
-      Characters_82: 476865124
-      Characters_219: 729721236
-      Characters_164: 1114586294
-      Characters_94: 570485633
-      Characters_174: -1120097282
-      Characters_20: -1447566955
-      Characters_170: 508478589
-      Characters_195: -283047044
-      Characters_62: -28861342
-      Characters_96: 592667753
-      Characters_18: -777314336
-      Characters_98: 1272525484
-      Characters_86: 1094847562
-      Characters_158: 962088097
-      Characters_189: -1365336233
-      Characters_217: -1566796434
-      Characters_76: -95990719
-      Characters_43: 299878364
-      Characters_128: -700045271
-      Characters_197: -2042541753
-      Characters_205: 515768340
-      Characters_47: 1211643184
-      Characters_72: 169234322
-      Characters_56: 1920882890
-      Characters_79: 2051612070
-      Characters_124: 1849319369
-      Characters_141: -1655043892
-      Characters_126: -284740610
-      Characters_148: -425849340
-      Characters_66: 1466888845
-      Characters_2: 2017924742
-      Characters_80: 1732385535
-      Characters_147: 1347091049
-      Characters_202: -1639873630
-      Characters_14: -2021357937
-      Characters_152: 353484201
-      Characters_85: 730332442
-      Characters_176: 1040979921
-      Characters_161: 153162923
-      Characters_133: 1911320064
-      Characters_210: -819907076
-      Characters_70: -2130398233
-      Characters_111: -1940952818
-      Characters_90: -1274008249
-      Characters_118: -1234718135
-      Characters_143: -2051426182
-      Characters_218: -645117307
-      Characters_108: 463106725
-      Characters_193: 2126858759
-      Characters_119: 1565797406
-      Characters_212: -725811175
-      Characters_31: -573395954
-      Characters_107: 387249163
-      Characters_9: -1962389218
-      Characters_59: 46375854
-      Characters_97: -1716020233
-      Characters_156: 193421847
-      Characters_192: -1566237682
-      Characters_181: 698175902
-      Characters_184: -607891920
-      Characters_22: -1975609925
-      Characters_116: 1623922695
-      Characters_89: 1198636480
-      Characters_199: -198046716
-      Characters_187: 924319479
-      Characters_83: 2058115647
-      Characters_110: -1705693050
-      Characters_153: -531353672
-      Characters_191: -323180980
-      Characters_223: -749774361
-      Characters_105: 1564146848
-      Characters_57: -1696111011
-      Characters_206: -2090950265
-      Characters_129: -2015388308
-      Characters_67: 532608519
-      Characters_39: 1206486683
-      Characters_114: 220258138
-      Characters_51: 13940756
-      Characters_53: -1385259257
-      Characters_84: 1199189746
-      Characters_25: 328466155
-      Characters_60: 437384798
-      Characters_159: -532977644
-      Characters_142: 362482795
-      Characters_93: -100436752
-      Characters_134: 623475961
-      Characters_173: 1807309453
-      Characters_55: 1268520885
-      Characters_207: -367607394
-      Characters_41: -1284272533
       Characters_103: -1623272132
-      Characters_26: 1397494994
+      Characters_104: -923932589
+      Characters_105: 1564146848
+      Characters_106: 160043009
+      Characters_107: 387249163
+      Characters_108: 463106725
+      Characters_109: -1942735487
+      Characters_11: -728795941
+      Characters_110: -1705693050
+      Characters_111: -1940952818
+      Characters_112: 1468390938
+      Characters_113: 529861054
+      Characters_114: 220258138
+      Characters_115: -1169169340
+      Characters_116: 1623922695
+      Characters_117: 138395422
+      Characters_118: -1234718135
+      Characters_119: 1565797406
+      Characters_12: -968442443
+      Characters_120: -1966696385
+      Characters_121: -832427797
+      Characters_122: -479098166
+      Characters_123: 1519207927
+      Characters_124: 1849319369
+      Characters_125: 2018052883
+      Characters_126: -284740610
+      Characters_127: 428115042
+      Characters_128: -700045271
+      Characters_129: -2015388308
+      Characters_13: 650640647
+      Characters_130: -1280110641
+      Characters_131: -1745350088
+      Characters_132: -418651758
+      Characters_133: 1911320064
+      Characters_134: 623475961
+      Characters_135: -998804466
+      Characters_136: -97473248
+      Characters_137: -1923082431
+      Characters_138: 989563133
+      Characters_139: -1752653640
+      Characters_14: -2021357937
+      Characters_140: -567015490
+      Characters_141: -1655043892
+      Characters_142: 362482795
+      Characters_143: -2051426182
+      Characters_144: 730945279
+      Characters_145: 2026551176
+      Characters_146: 610229318
+      Characters_147: 1347091049
+      Characters_148: -425849340
+      Characters_149: -279336875
+      Characters_15: 1410943496
+      Characters_150: -1833527018
+      Characters_151: -1939624383
+      Characters_152: 353484201
+      Characters_153: -531353672
+      Characters_154: -886502476
+      Characters_155: 1915467910
+      Characters_156: 193421847
+      Characters_157: -2117853548
+      Characters_158: 962088097
+      Characters_159: -532977644
+      Characters_16: 1045391989
+      Characters_160: 1349730566
+      Characters_161: 153162923
+      Characters_162: -2054255365
+      Characters_163: -824345024
+      Characters_164: 1114586294
+      Characters_165: 695618414
+      Characters_166: -1475287344
+      Characters_167: 892459271
+      Characters_168: -754172797
+      Characters_169: 260959354
+      Characters_17: 2088255144
+      Characters_170: 508478589
+      Characters_171: 560837213
+      Characters_172: 2139481018
+      Characters_173: 1807309453
+      Characters_174: -1120097282
+      Characters_175: -1549026230
+      Characters_176: 1040979921
       Characters_177: -1022636742
+      Characters_178: -1459273078
       Characters_179: -1345587478
+      Characters_18: -777314336
+      Characters_180: 965764512
+      Characters_181: 698175902
+      Characters_182: 117513055
+      Characters_183: 1464844489
+      Characters_184: -607891920
+      Characters_185: 1309273362
+      Characters_186: -1239198884
+      Characters_187: 924319479
+      Characters_188: -497469092
+      Characters_189: -1365336233
+      Characters_19: -1699081454
+      Characters_190: 1900630305
+      Characters_191: -323180980
+      Characters_192: -1566237682
+      Characters_193: 2126858759
+      Characters_194: 991353181
+      Characters_195: -283047044
+      Characters_196: -121473344
+      Characters_197: -2042541753
+      Characters_198: 506565206
+      Characters_199: -198046716
+      Characters_2: 2017924742
+      Characters_20: -1447566955
+      Characters_200: -583674334
+      Characters_201: 417122170
+      Characters_202: -1639873630
+      Characters_203: 218738759
+      Characters_204: -88223032
+      Characters_205: 515768340
+      Characters_206: -2090950265
+      Characters_207: -367607394
+      Characters_208: -184771750
+      Characters_209: 2120614296
+      Characters_21: 1796290459
+      Characters_210: -819907076
+      Characters_211: 1774519099
+      Characters_212: -725811175
+      Characters_213: -1846042674
+      Characters_214: 909605495
+      Characters_215: 1451059188
+      Characters_216: 783860423
+      Characters_217: -1566796434
+      Characters_218: -645117307
+      Characters_219: 729721236
+      Characters_22: -1975609925
+      Characters_220: 1440105729
+      Characters_221: 1790548272
+      Characters_222: 1951749635
+      Characters_223: -749774361
+      Characters_224: -709653167
+      Characters_225: 666651263
+      Characters_23: -848968461
+      Characters_24: -615673369
+      Characters_25: 328466155
+      Characters_26: 1397494994
+      Characters_27: -718408872
+      Characters_28: 1009027097
+      Characters_29: -1039311258
+      Characters_3: 582464953
+      Characters_30: 929014224
+      Characters_31: -573395954
+      Characters_32: -1689919667
+      Characters_33: 1698240518
+      Characters_34: -1859557191
+      Characters_35: 1898670647
+      Characters_36: -1795226791
       Characters_37: 1173165450
       Characters_38: 1105590233
+      Characters_39: 1206486683
       Characters_4: -1838495016
-      Characters_21: 1796290459
-      Characters_69: 356260148
-      Characters_88: 504365224
+      Characters_40: 123281115
+      Characters_41: -1284272533
+      Characters_42: 1187643153
+      Characters_43: 299878364
       Characters_44: 2023636874
       Characters_45: -99866056
-      Characters_104: -923932589
+      Characters_46: 1189524227
+      Characters_47: 1211643184
+      Characters_48: 482067197
+      Characters_49: -1044288102
+      Characters_5: 631524195
+      Characters_50: -621072799
+      Characters_51: 13940756
+      Characters_52: 133693760
+      Characters_53: -1385259257
+      Characters_54: 1020954172
+      Characters_55: 1268520885
+      Characters_56: 1920882890
+      Characters_57: -1696111011
+      Characters_58: 433459233
+      Characters_59: 46375854
+      Characters_6: 1446845146
+      Characters_60: 437384798
+      Characters_61: 1786450727
+      Characters_62: -28861342
+      Characters_63: 1469471746
+      Characters_64: -763574933
+      Characters_65: 1167389031
+      Characters_66: 1466888845
+      Characters_67: 532608519
+      Characters_68: -1429120811
+      Characters_69: 356260148
+      Characters_7: -1600863114
+      Characters_70: -2130398233
+      Characters_71: 1979029972
+      Characters_72: 169234322
+      Characters_73: -107893435
+      Characters_74: 1719947751
+      Characters_75: -1487442592
+      Characters_76: -95990719
+      Characters_77: -879557867
+      Characters_78: 774555288
+      Characters_79: 2051612070
       Characters_8: -1908741815
-      Characters_220: 1440105729
-  spritePackingTag: 
+      Characters_80: 1732385535
+      Characters_81: -1600682994
+      Characters_82: 476865124
+      Characters_83: 2058115647
+      Characters_84: 1199189746
+      Characters_85: 730332442
+      Characters_86: 1094847562
+      Characters_87: 1492650810
+      Characters_88: 504365224
+      Characters_89: 1198636480
+      Characters_9: -1962389218
+      Characters_90: -1274008249
+      Characters_91: -2093253184
+      Characters_92: -1662345813
+      Characters_93: -100436752
+      Characters_94: 570485633
+      Characters_95: -768633663
+      Characters_96: 592667753
+      Characters_97: -1716020233
+      Characters_98: 1272525484
+      Characters_99: 1947785176
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
