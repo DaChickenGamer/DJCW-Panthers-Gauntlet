@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using BehaviorDesigner.Runtime.Tasks;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyAi : Action
 {
     public Transform target;
 
@@ -14,6 +15,8 @@ public class NewBehaviourScript : MonoBehaviour
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
+    bool isPathUpdate = false;
+
     Seeker seeker;
     Rigidbody2D rb;
 
@@ -21,26 +24,37 @@ public class NewBehaviourScript : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
-        InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
-    private void Update()
+    private void Update() {
+        StartCouroutine(UpdatePath(.5));
+    }
+
+    private IEnumerator UpdatePath(float waitTime)
     {
-        if (seeker.IsDone()) 
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+        while (isPathUpdate)
+        {
+            isPathUpdate = true;
+            if (seeker.IsDone()) 
+                seeker.StartPath(rb.position, target.position, OnPathComplete);
+            yield return WaitForSeconds(waitTime);
+            isPathUpdate = false;
+        }
     }
 
     void OnPathComplete(Path p)
     {
+        
         if (!p.error)
-            return;
-        path = p;
-        currentWaypoint = 0;
+        {
+            path = p;
+            currentWaypoint = 0;   
+        }
     }
 
     void FixedUpdate()
     {
+        
         if (path == null )
             return;
 
@@ -49,7 +63,6 @@ public class NewBehaviourScript : MonoBehaviour
             reachedEndOfPath = true;
             return;
         }
-           
         else
         {
             reachedEndOfPath = false;
@@ -58,6 +71,7 @@ public class NewBehaviourScript : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
+        Debug.Log(force);
         rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);

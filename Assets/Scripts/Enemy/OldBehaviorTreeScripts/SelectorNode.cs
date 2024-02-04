@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class SelectorNode : CompositeNode
 {
-    List<Node> children = new List<Node>();
+    //List<Node> children = new List<Node>();
 
 
 }

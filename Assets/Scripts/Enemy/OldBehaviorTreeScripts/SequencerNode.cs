@@ -4,6 +4,7 @@ using UnityEngine.InputSystem.HID;
 
 public abstract class SequenceNode : CompositeNode
 {
+    /*
     int current;
 
     protected override void OnStart()
@@ -30,6 +31,7 @@ public abstract class SequenceNode : CompositeNode
         }
         return current == children.Count ? State.Success : State.Running;
     }
+    */
 }
 
 
