@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class DebugController : MonoBehaviour
 {
     [SerializeField] private Keypad keypad;
-    [SerializeField] private EnemyController enemyController;
     private GameObject _player;
     private GameObject _keypad;
     [SerializeField] private bool _showConsole;
@@ -48,7 +47,6 @@ public class DebugController : MonoBehaviour
         });*/
         TESTTOOLS = new DebugCommand("testtools", "Enables Damage Keybind", "testtools", () =>
         {
-            enemyController.DevTools();
             UnityEngine.Debug.Log("Dev Tools Enabled");
         });
         commandList = new List<object>()
@@ -62,7 +60,6 @@ public class DebugController : MonoBehaviour
     private void Update()
     {
         //_onReturnActive = _player.GetComponent<PlayerHealth>().onReturnActive;
-        _testingTools = enemyController.testingTools;
         //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gym"))
         //    _showConsole = keypad.showConsole;
         if (_onReturnActive) // Fix Late - You have to press twice to fix input

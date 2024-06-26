@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     public static int currentHealth;
     private float damageDelay,damageTick, deathDelay, damageSpeed=45;
-    public KOBar koBar;
 
     public bool onReturnActive; // TESTING CONSOLE SYSTEM
 
@@ -23,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealth;
-        koBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -43,7 +41,6 @@ public class PlayerHealth : MonoBehaviour
         {
             damageTick--;
             currentHealth--;
-            koBar.SetHealth(currentHealth);
         }
         if(currentHealth <= 0)
         {
@@ -73,6 +70,5 @@ public class PlayerHealth : MonoBehaviour
         maxHealth += 100;
         Debug.Log("Current Health" + maxHealth);
         currentHealth +=100;
-        koBar.SetMaxHealth(maxHealth);
     }
 }
